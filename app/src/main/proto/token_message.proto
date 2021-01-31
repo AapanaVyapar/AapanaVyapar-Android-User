@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+
+message newTokenRequest {
+  string refreshToken = 21;
+}
+
+message newTokenResponse {
+  string token = 22;
+}
