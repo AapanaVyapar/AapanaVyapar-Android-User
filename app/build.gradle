@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
-    id "com.google.protobuf"
+    id 'com.google.protobuf'
+    id 'androidx.navigation.safeargs'
+
 }
 
 android {
@@ -9,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.aapanavyapar.aapanavyapar"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -30,10 +32,14 @@ android {
 }
 
 protobuf {
-    protoc { artifact = 'com.google.protobuf:protoc:3.12.0' }
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.12.0'
+    }
     plugins {
-            grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.35.0' // CURRENT_GRPC_VERSION
+        grpc {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.35.0' // CURRENT_GRPC_VERSION
         }
+
         javalite {
             // The codegen for lite comes as a separate artifact
             artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
@@ -64,10 +70,25 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.3'
 
    // implementation "io.grpc:grpc-protobuf:1.35.0"
-    implementation 'io.grpc:grpc-okhttp:1.35.0' // CURRENT_GRPC_VERSION
-    implementation 'io.grpc:grpc-protobuf-lite:1.35.0' // CURRENT_GRPC_VERSION
-    implementation 'io.grpc:grpc-stub:1.35.0' // CURRENT_GRPC_VERSION
+    implementation 'io.grpc:grpc-okhttp:1.35.0'
+    implementation 'io.grpc:protoc-gen-grpc-java:1.35.0'
+    implementation 'io.grpc:grpc-protobuf-lite:1.35.0'
+    implementation 'io.grpc:grpc-stub:1.35.0'
     implementation 'org.apache.tomcat:annotations-api:6.0.53'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+
+    def nav_version = "2.3.3"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha06"
+
 
 
     testImplementation 'junit:junit:4.13.1'
