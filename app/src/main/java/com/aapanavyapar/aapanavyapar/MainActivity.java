@@ -20,8 +20,8 @@ import io.grpc.StatusRuntimeException;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String host = "192.168.8.21";
-    public static final int port = 8080;
+    public static final String host = "192.168.43.159";
+    public static final int port = 4356;
 
     ManagedChannel mChannel;
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
