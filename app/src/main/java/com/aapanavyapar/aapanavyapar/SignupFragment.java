@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -20,6 +21,7 @@ import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseRequest;
 import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseResponse;
 import com.aapanavyapar.aapanavyapar.services.SignUpRequest;
 import com.aapanavyapar.aapanavyapar.services.SignUpResponse;
+import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
 import java.util.concurrent.TimeUnit;
@@ -86,10 +88,8 @@ public class SignupFragment extends Fragment {
                             Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                             Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                            Bundle result = new Bundle();
-                            result.putString("auth", response.getResponseData().getToken());
-                            result.putString("refresh", response.getResponseData().getRefreshToken());
-                            getChildFragmentManager().setFragmentResult("OTP_OF_SIGN_UP", result);
+                            new ViewModelProvider(requireActivity()).get(DataModel.class).setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
+
 
                             NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
 
