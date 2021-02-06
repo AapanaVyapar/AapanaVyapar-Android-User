@@ -86,6 +86,15 @@ public class SignupFragment extends Fragment {
                             Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                             Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
+                            Bundle result = new Bundle();
+                            result.putString("auth", response.getResponseData().getToken());
+                            result.putString("refresh", response.getResponseData().getRefreshToken());
+                            getChildFragmentManager().setFragmentResult("OTP_OF_SIGN_UP", result);
+
+                            NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
+
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+
                         } else {
                             Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
 

@@ -12,33 +12,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
-public class SignupConfirmOtpFragment extends Fragment {
-
-
+public class ForgotPasswordFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_signup_confirm_otp, container, false);
-
+        return inflater.inflate(R.layout.fragment_forgot_password, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
+        //After Completion of Animation
 
 
-        // For SignUp
 
-        //NavDirections actionToUp = WelcomeFragmentDirections.actionWelcomeFragmentToSignupFragment();
-        //Navigation.findNavController(view).navigate(actionToUp);
 
+        // For SignIN
 
 
 
     }
-
 }

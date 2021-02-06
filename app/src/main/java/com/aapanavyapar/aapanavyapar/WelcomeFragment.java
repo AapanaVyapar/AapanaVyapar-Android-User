@@ -12,6 +12,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.concurrent.TimeUnit;
+
 public class WelcomeFragment extends Fragment {
 
     @Override
@@ -25,16 +27,16 @@ public class WelcomeFragment extends Fragment {
 
 
         //After Completion of Animation
-
-        // For SignUp
-
-        NavDirections actionToUp = WelcomeFragmentDirections.actionWelcomeFragmentToSignupFragment();
-        Navigation.findNavController(view).navigate(actionToUp);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         // For SignIN
-//        NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
-//        Navigation.findNavController(view).navigate(actionToIn);
+        NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
+        Navigation.findNavController(view).navigate(actionToIn);
 
     }
 }
