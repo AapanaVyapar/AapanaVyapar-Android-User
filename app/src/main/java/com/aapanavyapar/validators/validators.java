@@ -1,7 +1,6 @@
 package com.aapanavyapar.validators;
 
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.regex.Pattern;
 
@@ -9,7 +8,7 @@ import static android.util.Patterns.EMAIL_ADDRESS;
 import static android.util.Patterns.PHONE;
 
 public class validators {
-    private static final Pattern PINCODE_PATTERN = Pattern.compile(("/^(\\d{4}|\\d{6})$/"));
+    private static final Pattern PIN_CODE_PATTERN = Pattern.compile(("/^(\\d{4}|\\d{6})$/"));
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(("^" +
             "(?=.*[0-9])" +         //at least 1 digit
             "(?=.*[a-z])" +         //at least 1 lower case letter
@@ -21,7 +20,7 @@ public class validators {
             "$"));
             ;
 
-    public boolean validateUserName(EditText inputUserName){
+    public static boolean validateUserName(EditText inputUserName){
 
         String user_input = inputUserName.getText().toString().trim();
         if(user_input.isEmpty())
@@ -40,7 +39,7 @@ public class validators {
             return true;
         }
     }
-    public boolean validateMail(EditText inputMail){
+    public static boolean validateMail(EditText inputMail){
 
         String email_input = inputMail.getText().toString().trim();
         if(email_input.isEmpty())
@@ -59,54 +58,54 @@ public class validators {
             return true;
         }
     }
-    private boolean validatePhone(EditText inputPhno){
+    private static boolean validatePhone(EditText inputPhone){
 
-        String phone_input = inputPhno.getText().toString().trim();
+        String phone_input = inputPhone.getText().toString().trim();
         if(phone_input.isEmpty())
         {
-            inputPhno.setError("Field Can't Be Empty");
+            inputPhone.setError("Field Can't Be Empty");
             return false;
 
         }
         else if(!PHONE.matcher(phone_input).matches()){
-            inputPhno.setError("Please Enter The Valid Phone Number");
+            inputPhone.setError("Please Enter The Valid Phone Number");
             return false;
         }
         else {
 
-            inputPhno.setError(null);
+            inputPhone.setError(null);
             return true;
         }
     }
-    public boolean validatePincode(EditText inputPincode){
-
-        String pincode_input = inputPincode.getText().toString().trim();
-        if(pincode_input.isEmpty())
+    public static boolean validatePinCode(EditText inputPinCode){
+        return true;
+       /* String pinCodeInput = inputPinCode.getText().toString().trim();
+        if(pinCodeInput.isEmpty())
         {
-            inputPincode.setError("Field Can't Be Empty");
+            inputPinCode.setError("Field Can't Be Empty");
             return false;
 
         }
-        else if(!PINCODE_PATTERN.matcher(pincode_input).matches()){
-            inputPincode.setError("Please Enter Valid Pincode");
+        else if(!PIN_CODE_PATTERN.matcher(pinCodeInput).matches()){
+            inputPinCode.setError("Please Enter Valid Pincode");
             return false;
         }
         else {
 
-            inputPincode.setError(null);
+            inputPinCode.setError(null);
             return true;
-        }
+        }*/
     }
-    public boolean validatePpassword(EditText inputPassword){//To check wheather the field of password is empty or not
+    public static boolean validatePassword(EditText inputPassword){//To check weather the field of password is empty or not
 
-        String password_input = inputPassword.getText().toString().trim();
-        if(password_input.isEmpty())
+        String passwordInput = inputPassword.getText().toString().trim();
+        if(passwordInput.isEmpty())
         {
             inputPassword.setError("Field Can't Be Empty");
             return false;
 
         }
-        else if(!PASSWORD_PATTERN.matcher(password_input).matches()){
+        else if(!PASSWORD_PATTERN.matcher(passwordInput).matches()){
             inputPassword.setError("Password Is Not Strong Enough");
             return false;
         }
