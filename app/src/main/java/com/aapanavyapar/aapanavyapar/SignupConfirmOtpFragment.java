@@ -8,42 +8,79 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
+import com.aapanavyapar.aapanavyapar.services.ContactConformationRequest;
+import com.aapanavyapar.aapanavyapar.services.ContactConformationResponse;
 import com.aapanavyapar.dataModel.DataModel;
+
+import java.util.concurrent.TimeUnit;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 
 
 public class SignupConfirmOtpFragment extends Fragment {
 
-    private DataModel dataModel;
+
+    public static final String host = "192.168.8.21";
+    public static final int port = 4356;
+
+    ManagedChannel mChannel;
+    AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
+    AuthenticationGrpc.AuthenticationStub asyncStub;
+
+    Button conformOtp;
+    EditText otpText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_signup_confirm_otp, container, false);
+        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
+        blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
+        asyncStub = AuthenticationGrpc.newStub(mChannel);
+
+        return inflater.inflate(R.layout.fragment_signup_confirm_otp, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataModel = new ViewModelProvider(this).get(DataModel.class);
-        Toast.makeText(getContext(), dataModel.getAuthToken(), Toast.LENGTH_LONG).show();
+        DataModel dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
 
+        conformOtp = view.findViewById(R.id.sign_up_confirm_otp_button);
+        otpText = view.findViewById(R.id.sign_up_confirm_otp_otp_text);
 
+        conformOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContactConformationRequest request = ContactConformationRequest.newBuilder().setOtp(otpText.getText().toString().trim()).setToken(dataModel.getAuthToken()).build();
+                try {
+                    ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(request);
 
-        // For SignUp
+                    Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
 
-        //NavDirections actionToUp = WelcomeFragmentDirections.actionWelcomeFragmentToSignupFragment();
-        //Navigation.findNavController(view).navigate(actionToUp);
+                }catch (StatusRuntimeException e){
+                    Log.d("ConfirmOtpFragment", e.getMessage());
 
-
-
-
+                }
+            }
+        });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mChannel.shutdown();
+    }
 }

@@ -9,16 +9,9 @@ import com.aapanavyapar.dataModel.DataModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DataModel dataModel;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        dataModel = new ViewModelProvider(this).get(DataModel.class);
-
-
     }
 }

@@ -32,12 +32,15 @@ import io.grpc.StatusRuntimeException;
 
 public class SignupFragment extends Fragment {
 
-    public static final String host = "192.168.43.159";
+    public static final String host = "192.168.8.21";
     public static final int port = 4356;
 
     ManagedChannel mChannel;
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
     AuthenticationGrpc.AuthenticationStub asyncStub;
+
+
+    private DataModel dataModel;
 
     Button signUp;
     EditText mail;
@@ -80,7 +83,7 @@ public class SignupFragment extends Fragment {
                             .setPassword(password.getText().toString())
                             .build();
                     try{
-                        SignUpResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).signup(request);
+                        SignUpResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).signup(request);
                         if (response.hasResponseData()) {
                             Log.d("MainActivity", "Success .. !!");
                             Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
@@ -88,55 +91,30 @@ public class SignupFragment extends Fragment {
                             Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                             Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                            new ViewModelProvider(requireActivity()).get(DataModel.class).setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
-
+                            dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+                            dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
 
                             NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
-
                             Navigation.findNavController(view).navigate(actionWithOtp);
 
                         } else {
                             Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
 
                         }
-
-
                     }
                     catch(StatusRuntimeException e){
                         Log.d("MainActivity", e.getMessage());
+
                     }
-
                 }
-
             }
         });
     }
 
-//    public void testRpc(View view) {
-//
-//        SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder().setMail("shitij18@mail.com").setPassword("1234567881").build();
-//
-//        try {
-//            SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).signInWithMail(request);
-//
-//            if (response.hasResponseData()) {
-//                Log.d("MainActivity", "Success .. !!");
-//                Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
-//                Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-//                Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
-//                Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
-//
-//            } else {
-//                Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-////            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
-//
-//        }catch (StatusRuntimeException e){
-//            Log.d("MainActivity", e.getMessage());
-//        }
-//
-//    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mChannel.shutdown();
+    }
 
 }

@@ -24,9 +24,14 @@ import com.aapanavyapar.validators.validators;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 
 public class SigninFragment extends Fragment {
+
+    public static final String host = "192.168.8.21";
+    public static final int port = 4356;
+
 
     EditText email;
     Button signIn, signUp;
@@ -39,6 +44,12 @@ public class SigninFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+
+        blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
+        asyncStub = AuthenticationGrpc.newStub(mChannel);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_signin, container, false);
     }
@@ -74,7 +85,7 @@ public class SigninFragment extends Fragment {
                     SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder().setMail(email.getText().toString()).setPassword(password.getText().toString()).build();
 
                     try {
-                        SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).signInWithMail(request);
+                        SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signInWithMail(request);
 
                         if (response.hasResponseData()) {
                             Log.d("MainActivity", "Success .. !!");
