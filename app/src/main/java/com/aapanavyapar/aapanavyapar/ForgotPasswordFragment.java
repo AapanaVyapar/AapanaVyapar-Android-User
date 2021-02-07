@@ -26,12 +26,7 @@ public class ForgotPasswordFragment extends Fragment {
 
         //After Completion of Animation
 
-
-
-
         // For SignIN
-
-
 
     }
 }
