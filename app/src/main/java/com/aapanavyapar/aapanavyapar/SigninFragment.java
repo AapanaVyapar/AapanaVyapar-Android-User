@@ -58,11 +58,11 @@ public class SigninFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        email = (EditText)view.findViewById(R.id.input_email);
+        email = (EditText)view.findViewById(R.id.sign_in_input_email);
         signIn = (Button)view.findViewById(R.id.sign_in);
         signUp = (Button)view.findViewById(R.id.sign_up_in);
-        password = (EditText)view.findViewById(R.id.input_password);
-        forgotPassword = (TextView)view.findViewById(R.id.forgot_password);
+        password = (EditText)view.findViewById(R.id.sign_in_input_password);
+        forgotPassword = (TextView)view.findViewById(R.id.sign_in_forgot_password);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

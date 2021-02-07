@@ -64,11 +64,11 @@ public class SignupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         signUp = (Button)view.findViewById(R.id.signup);
-        userName = (EditText)view.findViewById(R.id.input_username);
-        mail = (EditText)view.findViewById(R.id.input_mail_id);
-        password = (EditText)view.findViewById(R.id.input_pass);
-        phone = (EditText)view.findViewById(R.id.input_phno);
-        pinCode = (EditText)view.findViewById(R.id.input_pincode);
+        userName = (EditText)view.findViewById(R.id.sign_up_input_username);
+        mail = (EditText)view.findViewById(R.id.sign_up_input_mail_id);
+        password = (EditText)view.findViewById(R.id.sign_up_input_pass);
+        phone = (EditText)view.findViewById(R.id.sign_up_input_phno);
+        pinCode = (EditText)view.findViewById(R.id.sign_up_input_pincode);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
