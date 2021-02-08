@@ -1,13 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
-import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseRequest;
-import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseResponse;
 import com.aapanavyapar.aapanavyapar.services.SignUpRequest;
 import com.aapanavyapar.aapanavyapar.services.SignUpResponse;
 import com.aapanavyapar.dataModel.DataModel;
@@ -81,6 +78,7 @@ public class SignupFragment extends Fragment {
                             .setPinCode(pinCode.getText().toString())
                             .setPhoneNo(phone.getText().toString())
                             .setPassword(password.getText().toString())
+                            .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
                             .build();
                     try{
                         SignUpResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).signup(request);

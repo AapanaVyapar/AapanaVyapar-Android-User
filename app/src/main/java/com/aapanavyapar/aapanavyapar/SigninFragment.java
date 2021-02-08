@@ -82,7 +82,11 @@ public class SigninFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(validators.validateMail(email) && validators.validatePassword(password)){
-                    SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder().setMail(email.getText().toString()).setPassword(password.getText().toString()).build();
+                    SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder()
+                            .setMail(email.getText().toString())
+                            .setPassword(password.getText().toString())
+                            .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                            .build();
 
                     try {
                         SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signInWithMail(request);
@@ -109,4 +113,10 @@ public class SigninFragment extends Fragment {
             }
         });
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mChannel.shutdown();
+    }
+
 }

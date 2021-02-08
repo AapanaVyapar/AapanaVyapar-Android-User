@@ -64,7 +64,11 @@ public class SignupConfirmOtpFragment extends Fragment {
         conformOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContactConformationRequest request = ContactConformationRequest.newBuilder().setOtp(otpText.getText().toString().trim()).setToken(dataModel.getAuthToken()).build();
+                ContactConformationRequest request = ContactConformationRequest.newBuilder()
+                        .setOtp(otpText.getText().toString().trim())
+                        .setToken(dataModel.getAuthToken())
+                        .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                        .build();
                 try {
                     ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(request);
 
