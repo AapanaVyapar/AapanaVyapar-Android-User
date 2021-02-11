@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+
+import "common_message.proto";
+
+message SignInForMailBaseRequest {
+  string apiKey = 105;
+  string mail = 8;
+  string password = 9;
+}
+
+message SignInForMailBaseResponse {
+    oneof data{
+      ResponseData responseData = 10;
+      ProblemCode code = 11;
+    }
+}
