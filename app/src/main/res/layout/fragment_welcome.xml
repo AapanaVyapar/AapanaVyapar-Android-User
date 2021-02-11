@@ -34,7 +34,7 @@
         android:layout_width="224dp"
         android:layout_height="60dp"
         android:drawablePadding="10dp"
-        android:fontFamily="@font/modern_antiqua"
+        android:fontFamily="@font/inknut_antiqua_light"
         android:text="AapanaVyapar"
         android:textAlignment="center"
         android:textSize="36sp"

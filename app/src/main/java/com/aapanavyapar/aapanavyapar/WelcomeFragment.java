@@ -36,32 +36,42 @@ public class WelcomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //After Completion of Animation
+        logo = view.findViewById(R.id.imageView);
+        title = view.findViewById(R.id.textView2);
 
-        //Animation   ***
-        //top = AnimationUtils.loadAnimation(this,R.anim.top_anim);
-        txt_anim = AnimationUtils.loadAnimation(this,R.anim.txt_anim);
-        bounce = AnimationUtils.loadAnimation(this,R.anim.bounce);
+        Animation animation = new Animation() {
+            @Override
+            public void initialize(int width, int height, int parentWidth, int parentHeight) {
+                super.initialize(width, height, parentWidth, parentHeight);
 
+                txt_anim = AnimationUtils.loadAnimation(getContext(), R.anim.txt_anim);
+                bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+                setDuration(5000);
+            }
+        };
 
-        logo = findViewById(R.id.imageView);
-        title = findViewById(R.id.textView2);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                title.setAnimation(txt_anim);
+                logo.setAnimation(bounce);
 
-        //Applying Animation   ***
-        //logo.setAnimation(top);
-        title.setAnimation(txt_anim);
-        logo.setAnimation(bounce);
+            }
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // For SignIN
+                NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
+                Navigation.findNavController(view).navigate(actionToIn);
 
+            }
 
-        // For SignIN
-        NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
-        Navigation.findNavController(view).navigate(actionToIn);
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+
+        view.setAnimation(animation);
 
     }
+
 }
