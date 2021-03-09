@@ -85,7 +85,7 @@ public class SigninFragment extends Fragment {
                     SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder()
                             .setMail(email.getText().toString())
                             .setPassword(password.getText().toString())
-                            .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                            .setApiKey(MainActivity.API_KEY)
                             .build();
 
                     try {

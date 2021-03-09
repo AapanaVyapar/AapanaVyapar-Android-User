@@ -67,7 +67,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                 ContactConformationRequest request = ContactConformationRequest.newBuilder()
                         .setOtp(otpText.getText().toString().trim())
                         .setToken(dataModel.getAuthToken())
-                        .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                        .setApiKey(MainActivity.API_KEY)
                         .build();
                 try {
                     ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(request);

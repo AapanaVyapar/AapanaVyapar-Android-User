@@ -46,7 +46,7 @@ public class WelcomeFragment extends Fragment {
 
                 txt_anim = AnimationUtils.loadAnimation(getContext(), R.anim.txt_anim);
                 bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
-                setDuration(5000);
+                setDuration(2000);
             }
         };
 

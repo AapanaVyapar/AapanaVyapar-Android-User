@@ -78,7 +78,7 @@ public class SignupFragment extends Fragment {
                             .setPinCode(pinCode.getText().toString())
                             .setPhoneNo(phone.getText().toString())
                             .setPassword(password.getText().toString())
-                            .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                            .setApiKey(MainActivity.API_KEY)
                             .build();
                     try{
                         SignUpResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).signup(request);
