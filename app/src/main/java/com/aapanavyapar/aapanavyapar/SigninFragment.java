@@ -17,8 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
-import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseRequest;
 import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseResponse;
+import com.aapanavyapar.aapanavyapar.services.SignInRequest;
+import com.aapanavyapar.aapanavyapar.services.SignInResponse;
 import com.aapanavyapar.validators.validators;
 
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ public class SigninFragment extends Fragment {
     public static final int port = 4356;
 
 
-    EditText email;
+    EditText phoneNo;
     Button signIn, signUp;
     EditText password;
     TextView forgotPassword;
@@ -58,7 +59,7 @@ public class SigninFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        email = (EditText)view.findViewById(R.id.sign_in_input_email);
+        phoneNo = (EditText)view.findViewById(R.id.sign_in_input_phoneNo);
         signIn = (Button)view.findViewById(R.id.sign_in);
         signUp = (Button)view.findViewById(R.id.sign_up_in);
         password = (EditText)view.findViewById(R.id.sign_in_input_password);
@@ -81,34 +82,37 @@ public class SigninFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validators.validateMail(email) && validators.validatePassword(password)){
-                    SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder()
-                            .setMail(email.getText().toString())
+                if(validators.validatePhone(phoneNo) && validators.validatePassword(password)){
+                    SignInRequest request = SignInRequest.newBuilder()
+                            .setPhoneNo(phoneNo.getText().toString())
                             .setPassword(password.getText().toString())
                             .setApiKey(MainActivity.API_KEY)
                             .build();
 
                     try {
-                        SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signInWithMail(request);
+                        SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
 
-                        if (response.hasResponseData()) {
-                            Log.d("MainActivity", "Success .. !!");
-                            Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-                            Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
+                        Log.d("MainActivity", "Success .. !!");
+                        Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
+                        Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                        } else {
-                            Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
-
-                        }
 
             //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
 
                     }catch (StatusRuntimeException e){
+
+                        if (e.getStatus().getCode().toString().equals("NOT_FOUND")) {
+                            Log.d("MainActivity", "YES");
+                        } else {
+                            Log.d("MainActivity", "NO");
+                        }
+
+                        Log.d("MainActivity", String.valueOf(e.getStatus()));
                         Log.d("MainActivity", e.getMessage());
                     }
-                    //SignInRequest request = SignInRequest.newBuilder().setEmail(email.getText().toString()).build();
+                    //SignInRequest request = SignInRequest.newBuilder().setEmail(phoneNo.getText().toString()).build();
                 }
             }
         });

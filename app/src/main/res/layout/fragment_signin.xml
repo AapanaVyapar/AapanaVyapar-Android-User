@@ -63,10 +63,10 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <TextView
-        android:id="@+id/sign_in_email_label"
+        android:id="@+id/sign_in_phoneNo_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Phone Number"
         android:textColor="#121111"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,17 +76,17 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <EditText
-        android:id="@+id/sign_in_input_email"
+        android:id="@+id/sign_in_input_phoneNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter Your Email"
+        android:hint="Enter Your PhoneNo"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_email_label"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_phoneNo_label"
         app:layout_constraintVertical_bias="0.027" />
 
     <TextView
@@ -100,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_input_email"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_input_phoneNo"
         app:layout_constraintVertical_bias="0.098" />
 
     <EditText

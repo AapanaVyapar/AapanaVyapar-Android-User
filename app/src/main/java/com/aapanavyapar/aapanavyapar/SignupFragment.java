@@ -82,23 +82,18 @@ public class SignupFragment extends Fragment {
                             .build();
                     try{
                         SignUpResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).signup(request);
-                        if (response.hasResponseData()) {
-                            Log.d("MainActivity", "Success .. !!");
-                            Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-                            Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
+                        Log.d("MainActivity", "Success .. !!");
+                        Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
+                        Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                            dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
-                            dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
+                        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
 
-                            NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
-                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
+                        Navigation.findNavController(view).navigate(actionWithOtp);
 
-                        } else {
-                            Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
-
-                        }
                     }
                     catch(StatusRuntimeException e){
                         Log.d("MainActivity", e.getMessage());

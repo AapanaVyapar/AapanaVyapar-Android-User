@@ -58,7 +58,7 @@ public class validators {
             return true;
         }
     }
-    private static boolean validatePhone(EditText inputPhone){
+    public static boolean validatePhone(EditText inputPhone){
 
         String phone_input = inputPhone.getText().toString().trim();
         if(phone_input.isEmpty())
