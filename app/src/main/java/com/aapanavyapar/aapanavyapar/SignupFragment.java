@@ -43,7 +43,6 @@ public class SignupFragment extends Fragment {
     EditText mail;
     EditText password;
     EditText phone;
-    EditText pinCode;
     EditText userName;
 
     @Override
@@ -65,17 +64,15 @@ public class SignupFragment extends Fragment {
         mail = (EditText)view.findViewById(R.id.sign_up_input_mail_id);
         password = (EditText)view.findViewById(R.id.sign_up_input_pass);
         phone = (EditText)view.findViewById(R.id.sign_up_input_phno);
-        pinCode = (EditText)view.findViewById(R.id.sign_up_input_pincode);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validators.validateUserName(userName) && validators.validateMail(mail) && validators.validatePinCode(pinCode) && validators.validatePassword(password)){
+                if(validators.validateUserName(userName) && validators.validateMail(mail) && validators.validatePassword(password)){
                  //   testRpc(v);
                     SignUpRequest request = SignUpRequest.newBuilder()
                             .setEmail(mail.getText().toString())
                             .setUsername(userName.getText().toString())
-                            .setPinCode(pinCode.getText().toString())
                             .setPhoneNo(phone.getText().toString())
                             .setPassword(password.getText().toString())
                             .setApiKey(MainActivity.API_KEY)
