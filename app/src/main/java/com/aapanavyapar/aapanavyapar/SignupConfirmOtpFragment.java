@@ -31,7 +31,7 @@ import io.grpc.StatusRuntimeException;
 public class SignupConfirmOtpFragment extends Fragment {
 
 
-    public static final String host = "192.168.43.189";
+    public static final String host = "192.168.43.159";
     public static final int port = 4356;
 
     ManagedChannel mChannel;
@@ -58,8 +58,8 @@ public class SignupConfirmOtpFragment extends Fragment {
         DataModel dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
 
-        conformOtp = view.findViewById(R.id.sign_up_confirm_otp_button);
-        otpText = view.findViewById(R.id.sign_up_confirm_otp_otp_text);
+        conformOtp = view.findViewById(R.id.forgot_password_confirm_otp_button);
+        otpText = view.findViewById(R.id.forgot_password_confirm_otp_text);
 
         conformOtp.setOnClickListener(new View.OnClickListener() {
             @Override

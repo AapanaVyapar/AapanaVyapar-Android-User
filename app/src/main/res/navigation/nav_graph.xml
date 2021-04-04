@@ -45,13 +45,35 @@
     <fragment
         android:id="@+id/SignupConfirmOtpFragment"
         android:name="com.aapanavyapar.aapanavyapar.SignupConfirmOtpFragment"
-        android:label="@string/singup_Confirm_Otp_fragment_label"
+        android:label="Confirm Your OTP For Signup"
         tools:layout="@layout/fragment_signup_confirm_otp">
     </fragment>
     <fragment
         android:id="@+id/ForgotPasswordFragment"
         android:name="com.aapanavyapar.aapanavyapar.ForgotPasswordFragment"
-        android:label="@string/forgot_password_fragment_label"
+        android:label="Forgot Password"
         tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_ForgotPasswordFragment_to_ForgotPasswordConfirmOtpFragment"
+            app:destination="@id/ForgotPasswordConfirmOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreateNewPasswordFragment"
+        android:name="com.aapanavyapar.aapanavyapar.CreateNewPasswordFragment"
+        android:label="Confirm Your New Password"
+        tools:layout="@layout/fragment_create_new_password">
+
+        <action
+            android:id="@+id/action_CreateNewPasswordFragment_to_SigninFragment"
+            app:destination="@id/SigninFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ForgotPasswordConfirmOtpFragment"
+        android:name="com.aapanavyapar.aapanavyapar.ForgotPasswordConfirmOtpFragment"
+        android:label="Confirm Your OTP For New Password"
+        tools:layout="@layout/fragment_forgot_password_confirm_otp">
+        <action
+            android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_CreateNewPasswordFragment"
+            app:destination="@id/CreateNewPasswordFragment" />
     </fragment>
 </navigation>

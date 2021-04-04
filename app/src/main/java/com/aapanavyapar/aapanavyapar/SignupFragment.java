@@ -29,7 +29,7 @@ import io.grpc.StatusRuntimeException;
 
 public class SignupFragment extends Fragment {
 
-    public static final String host = "192.168.43.189";
+    public static final String host = "192.168.43.159";
     public static final int port = 4356;
 
     ManagedChannel mChannel;
