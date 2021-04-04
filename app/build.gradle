@@ -70,8 +70,9 @@ dependencies {
 
     implementation 'io.grpc:grpc-okhttp:1.36.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.36.0'
+    implementation 'io.grpc:protoc-gen-grpc-java:1.36.0'
     implementation 'io.grpc:grpc-stub:1.36.0'
-    compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
+    implementation 'org.apache.tomcat:annotations-api:6.0.53'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
