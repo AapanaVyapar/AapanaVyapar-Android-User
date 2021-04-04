@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -20,6 +21,7 @@ import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
 import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseResponse;
 import com.aapanavyapar.aapanavyapar.services.SignInRequest;
 import com.aapanavyapar.aapanavyapar.services.SignInResponse;
+import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
 import java.util.concurrent.TimeUnit;
@@ -33,6 +35,7 @@ public class SigninFragment extends Fragment {
     public static final String host = "192.168.43.159";
     public static final int port = 4356;
 
+    private DataModel dataModel;
 
     EditText phoneNo;
     Button signIn, signUp;
@@ -92,6 +95,9 @@ public class SigninFragment extends Fragment {
                     try {
                         SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
 
+                        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
+
                         Log.d("MainActivity", "Success .. !!");
                         Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
@@ -103,16 +109,34 @@ public class SigninFragment extends Fragment {
 
                     }catch (StatusRuntimeException e){
 
-                        if (e.getStatus().getCode().toString().equals("NOT_FOUND")) {
-                            Log.d("MainActivity", "YES");
-                        } else {
-                            Log.d("MainActivity", "NO");
+                        if (e.getStatus().getCode().toString().equals("Unauthenticated")) {
+                            Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("InvalidArgument")) {
+                            Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("NotFound")) {
+                            Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
+                            NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionToUp);
+
+                        } else if(e.getStatus().getCode().toString().equals("DeadlineExceeded")) {
+                            Toast.makeText(view.getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                            Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                            Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+
+                        }  else {
+                            e.getMessage();
+                            Toast.makeText(view.getContext(), "Unknown Error Occured", Toast.LENGTH_SHORT).show();
+
                         }
 
-                        Log.d("MainActivity", String.valueOf(e.getStatus()));
-                        Log.d("MainActivity", e.getMessage());
                     }
-                    //SignInRequest request = SignInRequest.newBuilder().setEmail(phoneNo.getText().toString()).build();
+
                 }
             }
         });
