@@ -83,7 +83,7 @@ public class CreateNewPasswordFragment extends Fragment {
                         .build();
 
                 try {
-                    SetNewPasswordResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).setNewPassword(request);
+                    SetNewPasswordResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).setNewPassword(request);
 
                     Toast.makeText(getContext(), "Success .. !! " + response.getStatus(), Toast.LENGTH_LONG).show();
 
@@ -118,7 +118,7 @@ public class CreateNewPasswordFragment extends Fragment {
                                         .setApiKey(MainActivity.API_KEY)
                                         .build();
 
-                                SetNewPasswordResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).setNewPassword(setNewPasswordRequest);
+                                SetNewPasswordResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).setNewPassword(setNewPasswordRequest);
                                 if (response.getStatus()) {
                                     Toast.makeText(getContext(), "Success .. !! " + response, Toast.LENGTH_LONG).show();
 

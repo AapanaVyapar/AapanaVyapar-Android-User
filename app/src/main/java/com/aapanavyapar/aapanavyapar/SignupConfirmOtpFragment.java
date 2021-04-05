@@ -82,7 +82,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                         .setApiKey(MainActivity.API_KEY)
                         .build();
                 try {
-                    ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(request);
+                    ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).contactConformation(request);
 
                     Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
 
@@ -115,7 +115,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                                         .setApiKey(MainActivity.API_KEY)
                                         .build();
 
-                                ContactConformationResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(reRequest);
+                                ContactConformationResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).contactConformation(reRequest);
                                 Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
 
 
