@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
@@ -26,6 +27,8 @@ import com.aapanavyapar.aapanavyapar.services.ContactConformationResponse;
 import com.aapanavyapar.aapanavyapar.services.ForgetPasswordRequest;
 import com.aapanavyapar.aapanavyapar.services.NewTokenRequest;
 import com.aapanavyapar.aapanavyapar.services.NewTokenResponse;
+import com.aapanavyapar.aapanavyapar.services.ResendOTPRequest;
+import com.aapanavyapar.aapanavyapar.services.ResendOTPResponse;
 import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
@@ -50,6 +53,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
     EditText input_Otp;
     Button btnNext;
+    TextView resend_Otp;
 
     public ForgotPasswordConfirmOtpFragment() {
         // Required empty public constructor
@@ -80,6 +84,41 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
         input_Otp = (EditText) view.findViewById(R.id.forgot_password_confirm_otp_text);
         btnNext = (Button) view.findViewById(R.id.forgot_password_confirm_otp_button);
+        resend_Otp = (TextView) view.findViewById(R.id.resend_otp);
+
+        resend_Otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!dataModel.CanWeUseTokenForThis(constants.ResendOTP)){
+                    Toast.makeText(getContext(), "Please Try Again ..!!", Toast.LENGTH_LONG).show();
+
+                    NavDirections actionWithOtp = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToForgotPasswordFragment();
+                    Navigation.findNavController(view).navigate(actionWithOtp);
+                }
+                ResendOTPRequest request = ResendOTPRequest.newBuilder()
+                        .setToken(dataModel.getAuthToken())
+                        .setApiKey(MainActivity.API_KEY)
+                        .build();
+                try{
+                    ResendOTPResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).resendOTP(request);
+                }
+                catch (StatusRuntimeException e){
+                    if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
+                        if (e.getMessage().equals("Request With Invalid Token")) {
+                            Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
+
+                            NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
+                                    .setApiKey(MainActivity.API_KEY)
+                                    .setRefreshToken(dataModel.getRefreshToken())
+                                    .build();
+
+
+                        }
+                    }
+
+                }
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +151,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                 } catch (StatusRuntimeException e) {
                     Log.d("ConfirmOtpFragment", e.getMessage());
 
-                    if (e.getStatus().getCode().toString().equals("Unauthenticated")) {
+                    if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
                         if (e.getMessage().equals("Request With Invalid Token")) {
                             Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
                             NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
@@ -155,13 +194,13 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
                         }
 
-                    } else if (e.getStatus().getCode().toString().equals("Internal")) {
+                    } else if (e.getStatus().getCode().toString().equals("INTERNAL")) {
                         Toast.makeText(view.getContext(), "Server Error ..!!. Please Try After Some Time.", Toast.LENGTH_SHORT).show();
 
                         NavDirections actionForgotPasswordConfirmOtpToCreateNewPasswordFragment = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToSigninFragment();
                         Navigation.findNavController(view).navigate(actionForgotPasswordConfirmOtpToCreateNewPasswordFragment);
 
-                    } else if (e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                    } else if (e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
                         Toast.makeText(view.getContext(), "Invalid OTP Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
                     } else {

@@ -90,5 +90,8 @@
         <action
             android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_ForgotPasswordFragment"
             app:destination="@id/ForgotPasswordFragment" />
+        <action
+            android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_SignupFragment"
+            app:destination="@id/SignupFragment" />
     </fragment>
 </navigation>

@@ -98,16 +98,16 @@ public class SignupFragment extends Fragment {
                     }
                     catch(StatusRuntimeException e){
 
-                        if(e.getStatus().getCode().toString().equals("Unauthenticated")){
-                            Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+                        if(e.getStatus().getCode().toString().equals("UNAUTHENTICATED")){
+                        Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")){
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("NotFound")) {
+                        } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
                             Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("AlreadyExists")) {
+                        } else if(e.getStatus().getCode().toString().equals("ALREADY_EXISTS")) {
 
                             if(e.getMessage().equals("User Already Exist")){
                                 Toast.makeText(view.getContext(), "User Already Exist Please Try With Another Mobile Number", Toast.LENGTH_SHORT).show();
@@ -116,7 +116,7 @@ public class SignupFragment extends Fragment {
                                 NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
                                 Navigation.findNavController(view).navigate(actionWithOtp);
                             }
-                        }  else if(e.getStatus().getCode().toString().equals("Internal")) {
+                        }  else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                             Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
                         }
 

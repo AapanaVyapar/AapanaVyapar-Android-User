@@ -94,10 +94,10 @@ public class CreateNewPasswordFragment extends Fragment {
 
 
                 } catch (StatusRuntimeException e) {
-                    if (e.getStatus().getCode().toString().equals("InvalidArgument")) {
+                    if (e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")) {
                         Toast.makeText(getContext(), "Please Enter Stronger Password .. !! ", Toast.LENGTH_LONG).show();
 
-                    } else if (e.getStatus().getCode().toString().equals("Unauthenticated")) {
+                    } else if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
                         if (e.getMessage().equals("Request With Invalid Token")) {
                             Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
                             NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()

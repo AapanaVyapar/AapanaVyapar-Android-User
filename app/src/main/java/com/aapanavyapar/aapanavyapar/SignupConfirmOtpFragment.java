@@ -91,10 +91,10 @@ public class SignupConfirmOtpFragment extends Fragment {
 
 
                 }catch (StatusRuntimeException e){
-                    if (e.getStatus().getCode().toString().equals("InvalidArgument")) {
+                    if (e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")) {
                         Toast.makeText(view.getContext(), "Invalid OTP Try Again ..!!", Toast.LENGTH_SHORT).show();
 
-                    } else if (e.getStatus().getCode().toString().equals("Unauthenticated")) {
+                    } else if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
                         if (e.getMessage().equals("Request With Invalid Token")) {
                             Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
                             NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
@@ -135,25 +135,25 @@ public class SignupConfirmOtpFragment extends Fragment {
 
                         }
 
-                    } else if(e.getStatus().getCode().toString().equals("Unknown")) {
+                    } else if(e.getStatus().getCode().toString().equals("UNKNOWN")) {
                         Toast.makeText(view.getContext(), "Server Error ..!!. Please Try After Some Time.", Toast.LENGTH_SHORT).show();
 
                         NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
                         Navigation.findNavController(view).navigate(actionWithOtp);
 
-                    } else if(e.getStatus().getCode().toString().equals("NotFound")) {
+                    } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
                         Toast.makeText(view.getContext(), "Please Try Again OTP Expired .. !!", Toast.LENGTH_SHORT).show();
 
                         NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
                         Navigation.findNavController(view).navigate(actionWithOtp);
 
-                    } else if(e.getStatus().getCode().toString().equals("Aborted")) {
+                    } else if(e.getStatus().getCode().toString().equals("ABORTED")) {
                         Toast.makeText(view.getContext(), "Please Update The App .. !!. App Is Corrupted", Toast.LENGTH_SHORT).show();
 
                         NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
                         Navigation.findNavController(view).navigate(actionWithOtp);
 
-                    } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                    } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                         Toast.makeText(view.getContext(), "Please Try To SignIn", Toast.LENGTH_SHORT).show();
 
                         NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();

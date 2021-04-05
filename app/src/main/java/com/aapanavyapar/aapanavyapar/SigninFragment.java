@@ -112,29 +112,29 @@ public class SigninFragment extends Fragment {
 
                     }catch (StatusRuntimeException e){
 
-                        if (e.getStatus().getCode().toString().equals("Unauthenticated")) {
+                        if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
                             Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("InvalidArgument")) {
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")) {
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("NotFound")) {
+                        } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
                             Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
                             NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
                             Navigation.findNavController(view).navigate(actionToUp);
 
-                        } else if(e.getStatus().getCode().toString().equals("DeadlineExceeded")) {
+                        } else if(e.getStatus().getCode().toString().equals("DEADLINE_EXCEEDED")) {
                             Toast.makeText(view.getContext(), "Network Error", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                        } else if(e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
                             Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                        } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                             Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
 
                         }  else {
                             e.getMessage();
-                            Toast.makeText(view.getContext(), "Unknown Error Occured", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
                         }
 

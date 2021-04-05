@@ -89,22 +89,22 @@ public class ForgotPasswordFragment extends Fragment {
 
 
                     } catch (StatusRuntimeException e) {
-                        if(e.getStatus().getCode().toString().equals("Unauthenticated")){
+                        if(e.getStatus().getCode().toString().equals("UNAUTHENTICATED")){
                             Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
 
                             NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
                             Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
 
-                        } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")){
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                        } else if(e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
                             Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
 
                             NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSignupFragment();
                             Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
 
-                        } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                        } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                             Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
 
                             NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
