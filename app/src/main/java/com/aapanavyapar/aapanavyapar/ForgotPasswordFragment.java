@@ -82,7 +82,23 @@ public class ForgotPasswordFragment extends Fragment {
                     }
 
                 } catch (StatusRuntimeException e) {
-                    Log.d("MainActivity", e.getMessage());
+                   // Log.d("MainActivity", e.getMessage());
+                    if(e.getStatus().getCode().toString().equals("Unauthenticated")){
+                        Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+
+                    } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
+                        Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
+
+                    } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                        Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
+
+                    } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                        Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        e.getMessage();
+                        Toast.makeText(view.getContext(), "Unknown Error Occured", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

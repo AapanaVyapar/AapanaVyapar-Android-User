@@ -93,7 +93,28 @@ public class SignupFragment extends Fragment {
 
                     }
                     catch(StatusRuntimeException e){
-                        Log.d("MainActivity", e.getMessage());
+
+                        if(e.getStatus().getCode().toString().equals("Unauthenticated")){
+                            Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
+                            Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("NotFound")) {
+                            Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("AlreadyExists")) {
+
+                            if(e.getMessage().equals("User Already Exist")){
+                                Toast.makeText(view.getContext(), "User Already Exist Please Try With Another Mobile Number", Toast.LENGTH_SHORT).show();
+                            } else{
+                                Toast.makeText(view.getContext(), "Please Enter Otp", Toast.LENGTH_SHORT).show();
+                                NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
+                                Navigation.findNavController(view).navigate(actionWithOtp);
+                            }
+                        }  else if(e.getStatus().getCode().toString().equals("Internal")) {
+                            Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }
