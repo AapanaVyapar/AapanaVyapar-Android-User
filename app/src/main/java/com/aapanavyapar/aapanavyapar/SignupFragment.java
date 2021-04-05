@@ -30,7 +30,7 @@ import io.grpc.StatusRuntimeException;
 
 public class SignupFragment extends Fragment {
 
-    public static final String host = "192.168.43.159";
+    public static final String host = MainActivity.IPAddress;
     public static final int port = 4356;
 
     ManagedChannel mChannel;
@@ -48,6 +48,8 @@ public class SignupFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
         mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
@@ -88,7 +90,6 @@ public class SignupFragment extends Fragment {
 
                         int []access = {constants.GetNewToken, constants.ResendOTP, constants.ConformContact};
 
-                        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
                         dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
                         NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();

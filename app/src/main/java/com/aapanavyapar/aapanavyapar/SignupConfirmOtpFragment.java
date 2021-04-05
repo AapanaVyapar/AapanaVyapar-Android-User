@@ -33,7 +33,7 @@ import io.grpc.StatusRuntimeException;
 public class SignupConfirmOtpFragment extends Fragment {
 
 
-    public static final String host = "192.168.43.159";
+    public static final String host = MainActivity.IPAddress;
     public static final int port = 4356;
 
     private DataModel dataModel;
@@ -49,6 +49,8 @@ public class SignupConfirmOtpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+
         mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
@@ -59,8 +61,6 @@ public class SignupConfirmOtpFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
-
 
         conformOtp = view.findViewById(R.id.forgot_password_confirm_otp_button);
         otpText = view.findViewById(R.id.forgot_password_confirm_otp_text);

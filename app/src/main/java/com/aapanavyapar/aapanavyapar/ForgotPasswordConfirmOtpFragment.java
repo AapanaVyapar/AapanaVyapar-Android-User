@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -38,7 +39,7 @@ import io.grpc.StatusRuntimeException;
 
 public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
-    public static final String host = "192.168.43.159";
+    public static final String host = MainActivity.IPAddress;
     public static final int port = 4356;
 
     ManagedChannel mChannel;
@@ -63,6 +64,9 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+
         mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);

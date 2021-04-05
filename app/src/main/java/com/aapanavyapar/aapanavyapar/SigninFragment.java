@@ -32,7 +32,7 @@ import io.grpc.StatusRuntimeException;
 
 public class SigninFragment extends Fragment {
 
-    public static final String host = "192.168.43.159";
+    public static final String host = MainActivity.IPAddress;
     public static final int port = 4356;
 
     private DataModel dataModel;
@@ -48,6 +48,8 @@ public class SigninFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
         mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
@@ -97,7 +99,6 @@ public class SigninFragment extends Fragment {
 
                         int []access = {constants.GetNewToken, constants.LogOut, constants.External};
 
-                        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
                         dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
                         Log.d("MainActivity", "Success .. !!");

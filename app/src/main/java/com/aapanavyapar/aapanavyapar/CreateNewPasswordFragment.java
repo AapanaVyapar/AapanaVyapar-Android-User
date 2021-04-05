@@ -32,7 +32,7 @@ import io.grpc.StatusRuntimeException;
 
 public class CreateNewPasswordFragment extends Fragment {
 
-    public static final String host = "192.168.43.159";
+    public static final String host = MainActivity.IPAddress;
     public static final int port = 4356;
 
     private DataModel dataModel;
@@ -48,6 +48,8 @@ public class CreateNewPasswordFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
     }
 

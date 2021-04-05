@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_ForgotPasswordFragment_to_SigninFragment"
             app:destination="@id/SigninFragment" />
+        <action
+            android:id="@+id/action_ForgotPasswordFragment_to_SignupFragment"
+            app:destination="@id/SignupFragment" />
     </fragment>
     <fragment
         android:id="@+id/CreateNewPasswordFragment"
