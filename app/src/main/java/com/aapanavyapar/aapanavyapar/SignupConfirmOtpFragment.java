@@ -89,12 +89,14 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 NewTokenResponse response = blockingStub.getNewToken(newTokenRequest);
                                 dataModel.setAuthToken(response.getToken());
 
-                                Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.SignupConfirmOtpFragment);
-                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                fragmentTransaction.detach(currentFragment);
-                                fragmentTransaction.attach(currentFragment);
-                                fragmentTransaction.commit();
+                                ContactConformationRequest reRequest = ContactConformationRequest.newBuilder()
+                                        .setOtp(otpText.getText().toString().trim())
+                                        .setToken(dataModel.getAuthToken())
+                                        .setApiKey(MainActivity.API_KEY)
+                                        .build();
 
+                                ContactConformationResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.SECONDS).contactConformation(reRequest);
+                                Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
 
                             }catch (StatusRuntimeException e1){
                                 Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
