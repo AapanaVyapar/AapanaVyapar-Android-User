@@ -91,11 +91,11 @@ public class SignupConfirmOtpFragment extends Fragment {
 
 
                 }catch (StatusRuntimeException e){
-                    if (e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")) {
+                    if (e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")) {
                         Toast.makeText(view.getContext(), "Invalid OTP Try Again ..!!", Toast.LENGTH_SHORT).show();
 
                     } else if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
-                        if (e.getMessage().equals("Request With Invalid Token")) {
+                        if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
                             Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
                             NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
                                     .setApiKey(MainActivity.API_KEY)

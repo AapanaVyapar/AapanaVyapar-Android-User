@@ -95,7 +95,7 @@ public class ForgotPasswordFragment extends Fragment {
                             NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
                             Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
 
-                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")){
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")){
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
 
                         } else if(e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
@@ -110,6 +110,19 @@ public class ForgotPasswordFragment extends Fragment {
                             NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
                             Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
 
+                        } else if(e.getStatus().getCode().toString().equals("ALREADY_EXISTS")) {
+                            if(dataModel.getAuthToken() == null || dataModel.getAuthToken().isEmpty()){
+                                Toast.makeText(view.getContext(), "Please Try Again After An Hour ..!!", Toast.LENGTH_SHORT).show();
+
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+
+                            }else {
+                                Toast.makeText(view.getContext(), "Please Enter OTP", Toast.LENGTH_SHORT).show();
+
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            }
                         } else {
                             Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
@@ -120,10 +133,15 @@ public class ForgotPasswordFragment extends Fragment {
                         Log.d("ForgotPasswordFragment", e.toString());
 
                     }
-
                 }
             }
         });
 
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mChannel.shutdown();
+    }
+
 }

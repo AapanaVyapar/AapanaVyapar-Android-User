@@ -115,7 +115,7 @@ public class SigninFragment extends Fragment {
                         if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
                             Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
 
-                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENTS")) {
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")) {
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
 
                         } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
@@ -133,13 +133,11 @@ public class SigninFragment extends Fragment {
                             Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
 
                         }  else {
-                            e.getMessage();
                             Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
                         }
 
                     }
-
                 }
             }
         });
