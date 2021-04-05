@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
 import com.aapanavyapar.aapanavyapar.services.SignUpRequest;
 import com.aapanavyapar.aapanavyapar.services.SignUpResponse;
+import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
@@ -85,8 +86,10 @@ public class SignupFragment extends Fragment {
                         Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
+                        int []access = {constants.GetNewToken, constants.ResendOTP, constants.ConformContact};
+
                         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
-                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
                         NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
                         Navigation.findNavController(view).navigate(actionWithOtp);

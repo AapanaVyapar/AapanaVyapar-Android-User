@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
 import com.aapanavyapar.aapanavyapar.services.SignInRequest;
 import com.aapanavyapar.aapanavyapar.services.SignInResponse;
+import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
@@ -94,8 +95,10 @@ public class SigninFragment extends Fragment {
                     try {
                         SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
 
+                        int []access = {constants.GetNewToken, constants.LogOut, constants.External};
+
                         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
-                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken());
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
                         Log.d("MainActivity", "Success .. !!");
                         Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();

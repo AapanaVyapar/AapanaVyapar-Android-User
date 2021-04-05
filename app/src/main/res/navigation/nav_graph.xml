@@ -47,6 +47,9 @@
         android:name="com.aapanavyapar.aapanavyapar.SignupConfirmOtpFragment"
         android:label="Confirm Your OTP For Signup"
         tools:layout="@layout/fragment_signup_confirm_otp">
+        <action
+            android:id="@+id/action_SignupConfirmOtpFragment_to_SignupFragment"
+            app:destination="@id/SignupFragment" />
     </fragment>
     <fragment
         android:id="@+id/ForgotPasswordFragment"
@@ -56,6 +59,9 @@
         <action
             android:id="@+id/action_ForgotPasswordFragment_to_ForgotPasswordConfirmOtpFragment"
             app:destination="@id/ForgotPasswordConfirmOtpFragment" />
+        <action
+            android:id="@+id/action_ForgotPasswordFragment_to_SigninFragment"
+            app:destination="@id/SigninFragment" />
     </fragment>
     <fragment
         android:id="@+id/CreateNewPasswordFragment"
@@ -75,5 +81,11 @@
         <action
             android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_CreateNewPasswordFragment"
             app:destination="@id/CreateNewPasswordFragment" />
+        <action
+            android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_SigninFragment"
+            app:destination="@id/SigninFragment" />
+        <action
+            android:id="@+id/action_ForgotPasswordConfirmOtpFragment_to_ForgotPasswordFragment"
+            app:destination="@id/ForgotPasswordFragment" />
     </fragment>
 </navigation>

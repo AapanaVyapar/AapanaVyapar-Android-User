@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
 import com.aapanavyapar.aapanavyapar.services.ForgetPasswordRequest;
 import com.aapanavyapar.aapanavyapar.services.ForgetPasswordResponse;
+import com.aapanavyapar.constants.constants;
+import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +34,8 @@ public class ForgotPasswordFragment extends Fragment {
 
     public static final String host = "192.168.43.159";
     public static final int port = 4356;
+
+    private DataModel dataModel;
 
     ManagedChannel mChannel;
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
@@ -64,49 +69,49 @@ public class ForgotPasswordFragment extends Fragment {
                             .setApiKey(MainActivity.API_KEY)
                             .build();
 
-                try {
-                    ForgetPasswordResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).forgetPassword(request);
+                    try {
+                        ForgetPasswordResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).forgetPassword(request);
 
-                     NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
-                    Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
-                    if (response.hasResponseData()) {
                         Log.d("MainActivity", "Success .. !!");
                         Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                    } else {
-                      //  Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
+                        int []access = {constants.GetNewToken, constants.ResendOTP, constants.ForgetPassword};
+
+                        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
+
+                        NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
+                        Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+
+
+                    } catch (StatusRuntimeException e) {
+                        if(e.getStatus().getCode().toString().equals("Unauthenticated")){
+                            Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
+                            Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
+                            Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("Internal")) {
+                            Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
+
+                        }
+                        NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                        Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
 
                     }
 
-                } catch (StatusRuntimeException e) {
-                   // Log.d("MainActivity", e.getMessage());
-                    if(e.getStatus().getCode().toString().equals("Unauthenticated")){
-                        Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
-
-                    } else if(e.getStatus().getCode().toString().equals("InvalidArguments")){
-                        Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
-
-                    } else if(e.getStatus().getCode().toString().equals("PermissionDenied")) {
-                        Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
-
-                    } else if(e.getStatus().getCode().toString().equals("Internal")) {
-                        Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        e.getMessage();
-                        Toast.makeText(view.getContext(), "Unknown Error Occured", Toast.LENGTH_SHORT).show();
-                    }
                 }
-
             }
-        }});
+        });
 
-        //After Completion of Animation
-
-        // For SignIN
-
-
-}}
+    }
+}

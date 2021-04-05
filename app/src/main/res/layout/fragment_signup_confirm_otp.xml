@@ -35,10 +35,11 @@
 
     <Button
         android:id="@+id/forgot_password_confirm_otp_button"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="278dp"
         android:layout_height="76dp"
-        android:text="ResendOTP"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:background="#FFFFFF"
+        android:text="Confirm OTP"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
