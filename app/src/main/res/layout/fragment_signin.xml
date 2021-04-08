@@ -129,18 +129,6 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_in_input_password"
         app:layout_constraintVertical_bias="0.106" />
 
-    <TextView
-        android:id="@+id/signwithOTP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign In With OTP"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toEndOf="@+id/sign_in_forgot_password"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_input_password"
-        app:layout_constraintVertical_bias="0.107" />
-
     <Button
         android:id="@+id/sign_in"
         android:layout_width="241dp"

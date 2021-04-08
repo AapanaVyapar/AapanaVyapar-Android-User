@@ -78,8 +78,8 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        input_Otp = (EditText) view.findViewById(R.id.forgot_password_confirm_otp_text);
-        btnNext = (Button) view.findViewById(R.id.forgot_password_confirm_otp_button);
+        input_Otp = (EditText) view.findViewById(R.id.signup_forgot_password_confirm_otp_text);
+        btnNext = (Button) view.findViewById(R.id.signup_forgot_password_confirm_otp_button);
         resend_Otp = (TextView) view.findViewById(R.id.resend_otp);
 
         resend_Otp.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +191,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                 if(!dataModel.CanWeUseTokenForThis(constants.ForgetPassword)){
                     Toast.makeText(getContext(), "Please Try Again ..!!", Toast.LENGTH_LONG).show();
 
-                    NavDirections actionWithOtp = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToSigninFragment();
+                    NavDirections actionWithOtp = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToCreateNewPasswordFragment();
                     Navigation.findNavController(view).navigate(actionWithOtp);
                 }
 
@@ -270,7 +270,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                     } else {
                         Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionForgotPasswordConfirmOtpToCreateNewPasswordFragment = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToSigninFragment();
+                        NavDirections actionForgotPasswordConfirmOtpToCreateNewPasswordFragment = ForgotPasswordConfirmOtpFragmentDirections.actionForgotPasswordConfirmOtpFragmentToCreateNewPasswordFragment();
                         Navigation.findNavController(view).navigate(actionForgotPasswordConfirmOtpToCreateNewPasswordFragment);
                     }
 

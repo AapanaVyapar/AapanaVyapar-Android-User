@@ -1,16 +1,18 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -20,6 +22,8 @@ import com.aapanavyapar.aapanavyapar.services.ContactConformationRequest;
 import com.aapanavyapar.aapanavyapar.services.ContactConformationResponse;
 import com.aapanavyapar.aapanavyapar.services.NewTokenRequest;
 import com.aapanavyapar.aapanavyapar.services.NewTokenResponse;
+import com.aapanavyapar.aapanavyapar.services.ResendOTPRequest;
+import com.aapanavyapar.aapanavyapar.services.ResendOTPResponse;
 import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 
@@ -44,6 +48,8 @@ public class SignupConfirmOtpFragment extends Fragment {
 
     Button conformOtp;
     EditText otpText;
+    TextView resend_Otp;
+    CountDownTimer timer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,8 +68,113 @@ public class SignupConfirmOtpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        conformOtp = view.findViewById(R.id.forgot_password_confirm_otp_button);
-        otpText = view.findViewById(R.id.forgot_password_confirm_otp_text);
+        conformOtp = view.findViewById(R.id.signup_forgot_password_confirm_otp_button);
+        otpText = view.findViewById(R.id.signup_forgot_password_confirm_otp_text);
+        resend_Otp = view.findViewById(R.id.resend_otp_signup);
+
+        resend_Otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!dataModel.CanWeUseTokenForThis(constants.ResendOTP)){
+                    Toast.makeText(getContext(), "Please Try Again ..!!", Toast.LENGTH_LONG).show();
+
+                    NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                    Navigation.findNavController(view).navigate(actionWithOtp);
+                }
+                ResendOTPRequest request = ResendOTPRequest.newBuilder()
+                        .setToken(dataModel.getAuthToken())
+                        .setApiKey(MainActivity.API_KEY)
+                        .build();
+
+                try{
+                    ResendOTPResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(request);
+                    Log.d("ConfirmOtpFragment", String.valueOf(response.getResponse().getNumber()));
+                    Log.d("ConfirmOtpFragment", String.valueOf(response.getTimeToWaitForNextRequest()));
+
+                    if(response.getResponse().getNumber() == 1){
+                        Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
+                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 10000) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                Log.d("Timer", String.valueOf(millisUntilFinished));
+                                ((TextView) view.findViewById(R.id.timer)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
+
+                            }
+                        }.start();
+
+                    }
+
+                }
+                catch (StatusRuntimeException e){
+                    Log.d("ERROR : ", e.getMessage());
+
+                    if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
+                        if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
+                            Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
+                            NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
+                                    .setApiKey(MainActivity.API_KEY)
+                                    .setRefreshToken(dataModel.getRefreshToken())
+                                    .build();
+
+                            try {
+                                NewTokenResponse newTokenResponse = blockingStub.getNewToken(newTokenRequest);
+                                dataModel.setAuthToken(newTokenResponse.getToken());
+
+                                ResendOTPRequest reRequest = ResendOTPRequest.newBuilder()
+                                        .setToken(dataModel.getAuthToken())
+                                        .setApiKey(MainActivity.API_KEY)
+                                        .build();
+
+                                ResendOTPResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(reRequest);
+                                if(reResponse.getResponse().getNumber() == 1){
+                                    Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
+
+                                }else {
+                                    ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
+                                    timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 1000) {
+                                        @Override
+                                        public void onTick(long millisUntilFinished) {
+                                            Log.d("Timer", String.valueOf(millisUntilFinished));
+                                            ((TextView) view.findViewById(R.id.timer)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                                        }
+
+                                        @Override
+                                        public void onFinish() {
+                                            ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
+
+                                        }
+                                    }.start();
+
+                                }
+                                Log.d("ConfirmOtpFragment", String.valueOf(reResponse.getResponse().getNumber()));
+
+                                Toast.makeText(getContext(), "Success .. !! " + reResponse.getResponse().getNumber(), Toast.LENGTH_LONG).show();
+
+
+                            } catch (StatusRuntimeException e1){
+                                Log.d("ERROR : ", e.getMessage());
+                                Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
+
+                                NavDirections actionSignupConfirmOtpFragment = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                                Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        });
+
+
 
         conformOtp.setOnClickListener(new View.OnClickListener() {
             @Override
