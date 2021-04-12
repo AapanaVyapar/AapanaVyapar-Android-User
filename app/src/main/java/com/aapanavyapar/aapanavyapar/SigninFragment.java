@@ -64,7 +64,7 @@ public class SigninFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        phoneNo = (EditText)view.findViewById(R.id.sign_in_input_phoneNo);
+        phoneNo = (EditText)view.findViewById(R.id.sign_in_input_ph_number);
         signIn = (Button)view.findViewById(R.id.sign_in);
         signUp = (Button)view.findViewById(R.id.sign_up_in);
         password = (EditText)view.findViewById(R.id.sign_in_input_password);

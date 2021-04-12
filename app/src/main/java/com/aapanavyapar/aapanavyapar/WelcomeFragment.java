@@ -30,40 +30,38 @@ public class WelcomeFragment extends Fragment {
         logo = view.findViewById(R.id.imageView);
         title = view.findViewById(R.id.textView2);
 
-//        Animation animation = new Animation() {
-//            @Override
-//            public void initialize(int width, int height, int parentWidth, int parentHeight) {
-//                super.initialize(width, height, parentWidth, parentHeight);
-//
-//                txt_anim = AnimationUtils.loadAnimation(getContext(), R.anim.txt_anim);
-//                bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
-//                setDuration(2000);
-//            }
-//        };
-//
-//        animation.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//                title.setAnimation(txt_anim);
-//                logo.setAnimation(bounce);
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                // For SignIN
-//                NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
-//                Navigation.findNavController(view).navigate(actionToIn);
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {}
-//        });
-//
-//        view.setAnimation(animation);
+        Animation animation = new Animation() {
+            @Override
+            public void initialize(int width, int height, int parentWidth, int parentHeight) {
+                super.initialize(width, height, parentWidth, parentHeight);
+
+                txt_anim = AnimationUtils.loadAnimation(getContext(), R.anim.txt_anim);
+                bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+                setDuration(2000);
+            }
+        };
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                title.setAnimation(txt_anim);
+                logo.setAnimation(bounce);
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                 //For SignIN
                 NavDirections actionToIn = WelcomeFragmentDirections.actionWelcomeFragmentToSigninFragment();
                 Navigation.findNavController(view).navigate(actionToIn);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+
+        view.setAnimation(animation);
 
     }
 

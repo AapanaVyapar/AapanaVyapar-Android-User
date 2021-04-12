@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public native String getNativeKey();
     public static String API_KEY;
 
-    public static String IPAddress = "192.168.43.189";
+    public static String IPAddress = "192.168.43.115";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

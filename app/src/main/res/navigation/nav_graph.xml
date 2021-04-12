@@ -28,6 +28,10 @@
         <action
             android:id="@+id/action_SignupFragment_to_SigninFragment"
             app:destination="@id/SigninFragment" />
+        <action
+            android:id="@+id/action_SignupFragment_pop"
+            app:popUpTo="@id/SignupFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -100,7 +100,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 Log.d("Timer", String.valueOf(millisUntilFinished));
-                                ((TextView) view.findViewById(R.id.timer_signup)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                                ((TextView) view.findViewById(R.id.resend_otp)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
                             }
 
                             @Override
@@ -143,7 +143,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
                                             Log.d("Timer", String.valueOf(millisUntilFinished));
-                                            ((TextView) view.findViewById(R.id.timer_signup)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                                            ((TextView) view.findViewById(R.id.resend_otp)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
                                         }
 
                                         @Override
