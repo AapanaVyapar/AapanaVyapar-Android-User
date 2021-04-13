@@ -74,13 +74,13 @@
         android:id="@+id/sign_in_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="@font/asap"
         android:text="Forgot Password?"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/sign_in2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
