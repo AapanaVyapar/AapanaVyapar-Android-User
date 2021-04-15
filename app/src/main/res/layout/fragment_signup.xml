@@ -7,14 +7,15 @@
     android:backgroundTint="#D1C7C7"
     tools:context=".SignupFragment">
 
-
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,7 +51,7 @@
 
             <TextView
                 android:id="@+id/sign_up_heading"
-                android:layout_width="wrap_content"
+                android:layout_width="131dp"
                 android:layout_height="62dp"
                 android:background="#FFFFFF"
                 android:fontFamily="@font/inknut_antiqua_light"
@@ -59,7 +60,7 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.068"
+                app:layout_constraintHorizontal_bias="0.182"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/space6" />
 
@@ -80,11 +81,74 @@
             <Space
                 android:id="@+id/space5"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/major_component_gap"
+                android:layout_height="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_fill_form" />
+
+            <EditText
+                android:id="@+id/sign_up_input_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Enter Your Name"
+                android:inputType="textPersonName"
+                android:textColor="#9F9F9F"
+                android:textColorHint="#BFBDBD"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_username_heading"
+                app:layout_goneMarginEnd="2dp" />
+
+            <EditText
+                android:id="@+id/sign_up_input_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:hint="Create Strong Password"
+                android:inputType="textPassword"
+                android:textColorHint="#BFBDBD"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading" />
+
+            <EditText
+                android:id="@+id/sign_up_input_mail_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:hint="Enter Your Email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#BFBDBD"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_email_heading" />
+
+            <EditText
+                android:id="@+id/sign_up_input_phno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:hint="Enter Mobile Number"
+                android:inputType="phone"
+                android:textColorHint="#BFBDBD"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_mobile_heading" />
 
             <TextView
                 android:id="@+id/sign_up_edit_text_username_heading"
@@ -98,24 +162,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_username"
                 app:layout_constraintTop_toBottomOf="@+id/space5" />
-
-            <EditText
-                android:id="@+id/sign_up_input_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#EBEBEB"
-                android:ems="17"
-                android:fontFamily="@font/asap_medium"
-                android:hint="Enter Your Name"
-                android:inputType="textPersonName"
-                android:textColor="#9F9F9F"
-                android:textColorHint="#BFBDBD"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.508"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_username_heading"
-                app:layout_goneMarginEnd="2dp" />
 
             <TextView
                 android:id="@+id/sign_up_edit_text_email_heading"
@@ -131,20 +177,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/space7" />
 
 
-            <EditText
-                android:id="@+id/sign_up_input_mail_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#EBEBEB"
-                android:ems="17"
-                android:hint="Enter Your Email"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#BFBDBD"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_email_heading" />
-
             <TextView
                 android:id="@+id/sign_up_edit_text_mobile_heading"
                 android:layout_width="wrap_content"
@@ -153,24 +185,10 @@
                 android:text="Mobile No."
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_phno"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_phno"
                 app:layout_constraintTop_toBottomOf="@+id/space9" />
-
-            <EditText
-                android:id="@+id/sign_up_input_phno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#EBEBEB"
-                android:ems="17"
-                android:hint="Enter Mobile Number"
-                android:inputType="phone"
-                android:textColorHint="#BFBDBD"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_mobile_heading" />
 
             <TextView
                 android:id="@+id/sign_up_edit_text_password_heading"
@@ -185,24 +203,10 @@
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_pass"
                 app:layout_constraintTop_toBottomOf="@+id/space10" />
 
-            <EditText
-                android:id="@+id/sign_up_input_pass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#EBEBEB"
-                android:ems="17"
-                android:hint="Create Strong Password"
-                android:inputType="textPassword"
-                android:textColorHint="#BFBDBD"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading" />
-
             <Space
                 android:id="@+id/space4"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/major_component_gap"
+                android:layout_height="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_pass" />
@@ -231,7 +235,7 @@
             <Space
                 android:id="@+id/space7"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/minor_component_gap"
+                android:layout_height="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_username" />
@@ -239,7 +243,7 @@
             <Space
                 android:id="@+id/space9"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/minor_component_gap"
+                android:layout_height="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_mail_id" />
@@ -247,18 +251,29 @@
             <Space
                 android:id="@+id/space10"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/minor_component_gap"
+                android:layout_height="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_phno" />
 
             <Space
                 android:layout_width="0dp"
-                android:layout_height="@dimen/end_component_gap"
+                android:layout_height="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/signup" />
+                app:layout_constraintTop_toBottomOf="@+id/signup"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/sign_up_fill_form"
+                app:layout_constraintEnd_toStartOf="@+id/sign_up_heading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space6" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
