@@ -11,7 +11,6 @@
         android:id="@+id/signup_forgot_password_confirm_otp_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
         android:ems="10"
         android:hint="            Enter Here"
         android:inputType="textPassword"
@@ -19,79 +18,128 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:translationY="-20dp"
-        app:layout_constraintBottom_toTopOf="@+id/forgot_password_confirm_otp_heading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/space38"
+        app:layout_constraintEnd_toEndOf="@+id/forgot_password_confirm_otp_heading"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/forgot_password_confirm_otp_heading"
+        app:layout_constraintTop_toTopOf="@+id/sign_in_logo3"
+        app:layout_constraintVertical_bias="0.356" />
 
     <TextView
         android:id="@+id/forgot_password_confirm_otp_heading"
-        android:layout_width="45dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="41dp"
+        android:layout_height="23dp"
         android:fontFamily="sans-serif-smallcaps"
         android:hint="Enter Here"
         android:text="OTP "
         android:textSize="24sp"
         android:textStyle="bold"
         android:translationY="-20dp"
-        app:layout_constraintBottom_toTopOf="@+id/resend_otp_signup"
-        app:layout_constraintEnd_toEndOf="@+id/signup_forgot_password_confirm_otp_text"
-        app:layout_constraintStart_toStartOf="@+id/signup_forgot_password_confirm_otp_text" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_forgot_password_confirm_otp_text" />
 
     <Button
         android:id="@+id/signup_forgot_password_confirm_otp_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="278dp"
         android:layout_height="76dp"
-        android:layout_marginBottom="200dp"
         android:background="#FFFFFF"
         android:hint="Enter Here"
         android:text="Confirm OTP >>"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:translationY="-20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/space38"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resend_otp_signup"
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/resend_otp_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_width="81dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
         android:hint="Enter Here"
         android:text="Resend OTP"
         android:textStyle="bold"
         android:translationY="-20dp"
-        app:layout_constraintBottom_toTopOf="@+id/signup_forgot_password_confirm_otp_button"
-        app:layout_constraintEnd_toEndOf="@+id/signup_forgot_password_confirm_otp_button"
-        app:layout_constraintStart_toStartOf="@+id/signup_forgot_password_confirm_otp_button" />
+        app:layout_constraintEnd_toEndOf="@+id/space37"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/space37"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password_confirm_otp_heading" />
 
     <ImageView
         android:id="@+id/sign_in_logo3"
         android:layout_width="107dp"
         android:layout_height="86dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/sign_in_logo_text3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space34"
         app:srcCompat="@drawable/logoav" />
 
     <TextView
         android:id="@+id/sign_in_logo_text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
         android:fontFamily="@font/inknut_antiqua_light"
         android:text="AapanaVyapar"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/signup_forgot_password_confirm_otp_text"
+        app:layout_constraintBottom_toTopOf="@+id/space35"
         app:layout_constraintEnd_toEndOf="@+id/sign_in_logo3"
         app:layout_constraintStart_toStartOf="@+id/sign_in_logo3"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_logo3"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
+
+    <Space
+        android:id="@+id/space34"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/MAJOR_Component_Gap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/space35"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/major_component_gap"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/signup_forgot_password_confirm_otp_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Space
+        android:id="@+id/space36"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/minor_component_gap"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/resend_otp_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_forgot_password_confirm_otp_text"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Space
+        android:id="@+id/space37"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/major_component_gap"
+        app:layout_constraintBottom_toTopOf="@+id/signup_forgot_password_confirm_otp_button"
+        app:layout_constraintEnd_toEndOf="@+id/signup_forgot_password_confirm_otp_button"
+        app:layout_constraintStart_toStartOf="@+id/signup_forgot_password_confirm_otp_button"
+        app:layout_constraintTop_toBottomOf="@+id/resend_otp_signup" />
+
+    <Space
+        android:id="@+id/space38"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/END_Component_Gap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

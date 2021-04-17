@@ -81,7 +81,7 @@
             <Space
                 android:id="@+id/space5"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/major_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +206,7 @@
             <Space
                 android:id="@+id/space4"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/major_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_pass" />
@@ -235,7 +235,7 @@
             <Space
                 android:id="@+id/space7"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_username" />
@@ -243,7 +243,7 @@
             <Space
                 android:id="@+id/space9"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_mail_id" />
@@ -251,14 +251,14 @@
             <Space
                 android:id="@+id/space10"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_input_phno" />
 
             <Space
                 android:layout_width="0dp"
-                android:layout_height="15dp"
+                android:layout_height="@dimen/end_component_gap"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
