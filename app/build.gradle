@@ -78,6 +78,7 @@ dependencies {
     implementation 'org.apache.tomcat:annotations-api:6.0.53'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'io.grpc:grpc-protobuf:1.36.0'
+    implementation 'com.google.android.material:material:1.4.0-alpha02'
 
 
 

@@ -92,21 +92,20 @@
             app:layout_constraintStart_toStartOf="@+id/sign_in_input_phoneNo_port"
             app:layout_constraintTop_toBottomOf="@+id/space_sub_head_phoneNo_heading" />
 
-        <EditText
-            android:id="@+id/sign_in_input_phoneNo_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#C8C8C8"
-            android:ems="10"
-            android:fontFamily="@font/asap"
-            android:hint="Enter Phone No."
-            android:inputType="phone"
-            android:textColorLink="#000000"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.179"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_phoneNo_label_port" />
+            <EditText
+                android:id="@+id/sign_in_input_phoneNo_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#C8C8C8"
+                android:ems="10"
+                android:fontFamily="@font/asap"
+                android:hint="Enter Phone No."
+                android:inputType="phone"
+                android:textColorLink="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_phoneNo_label_port" />
 
 
         <TextView
@@ -122,21 +121,20 @@
             app:layout_constraintStart_toStartOf="@+id/sign_in_input_password_port"
             app:layout_constraintTop_toBottomOf="@+id/space_phoneNo_edit_pass_heading" />
 
-        <EditText
-            android:id="@+id/sign_in_input_password_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#C8C8C8"
-            android:ems="10"
-            android:fontFamily="@font/asap"
-            android:hint="Enter Password"
-            android:inputType="textPassword"
-            android:textColorLink="#000000"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.179"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_password_label_port" />
+            <EditText
+                android:id="@+id/sign_in_input_password_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#C8C8C8"
+                android:ems="10"
+                android:fontFamily="@font/asap"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:textColorLink="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_password_label_port" />
 
 
         <TextView

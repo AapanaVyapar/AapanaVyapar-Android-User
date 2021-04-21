@@ -97,7 +97,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                         .build();
 
                 try{
-                    ResendOTPResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(request);
+                    ResendOTPResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).resendOTP(request);
                     Log.d("ConfirmOtpFragment", String.valueOf(response.getResponse().getNumber()));
                     Log.d("ConfirmOtpFragment", String.valueOf(response.getTimeToWaitForNextRequest()));
 
@@ -143,7 +143,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                                         .setApiKey(MainActivity.API_KEY)
                                         .build();
 
-                                ResendOTPResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(reRequest);
+                                ResendOTPResponse reResponse = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).resendOTP(reRequest);
                                 if(reResponse.getResponse().getNumber() == 1){
                                     Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
 
