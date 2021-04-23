@@ -1,7 +1,9 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Base64;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
