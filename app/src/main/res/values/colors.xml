@@ -15,14 +15,14 @@
 
 
 
-    <color name="darkPrimary">#AA00FF</color>
-    <color name="darkPrimaryTextColor">#C51162</color>
+    <color name="darkPrimary">#0075ff</color>
+    <color name="darkPrimaryTextColor">#E80F70</color>
 
-    <color name="darkSecondary">#6200EA</color>
+    <color name="darkSecondary">#03a9f4</color>
     <color name="darkSecondaryTextColor">#C51162</color>
 
     <color name="darkNavigationBarColor">#D0484B4C</color>
-    <color name="darkWindowBackground">#000000</color>
+    <color name="darkWindowBackground">#101010</color>
     <color name="darkColorPrimaryDark">#B77C7A7A</color>
 
     <color name="darkHeading">#E4FFFFFF</color>
