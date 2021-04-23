@@ -1,13 +1,11 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Base64;
-import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.aapanavyapar.dataModel.DataModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public native String getNativeKey();
     public static String API_KEY;
 
-    public static String IPAddress = "192.168.43.18";
+    public static String IPAddress = "192.168.43.189";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#D1C7C7"
     tools:context=".SignupFragment">
 
     <ScrollView
@@ -51,12 +50,11 @@
 
             <TextView
                 android:id="@+id/sign_up_heading"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="62dp"
-                android:background="#FFFFFF"
                 android:fontFamily="@font/inknut_antiqua_light"
                 android:text="Sign Up"
-                android:textColor="@color/primary"
+                android:textColor="?colorPrimary"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/antic"
                 android:text="Fill The Form To Join"
-                android:textColor="#100F0F"
+                android:textColor="?android:textColor"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_heading"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -87,6 +85,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_fill_form" />
 
+            <TextView
+                android:id="@+id/sign_up_edit_text_username_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="UserName"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_username"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_up_input_username"
+                app:layout_constraintTop_toBottomOf="@+id/space5" />
+
             <EditText
                 android:id="@+id/sign_up_input_username"
                 android:layout_width="wrap_content"
@@ -96,7 +108,6 @@
                 android:fontFamily="@font/asap_medium"
                 android:hint="Enter Your Name"
                 android:inputType="textPersonName"
-                android:textColor="#9F9F9F"
                 android:textColorHint="#BFBDBD"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
@@ -104,19 +115,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_username_heading"
                 app:layout_goneMarginEnd="2dp" />
 
-            <EditText
-                android:id="@+id/sign_up_input_pass"
+
+            <TextView
+                android:id="@+id/sign_up_edit_text_email_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#D3CCCC"
-                android:ems="15"
-                android:hint="Create Strong Password"
-                android:inputType="textPassword"
-                android:textColorHint="#BFBDBD"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading" />
+                android:fontFamily="@font/asap_medium"
+                android:textColor="?android:textColor"
+                android:text="Email"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_mail_id"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_up_input_mail_id"
+                app:layout_constraintTop_toBottomOf="@+id/space7" />
 
             <EditText
                 android:id="@+id/sign_up_input_mail_id"
@@ -124,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#D3CCCC"
                 android:ems="15"
+                android:fontFamily="@font/asap_medium"
                 android:hint="Enter Your Email"
                 android:inputType="textEmailAddress"
                 android:textColorHint="#BFBDBD"
@@ -132,12 +145,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_email_heading" />
 
+            <TextView
+                android:id="@+id/sign_up_edit_text_mobile_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:textColor="?android:textColor"
+                android:text="Mobile No."
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_phno"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_up_input_phno"
+                app:layout_constraintTop_toBottomOf="@+id/space9" />
+
             <EditText
                 android:id="@+id/sign_up_input_phno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#D3CCCC"
                 android:ems="15"
+                android:fontFamily="@font/asap_medium"
                 android:hint="Enter Mobile Number"
                 android:inputType="phone"
                 android:textColorHint="#BFBDBD"
@@ -147,57 +175,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_mobile_heading" />
 
             <TextView
-                android:id="@+id/sign_up_edit_text_username_heading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/asap_medium"
-                android:text="UserName"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_username"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/sign_up_input_username"
-                app:layout_constraintTop_toBottomOf="@+id/space5" />
-
-            <TextView
-                android:id="@+id/sign_up_edit_text_email_heading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/asap_medium"
-                android:text="Email"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_mail_id"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/sign_up_input_mail_id"
-                app:layout_constraintTop_toBottomOf="@+id/space7" />
-
-
-            <TextView
-                android:id="@+id/sign_up_edit_text_mobile_heading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/asap_medium"
-                android:text="Mobile No."
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/sign_up_input_phno"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/sign_up_input_phno"
-                app:layout_constraintTop_toBottomOf="@+id/space9" />
-
-            <TextView
                 android:id="@+id/sign_up_edit_text_password_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/asap_medium"
                 android:text="Password"
+                android:textColor="?android:textColor"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_input_pass"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_pass"
                 app:layout_constraintTop_toBottomOf="@+id/space10" />
+
+            <EditText
+                android:id="@+id/sign_up_input_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Create Strong Password"
+                android:inputType="textPassword"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading" />
 
             <Space
                 android:id="@+id/space4"
@@ -211,10 +215,10 @@
                 android:id="@+id/signup"
                 android:layout_width="307dp"
                 android:layout_height="0dp"
-                android:background="#03a9f4"
+                android:background="?colorSecondary"
                 android:fontFamily="sans-serif-medium"
                 android:text="Sign Up >>"
-                app:backgroundTint="@color/secondary"
+                app:backgroundTint="?colorSecondary"
                 app:cornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

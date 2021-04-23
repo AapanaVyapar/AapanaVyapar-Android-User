@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
-    android:background="#FFFFFF"
     android:fadeScrollbars="true"
     tools:context=".SigninFragment">
 
@@ -37,18 +36,18 @@
                 app:srcCompat="@drawable/logoav" />
 
             <TextView
-            android:id="@+id/sign_in_logo_text_port"
-            android:layout_width="156dp"
-            android:layout_height="24dp"
-            android:fontFamily="@font/asap"
-            android:letterSpacing="0.1"
-            android:text="AapanaVyapar"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/sign_in_logo_port"
-            app:layout_constraintStart_toStartOf="@+id/sign_in_logo_port"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_port"
-            tools:ignore="MissingConstraints" />
+                android:id="@+id/sign_in_logo_text_port"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:fontFamily="@font/asap"
+                android:letterSpacing="0.1"
+                android:text="AapanaVyapar"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_in_logo_port"
+                app:layout_constraintStart_toStartOf="@+id/sign_in_logo_port"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_port"
+                tools:ignore="MissingConstraints" />
 
 
             <TextView
@@ -57,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inknut_antiqua_light"
                 android:text="Sign In"
-                android:textColor="@color/primary"
+                android:textColor="?colorPrimary"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,30 +66,30 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-            android:id="@+id/sign_in_header_title_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/antic"
-            android:text="Hi there! Nice to see you again."
-            android:textColor="#100F0F"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="@+id/sign_in_header_port"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/sign_in_header_port"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_header_port" />
+                android:id="@+id/sign_in_header_title_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="Hi there! Nice to see you again."
+                android:textColor="?android:textColor"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@+id/sign_in_header_port"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_in_header_port"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_header_port" />
 
-        <TextView
-            android:id="@+id/sign_in_phoneNo_label_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/asap"
-            android:text="Mobile No."
-            android:textColor="#121111"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/sign_in_input_phoneNo_port"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/sign_in_input_phoneNo_port"
-            app:layout_constraintTop_toBottomOf="@+id/space_sub_head_phoneNo_heading" />
+            <TextView
+                android:id="@+id/sign_in_phoneNo_label_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap"
+                android:textColor="?android:textColor"
+                android:text="Mobile No."
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_in_input_phoneNo_port"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_in_input_phoneNo_port"
+                app:layout_constraintTop_toBottomOf="@+id/space_sub_head_phoneNo_heading" />
 
             <EditText
                 android:id="@+id/sign_in_input_phoneNo_port"
@@ -98,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#C8C8C8"
                 android:ems="10"
-                android:fontFamily="@font/asap"
+                android:fontFamily="@font/asap_medium"
                 android:hint="Enter Phone No."
                 android:inputType="phone"
                 android:textColorLink="#000000"
@@ -108,18 +107,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/sign_in_phoneNo_label_port" />
 
 
-        <TextView
-            android:id="@+id/sign_in_password_label_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/asap"
-            android:text="Password"
-            android:textColor="#191818"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/sign_in_input_password_port"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/sign_in_input_password_port"
-            app:layout_constraintTop_toBottomOf="@+id/space_phoneNo_edit_pass_heading" />
+            <TextView
+                android:id="@+id/sign_in_password_label_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap"
+                android:text="Password"
+                android:textColor="?android:textColor"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_in_input_password_port"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_in_input_password_port"
+                app:layout_constraintTop_toBottomOf="@+id/space_phoneNo_edit_pass_heading" />
 
             <EditText
                 android:id="@+id/sign_in_input_password_port"
@@ -127,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#C8C8C8"
                 android:ems="10"
-                android:fontFamily="@font/asap"
+                android:fontFamily="@font/asap_medium"
                 android:hint="Enter Password"
                 android:inputType="textPassword"
                 android:textColorLink="#000000"
@@ -137,95 +136,96 @@
                 app:layout_constraintTop_toBottomOf="@+id/sign_in_password_label_port" />
 
 
-        <TextView
-            android:id="@+id/sign_in_forgot_password_port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/asap"
-            android:text="Forgot Password?"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.136"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space_password_edit_forget_pass_heading" />
+            <TextView
+                android:id="@+id/sign_in_forgot_password_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap"
+                android:text="Forgot Password?"
+                android:textSize="18sp"
+                android:textColor="?android:textColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.136"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space_password_edit_forget_pass_heading" />
 
-        <Button
-            android:id="@+id/sign_in"
-            android:layout_width="241dp"
-            android:layout_height="49dp"
-            android:background="#1464f6"
-            android:text="Sign In >>"
-            app:backgroundTint="@color/secondary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space_forget_pass_signin" />
+            <Button
+                android:id="@+id/sign_in"
+                android:layout_width="241dp"
+                android:layout_height="49dp"
+                android:background="?colorSecondary"
+                android:text="Sign In >>"
+                app:backgroundTint="?colorSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space_forget_pass_signin" />
 
-        <Button
-            android:id="@+id/sign_up_in"
-            android:layout_width="241dp"
-            android:layout_height="49dp"
-            android:background="#0075ff"
-            android:text="SIGN UP"
-            app:backgroundTint="@color/primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space_signin_signup" />
+            <Button
+                android:id="@+id/sign_up_in"
+                android:layout_width="241dp"
+                android:layout_height="49dp"
+                android:background="?colorPrimary"
+                app:backgroundTint="?colorPrimary"
+                android:text="SIGN UP"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space_signin_signup" />
 
-        <Space
-            android:id="@+id/space_sub_head_phoneNo_heading"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/major_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_header_title_port" />
+            <Space
+                android:id="@+id/space_sub_head_phoneNo_heading"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_header_title_port" />
 
-        <Space
-            android:id="@+id/space_password_edit_forget_pass_heading"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/major_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_input_password_port" />
+            <Space
+                android:id="@+id/space_password_edit_forget_pass_heading"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_input_password_port" />
 
-        <Space
-            android:id="@+id/space_forget_pass_signin"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/major_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_forgot_password_port" />
+            <Space
+                android:id="@+id/space_forget_pass_signin"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_forgot_password_port" />
 
-        <Space
-            android:id="@+id/space_signin_signup"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/major_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in" />
+            <Space
+                android:id="@+id/space_signin_signup"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in" />
 
-        <Space
-            android:id="@+id/space_phoneNo_edit_pass_heading"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/minor_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_input_phoneNo_port" />
+            <Space
+                android:id="@+id/space_phoneNo_edit_pass_heading"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/minor_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_input_phoneNo_port" />
 
-        <Space
-            android:id="@+id/space8"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/major_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_text_port" />
+            <Space
+                android:id="@+id/space8"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_text_port" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="@dimen/end_component_gap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_in" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/end_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_in" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
