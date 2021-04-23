@@ -20,6 +20,7 @@
         android:translationY="-20dp"
         app:layout_constraintBottom_toTopOf="@+id/space38"
         app:layout_constraintEnd_toEndOf="@+id/forgot_password_confirm_otp_heading"
+        android:fontFamily="@font/asap_medium"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/forgot_password_confirm_otp_heading"
         app:layout_constraintTop_toTopOf="@+id/sign_in_logo3"
