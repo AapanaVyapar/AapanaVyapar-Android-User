@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/sign_in_logo_text_port"
-                android:layout_width="156dp"
+                android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:fontFamily="@font/asap"
                 android:letterSpacing="0.1"
