@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupFragment">
+    tools:context="SignupFragment">
 
     <ScrollView
         android:layout_width="0dp"
@@ -31,7 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.052"
-                app:srcCompat="@drawable/logoav" />
+                app:srcCompat="@drawable/logoav"/>
 
             <TextView
                 android:id="@+id/sign_in_logo_text2"
@@ -46,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_in_logo2"
                 app:layout_constraintStart_toStartOf="@+id/sign_in_logo2"
                 app:layout_constraintTop_toBottomOf="@+id/sign_in_logo2"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"/>
 
             <TextView
                 android:id="@+id/sign_up_heading"
@@ -60,7 +61,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.182"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/space6" />
+                app:layout_constraintTop_toBottomOf="@+id/space6"/>
 
             <TextView
                 android:id="@+id/sign_up_fill_form"
@@ -73,7 +74,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_heading"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_heading"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_heading" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_heading"/>
 
 
             <Space
@@ -83,7 +84,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_fill_form" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_fill_form"/>
 
             <TextView
                 android:id="@+id/sign_up_edit_text_username_heading"
@@ -97,7 +98,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_input_username"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_username"
-                app:layout_constraintTop_toBottomOf="@+id/space5" />
+                app:layout_constraintTop_toBottomOf="@+id/space5"/>
 
             <EditText
                 android:id="@+id/sign_up_input_username"
@@ -113,7 +114,7 @@
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_username_heading"
-                app:layout_goneMarginEnd="2dp" />
+                app:layout_goneMarginEnd="2dp"/>
 
 
             <TextView
@@ -128,7 +129,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_input_mail_id"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_mail_id"
-                app:layout_constraintTop_toBottomOf="@+id/space7" />
+                app:layout_constraintTop_toBottomOf="@+id/space7"/>
 
             <EditText
                 android:id="@+id/sign_up_input_mail_id"
@@ -143,7 +144,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_email_heading" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_email_heading"/>
 
             <TextView
                 android:id="@+id/sign_up_edit_text_mobile_heading"
@@ -157,7 +158,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_input_phno"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_phno"
-                app:layout_constraintTop_toBottomOf="@+id/space9" />
+                app:layout_constraintTop_toBottomOf="@+id/space9"/>
 
             <EditText
                 android:id="@+id/sign_up_input_phno"
@@ -172,7 +173,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_mobile_heading" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_mobile_heading"/>
 
             <TextView
                 android:id="@+id/sign_up_edit_text_password_heading"
@@ -186,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_input_pass"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/sign_up_input_pass"
-                app:layout_constraintTop_toBottomOf="@+id/space10" />
+                app:layout_constraintTop_toBottomOf="@+id/space10"/>
 
             <EditText
                 android:id="@+id/sign_up_input_pass"
@@ -201,7 +202,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_edit_text_password_heading"/>
 
             <Space
                 android:id="@+id/space4"
@@ -209,7 +210,7 @@
                 android:layout_height="@dimen/major_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_pass" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_pass"/>
 
             <Button
                 android:id="@+id/signup"
@@ -222,7 +223,7 @@
                 app:cornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/space4" />
+                app:layout_constraintTop_toBottomOf="@+id/space4"/>
 
             <Space
                 android:id="@+id/space6"
@@ -230,7 +231,7 @@
                 android:layout_height="@dimen/major_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_text2" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_text2"/>
 
             <Space
                 android:id="@+id/space7"
@@ -238,7 +239,7 @@
                 android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_username" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_username"/>
 
             <Space
                 android:id="@+id/space9"
@@ -246,7 +247,7 @@
                 android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_mail_id" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_mail_id"/>
 
             <Space
                 android:id="@+id/space10"
@@ -254,7 +255,7 @@
                 android:layout_height="@dimen/minor_component_gap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_phno" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_input_phno"/>
 
             <Space
                 android:layout_width="0dp"
@@ -264,7 +265,7 @@
                 app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signup"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"/>
 
             <Space
                 android:layout_width="0dp"
@@ -272,7 +273,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/sign_up_fill_form"
                 app:layout_constraintEnd_toStartOf="@+id/sign_up_heading"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/space6" />
+                app:layout_constraintTop_toBottomOf="@+id/space6"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

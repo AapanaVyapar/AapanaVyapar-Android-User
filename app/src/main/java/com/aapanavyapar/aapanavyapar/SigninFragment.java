@@ -1,5 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class SigninFragment extends Fragment {
 
@@ -105,6 +108,11 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
+
+                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+                        //String val = inputText.getText().toString();
+                        //intent.putExtra(EXTRA_MESSAGE, val);
+                        startActivity(intent);
 
 
             //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
