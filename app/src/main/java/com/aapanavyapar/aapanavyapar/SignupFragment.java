@@ -70,8 +70,7 @@ public class SignupFragment extends Fragment {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validators.validateUserName(userName) && validators.validateMail(mail) && validators.validatePassword(password)){
-                 //   testRpc(v);
+                if(validators.validateUserName(userName) && validators.validateMail(mail) && validators.validatePasswordSignUp(password)){
                     SignUpRequest request = SignUpRequest.newBuilder()
                             .setEmail(mail.getText().toString())
                             .setUsername(userName.getText().toString())
@@ -82,9 +81,7 @@ public class SignupFragment extends Fragment {
                     try{
                         SignUpResponse response = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).signup(request);
                         Log.d("MainActivity", "Success .. !!");
-                        Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-                        Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
                         int []access = {constants.GetNewToken, constants.ResendOTP, constants.ConformContact};

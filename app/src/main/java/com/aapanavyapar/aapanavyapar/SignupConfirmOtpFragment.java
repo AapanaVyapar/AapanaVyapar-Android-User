@@ -95,7 +95,7 @@ public class SignupConfirmOtpFragment extends Fragment {
 
                     }else {
                         ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
-                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 10000) {
+                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 1000) {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 Log.d("Timer", String.valueOf(millisUntilFinished));
@@ -104,6 +104,7 @@ public class SignupConfirmOtpFragment extends Fragment {
 
                             @Override
                             public void onFinish() {
+                                ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
                                 ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
 
                             }
@@ -147,6 +148,7 @@ public class SignupConfirmOtpFragment extends Fragment {
 
                                         @Override
                                         public void onFinish() {
+                                            ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
                                             ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
 
                                         }
@@ -155,7 +157,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 }
                                 Log.d("ConfirmOtpFragment", String.valueOf(reResponse.getResponse().getNumber()));
 
-                                Toast.makeText(getContext(), "Success .. !! " + reResponse.getResponse().getNumber(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
 
 
                             } catch (StatusRuntimeException e1){
@@ -194,7 +196,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                 try {
                     ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).contactConformation(request);
 
-                    Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
 
                     int []access = {constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
                     dataModel.setTokens(response.getToken(), response.getRefreshToken(), access);

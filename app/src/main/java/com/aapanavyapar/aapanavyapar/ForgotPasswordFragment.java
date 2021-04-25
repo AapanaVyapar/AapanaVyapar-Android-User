@@ -40,7 +40,7 @@ public class ForgotPasswordFragment extends Fragment {
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
     AuthenticationGrpc.AuthenticationStub asyncStub;
 
-    EditText input_phno;
+    EditText input_phone;
     Button btnSendOtp;
 
     //Button send_OTP;
@@ -58,15 +58,15 @@ public class ForgotPasswordFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        input_phno = (EditText)view.findViewById(R.id.forgot_phone_number);
+        input_phone = (EditText)view.findViewById(R.id.forgot_phone_number);
         btnSendOtp = (Button)view.findViewById(R.id.get_OTP);
         btnSendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (validators.validatePhone(input_phno)) {
+                if (validators.validatePhone(input_phone)) {
                     ForgetPasswordRequest request = ForgetPasswordRequest.newBuilder()
-                            .setPhoNo(input_phno.getText().toString())
+                            .setPhoNo(input_phone.getText().toString())
                             .setApiKey(MainActivity.API_KEY)
                             .build();
 

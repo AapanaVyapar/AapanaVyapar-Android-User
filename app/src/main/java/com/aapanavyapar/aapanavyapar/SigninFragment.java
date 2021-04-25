@@ -89,7 +89,7 @@ public class SigninFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validators.validatePhone(phoneNo) && validators.validatePassword(password)){
+                if(validators.validatePhone(phoneNo) && validators.validatePasswordSignIn(password)){
                     SignInRequest request = SignInRequest.newBuilder()
                             .setPhoneNo(phoneNo.getText().toString())
                             .setPassword(password.getText().toString())
@@ -104,9 +104,7 @@ public class SigninFragment extends Fragment {
                         dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
                         Log.d("MainActivity", "Success .. !!");
-                        Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-                        Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
                         Intent intent  = new Intent(getContext(), ViewProvider.class);

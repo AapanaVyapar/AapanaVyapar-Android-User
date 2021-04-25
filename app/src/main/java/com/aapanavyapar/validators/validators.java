@@ -96,7 +96,28 @@ public class validators {
             return true;
         }*/
     }
-    public static boolean validatePassword(EditText inputPassword){//To check weather the field of password is empty or not
+
+    public static boolean validatePasswordSignIn(EditText inputPassword){//To check weather the field of password is empty or not
+
+        String passwordInput = inputPassword.getText().toString().trim();
+        if(passwordInput.isEmpty())
+        {
+            inputPassword.setError("Field Can't Be Empty");
+            return false;
+
+        }
+        else if(!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+            inputPassword.setError("Invalid Password");
+            return false;
+        }
+        else {
+
+            inputPassword.setError(null);
+            return true;
+        }
+    }
+
+    public static boolean validatePasswordSignUp(EditText inputPassword){//To check weather the field of password is empty or not
 
         String passwordInput = inputPassword.getText().toString().trim();
         if(passwordInput.isEmpty())

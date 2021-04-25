@@ -105,7 +105,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
                     }else {
                         ((TextView)view.findViewById(R.id.resend_otp)).setEnabled(false);
-                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 10000) {
+                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 1000) {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 Log.d("Timer", String.valueOf(millisUntilFinished));
@@ -114,6 +114,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
                             @Override
                             public void onFinish() {
+                                ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
                                 ((TextView) view.findViewById(R.id.resend_otp)).setEnabled(true);
 
                             }
@@ -152,11 +153,14 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
                                             Log.d("Timer", String.valueOf(millisUntilFinished));
+
+                                            Toast.makeText(getContext(), String.valueOf(millisUntilFinished), Toast.LENGTH_LONG).show();
                                             ((TextView) view.findViewById(R.id.resend_otp)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
                                         }
 
                                         @Override
                                         public void onFinish() {
+                                            ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
                                             ((TextView) view.findViewById(R.id.resend_otp)).setEnabled(true);
 
                                         }
