@@ -30,7 +30,6 @@ import io.grpc.StatusRuntimeException;
 public class CreateNewPasswordFragment extends Fragment {
 
     public static final String host = MainActivity.IPAddress;
-    public static final int port = 4356;
 
     private DataModel dataModel;
 
@@ -54,7 +53,7 @@ public class CreateNewPasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
 

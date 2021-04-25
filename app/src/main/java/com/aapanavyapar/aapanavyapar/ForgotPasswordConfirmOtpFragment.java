@@ -37,7 +37,6 @@ import io.grpc.StatusRuntimeException;
 public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
     public static final String host = MainActivity.IPAddress;
-    public static final int port = 4356;
 
     ManagedChannel mChannel;
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
@@ -67,7 +66,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
 

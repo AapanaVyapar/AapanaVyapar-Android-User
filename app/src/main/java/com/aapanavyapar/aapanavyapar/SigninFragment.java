@@ -33,7 +33,6 @@ import io.grpc.StatusRuntimeException;
 public class SigninFragment extends Fragment {
 
     public static final String host = MainActivity.IPAddress;
-    public static final int port = 4356;
 
     private DataModel dataModel;
 
@@ -51,7 +50,7 @@ public class SigninFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
@@ -130,10 +129,10 @@ public class SigninFragment extends Fragment {
                             Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
 
                         } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
-                            Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Server Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }  else {
-                            Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Unknown Error Occurred : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
 
