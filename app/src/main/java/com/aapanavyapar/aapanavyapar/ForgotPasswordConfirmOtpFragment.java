@@ -149,7 +149,7 @@ public class ForgotPasswordConfirmOtpFragment extends Fragment {
 
                                 }else {
                                     ((TextView)view.findViewById(R.id.resend_otp)).setEnabled(false);
-                                    timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 1000) {
+                                    timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 10000) {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
                                             Log.d("Timer", String.valueOf(millisUntilFinished));

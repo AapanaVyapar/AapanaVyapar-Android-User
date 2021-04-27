@@ -95,6 +95,10 @@ public class SigninFragment extends Fragment {
                             .setPassword(password.getText().toString())
                             .setApiKey(MainActivity.API_KEY)
                             .build();
+                    Intent intent  = new Intent(getContext(), ViewProvider.class);
+                    //String val = inputText.getText().toString();
+                    //intent.putExtra(EXTRA_MESSAGE, val);
+                    startActivity(intent);
 
                     try {
                         SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
@@ -107,10 +111,10 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+                        //Intent intent  = new Intent(getContext(), ViewProvider.class);
                         //String val = inputText.getText().toString();
                         //intent.putExtra(EXTRA_MESSAGE, val);
-                        startActivity(intent);
+                        //startActivity(intent);
 
 
             //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
