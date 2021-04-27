@@ -35,6 +35,7 @@ android {
         }
     }
     ndkVersion '23.0.7196353 rc2'
+
 }
 
 protobuf {
