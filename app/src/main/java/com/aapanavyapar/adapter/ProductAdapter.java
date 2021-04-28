@@ -1,4 +1,4 @@
-package com.aapanavyapar;
+package com.aapanavyapar.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.ViewProvider;
+import com.aapanavyapar.viewData.ProductData;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    ProductData[] product_data;
+
+    ProductData[] productDataList;
     Context context;
 
-    public ProductAdapter(ProductData[] product_data, ViewProvider activity) {
-        this.product_data = product_data;
+    public ProductAdapter(ProductData[] product_data, Context activity) {
+        this.productDataList = product_data;
         this.context = activity;
     }
 
@@ -27,30 +29,30 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.trending_product_list,parent,false);
+        View view = layoutInflater.inflate(R.layout.product_data_card,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final ProductData product_data_list = product_data[position];
-        holder.productImage.setImageResource(product_data_list.getProduct_image());
-        holder.productName.setText(product_data_list.getProduct_name());
-        holder.shopName.setText(product_data_list.getShop_name());
-        holder.shopDesc.setText(product_data_list.getShop_description());
+        final ProductData productCard = productDataList[position];
+        holder.productImage.setImageResource(productCard.getProduct_image());
+        holder.productName.setText(productCard.getProduct_name());
+        holder.shopName.setText(productCard.getShop_name());
+        holder.shopDesc.setText(productCard.getShop_description());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context , product_data_list.getProduct_name(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context , productCard.getProduct_name(),Toast.LENGTH_LONG).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return product_data.length;
+        return productDataList.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -67,8 +69,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             shopDesc = itemView.findViewById(R.id.shop_description);
         }
     }
-
-
-
-
 }

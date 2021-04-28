@@ -1,4 +1,4 @@
-package com.aapanavyapar;
+package com.aapanavyapar.viewData;
 
 public class ProductData {
     Integer product_image;

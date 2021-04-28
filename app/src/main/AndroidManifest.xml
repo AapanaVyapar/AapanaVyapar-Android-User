@@ -11,7 +11,12 @@
         android:roundIcon="@drawable/logoav"
         android:supportsRtl="true"
         android:theme="@style/Theme.AapanaVyapar">
-        <activity android:name=".ViewProvider"></activity>
+        <activity
+            android:name=".ViewProvider"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AapanaVyapar.NoActionBar">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

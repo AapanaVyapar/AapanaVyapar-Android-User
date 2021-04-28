@@ -89,16 +89,17 @@ public class SigninFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent  = new Intent(getContext(), ViewProvider.class);
+                //String val = inputText.getText().toString();
+                //intent.putExtra(EXTRA_MESSAGE, val);
+                startActivity(intent);
                 if(validators.validatePhone(phoneNo) && validators.validatePasswordSignIn(password)){
                     SignInRequest request = SignInRequest.newBuilder()
                             .setPhoneNo(phoneNo.getText().toString())
                             .setPassword(password.getText().toString())
                             .setApiKey(MainActivity.API_KEY)
                             .build();
-                    Intent intent  = new Intent(getContext(), ViewProvider.class);
-                    //String val = inputText.getText().toString();
-                    //intent.putExtra(EXTRA_MESSAGE, val);
-                    startActivity(intent);
+
 
                     try {
                         SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
