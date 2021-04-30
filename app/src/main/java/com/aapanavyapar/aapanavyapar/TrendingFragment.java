@@ -1,5 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 import com.aapanavyapar.viewData.ProductData;
+
+import java.io.InputStream;
 
 
 public class TrendingFragment extends Fragment {
@@ -78,4 +81,5 @@ public class TrendingFragment extends Fragment {
 
         }
     }
+
 }

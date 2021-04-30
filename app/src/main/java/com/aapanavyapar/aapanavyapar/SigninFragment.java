@@ -89,10 +89,10 @@ public class SigninFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(getContext(), ViewProvider.class);
-                //String val = inputText.getText().toString();
-                //intent.putExtra(EXTRA_MESSAGE, val);
-                startActivity(intent);
+//                Intent intent  = new Intent(getContext(), ViewProvider.class);
+//                //String val = inputText.getText().toString();
+//                //intent.putExtra(EXTRA_MESSAGE, val);
+//                startActivity(intent);
                 if(validators.validatePhone(phoneNo) && validators.validatePasswordSignIn(password)){
                     SignInRequest request = SignInRequest.newBuilder()
                             .setPhoneNo(phoneNo.getText().toString())
@@ -112,10 +112,10 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                        //Intent intent  = new Intent(getContext(), ViewProvider.class);
-                        //String val = inputText.getText().toString();
-                        //intent.putExtra(EXTRA_MESSAGE, val);
-                        //startActivity(intent);
+                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+//                        String val = inputText.getText().toString();
+//                        intent.putExtra(EXTRA_MESSAGE, val);
+                        startActivity(intent);
 
 
             //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);

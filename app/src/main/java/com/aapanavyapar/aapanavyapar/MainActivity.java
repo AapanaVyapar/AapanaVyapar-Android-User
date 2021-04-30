@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     public native String getNativeKey();
     public static String API_KEY;
 
-    public static String IPAddress = "0.tcp.ngrok.io:12899";
+//    tcp://0.tcp.ngrok.io:18538
+    public static String IPAddress = "0.tcp.ngrok.io:18538";
 //    public static final int port = 4356;
 
     @Override
