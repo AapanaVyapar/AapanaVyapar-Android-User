@@ -18,8 +18,6 @@ import com.google.android.material.chip.ChipGroup;
 
 public class ViewProvider extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

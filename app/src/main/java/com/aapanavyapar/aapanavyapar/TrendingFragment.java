@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.Toast;
+
 
 import com.aapanavyapar.adapter.ProductAdapter;
 import com.google.android.material.chip.Chip;
@@ -28,6 +30,8 @@ public class TrendingFragment extends Fragment {
     ChipGroup chipGroup;
     Chip chip;
     RecyclerView recycler_View;
+//    RatingBar rating_Bar;
+
 
     public TrendingFragment() {
         // Required empty public constructor
@@ -80,6 +84,8 @@ public class TrendingFragment extends Fragment {
             recycler_View.setAdapter(product_adapter);
 
         }
+
+
     }
 
 }

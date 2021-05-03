@@ -86,6 +86,10 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToUp);
             }
         });
+         Intent intent  = new Intent(getContext(), ViewProvider.class);
+//       String val = inputText.getText().toString();
+//       intent.putExtra(EXTRA_MESSAGE, val);
+         startActivity(intent);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,10 +116,10 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+//                        Intent intent  = new Intent(getContext(), ViewProvider.class);
 //                        String val = inputText.getText().toString();
 //                        intent.putExtra(EXTRA_MESSAGE, val);
-                        startActivity(intent);
+//                        startActivity(intent);
 
 
             //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
