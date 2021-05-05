@@ -1,12 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 
 public class ProfileFragment extends Fragment {
@@ -31,51 +29,52 @@ public class ProfileFragment extends Fragment {
 
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-    userName = (EditText)view.findViewById(R.id.profile_edittext_user_name);
-    fullName = (EditText)view.findViewById(R.id.profile_edit_text_fullname);
-    houseDetails = (EditText)view.findViewById(R.id.profile_edit_text_housedetails);
-    streetDetails = (EditText)view.findViewById(R.id.profile_edit_text_streetdetails);
-    landMark = (EditText)view.findViewById(R.id.profile_edit_text_landmark);
-    pinCode = (EditText)view.findViewById(R.id.profile_edit_text_pincode);
-    city = (EditText)view.findViewById(R.id.profile_edit_text_city);
-    state = (EditText)view.findViewById(R.id.profile_edit_text_state);
-    country = (EditText)view.findViewById(R.id.profile_edit_text_country);
-    mobileNo = (EditText)view.findViewById(R.id.profile_edit_text_mobileno);
-    Add = (Button)view.findViewById(R.id.profile_button);
+        userName = view.findViewById(R.id.profile_edittext_user_name);
+        fullName = view.findViewById(R.id.profile_edit_text_fullname);
+        houseDetails = view.findViewById(R.id.profile_edit_text_housedetails);
+        streetDetails = view.findViewById(R.id.profile_edit_text_streetdetails);
+        landMark = view.findViewById(R.id.profile_edit_text_landmark);
+        pinCode = view.findViewById(R.id.profile_edit_text_pincode);
+        city = view.findViewById(R.id.profile_edit_text_city);
+        state = view.findViewById(R.id.profile_edit_text_state);
+        country = view.findViewById(R.id.profile_edit_text_country);
+        mobileNo = view.findViewById(R.id.profile_edit_text_mobileno);
+        Add = view.findViewById(R.id.profile_button);
 
-    Add.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            SQLiteDataBaseBuild();
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLiteDataBaseBuild();
 
-            SQLiteTableBuild();
+                SQLiteTableBuild();
 
-            CheckEditTextStatus();
+                CheckEditTextStatus();
 
-            InsertDataIntoSQLiteDatabase();
+                InsertDataIntoSQLiteDatabase();
 
-            EmptyEditTextAfterDataInsert();
+                EmptyEditTextAfterDataInsert();
 
-        }
-    });
-
+            }
+        });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
-    public void SQLiteDataBaseBuild(){
 
-        sqLiteDatabaseObj = sqLiteDatabaseObj.openOrCreateDatabase("ProfileDB", (SQLiteDatabase.CursorFactory) getContext(),null);
+    public void SQLiteDataBaseBuild(){
+        sqLiteDatabaseObj = SQLiteDatabase.openOrCreateDatabase("ProfileDB", null);
 
     }
-    public void SQLiteTableBuild(){
 
+    public void SQLiteTableBuild(){
         sqLiteDatabaseObj.execSQL("CREATE TABLE ProfileTable(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, User_Name VARCHAR,Full_Name VARCHAR,House_Details VARCHAR,Street_Details,VHARCHAR,Land_Mark VARCHAR,Pincode VARCHAR,City VARCHAR,State VARCHAR,Country VARCHAR, Phone_Number VARCHAR);");
 
     }
+
     public void CheckEditTextStatus(){
         UserName = userName.getText().toString();
         FullName = fullName.getText().toString();
@@ -89,24 +88,16 @@ public class ProfileFragment extends Fragment {
         MobileNum = mobileNo.getText().toString();
 
 
-        if(TextUtils.isEmpty(FullName) ||
-                TextUtils.isEmpty(UserName)||TextUtils.isEmpty(HouseDetails)||
-                TextUtils.isEmpty(StreetDetails)||TextUtils.isEmpty(LandMark)||
-                TextUtils.isEmpty(PinCode)||TextUtils.isEmpty(City)||
-                TextUtils.isEmpty(State)||TextUtils.isEmpty(Country)||
-                TextUtils.isEmpty(MobileNum)){
-
-            EditTextEmptyHold = false ;
-
-        }
-        else {
-
-            EditTextEmptyHold = true ;
-        }
+        EditTextEmptyHold = !TextUtils.isEmpty(FullName) &&
+                !TextUtils.isEmpty(UserName) && !TextUtils.isEmpty(HouseDetails) &&
+                !TextUtils.isEmpty(StreetDetails) && !TextUtils.isEmpty(LandMark) &&
+                !TextUtils.isEmpty(PinCode) && !TextUtils.isEmpty(City) &&
+                !TextUtils.isEmpty(State) && !TextUtils.isEmpty(Country) &&
+                !TextUtils.isEmpty(MobileNum);
     }
     public void InsertDataIntoSQLiteDatabase(){
 
-        if(EditTextEmptyHold == true)
+        if(EditTextEmptyHold)
         {
 
             SQLiteDataBaseQueryHolder = "INSERT INTO ProfileTable (User_Name,Full_Name,House_Detais,Street_Details,Land_Mark,Pincode,City,State,Country,Phone_Number) VALUES" +
