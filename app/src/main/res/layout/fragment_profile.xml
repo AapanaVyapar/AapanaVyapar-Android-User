@@ -104,17 +104,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_edittext_user_name" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address :"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space46" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address :"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.042"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space46" />
 
-    <Space
+            <Space
         android:id="@+id/space47"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fab_margin"
@@ -206,7 +206,7 @@
         android:layout_height="wrap_content"
         android:ems="20"
         android:hint="Pincode"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space51" />
@@ -281,8 +281,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="20"
-        android:hint="Mobile Nuber"
-        android:inputType="textPersonName"
+        android:hint="Mobile Number"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space55" />
@@ -296,7 +296,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_edit_text_mobileno" />
 
-    <Button
+
+
+            <Button
         android:id="@+id/profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -304,6 +306,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space56" />
+
+
 
     <Space
         android:layout_width="match_parent"
@@ -313,7 +317,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_button"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintVertical_bias="0.215"
+        tools:ignore="NotSibling" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
