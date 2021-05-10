@@ -7,109 +7,120 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:background="@color/black"
-        app:cardCornerRadius="40dp"
+        app:cardCornerRadius="10dp"
         app:cardElevation="10dp">
 
-        <RelativeLayout
-            android:layout_width="123dp"
-            android:layout_height="198dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
 
             <ImageView
                 android:id="@+id/order_product_imageview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true">
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+               android:layout_margin="10dp">
 
             </ImageView>
 
-            <TextView
-                android:id="@+id/order_product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Product Name">
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/order_product_imageview"
+                    android:text="Product Name">
 
-            <TextView
-                android:id="@+id/order_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_product_name"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Order Id">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_product_name"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Order Id">
 
-            <TextView
-                android:id="@+id/order_product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_id"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Price">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_id"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Price">
 
-            <TextView
-                android:id="@+id/order_product_qty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_product_price"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Quantity">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_product_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_product_price"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Quantity">
 
-            <TextView
-                android:id="@+id/order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_product_qty"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Status">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_product_qty"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Status">
 
-            <TextView
-                android:id="@+id/order_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_status"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Ordered On: Time">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_status"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Ordered On: Time">
 
-            <TextView
-                android:id="@+id/order_delivered_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_on"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/order_product_imageview"
-                android:text="Delivered On: Time">
+                </TextView>
 
-            </TextView>
+                <TextView
+                    android:id="@+id/order_delivered_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_on"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/order_product_imageview"
+                    android:text="Delivered On: Time">
 
-        </RelativeLayout>
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
 
     </com.google.android.material.card.MaterialCardView>
 
