@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.aapanavyapar.adapter.OrderedProductAdapter;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 
 public class OrderFragment extends Fragment {
 
+    ImageButton cartImageButton;
     RecyclerView ordered_Recycler_View;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,15 @@ public class OrderFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        cartImageButton = view.findViewById(R.id.cart_imagebutton);
+        cartImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                NavDirections OrderFragmentToCartFragment = OrderFragment.actionOrderFragmentToCartFragment();
+//                Navigation.findNavController(view).navigate(OrderFragmentToCartFragment);
+            }
+        });
 
         ordered_Recycler_View = view.findViewById(R.id.orderd_recycler_view);
         ordered_Recycler_View.setHasFixedSize(true);

@@ -7,10 +7,9 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -23,32 +22,39 @@
 
         </TextView>
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/cart_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:src="@drawable/cart">
+
+        </ImageButton>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderd_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:paddingBottom="56dp"
+            android:layout_margin="10dp">
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/orderd_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="56dp"
-                android:layout_margin="10dp">
-
-
-<!--            <ListView-->
-<!--                android:id="@+id/order_list_view"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_margin="10dp">-->
-
-<!--            </ListView>-->
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
 </LinearLayout>
+

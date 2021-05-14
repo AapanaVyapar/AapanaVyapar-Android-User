@@ -35,7 +35,7 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
     @Override
     public void onBindViewHolder(@NonNull OrderedProductAdapter.ViewHolder holder, int position) {
         final OrderedProductData orderedProductCard = orderedProductDataList[position];
-        holder.ordered_Product_Image.setImageResource(orderedProductCard.getOrederedProductImage());
+        holder.ordered_Product_Image.setImageResource(orderedProductCard.getOrderedProductImage());
         holder.ordered_Product_Name.setText(orderedProductCard.getOrderedProductName());
         holder.ordered_Product_Id.setText(orderedProductCard.getOrderedProductId());
         holder.ordered_Product_Price.setText(orderedProductCard.getOrderedProductPrice());

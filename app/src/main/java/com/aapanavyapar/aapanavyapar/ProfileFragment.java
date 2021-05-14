@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import static java.lang.Long.getLong;
@@ -32,6 +33,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         ProfileDB g = new ProfileDB(getContext());
         SQLiteDatabase db = g.getReadableDatabase();
+
+//        LinearLayout layout = (LinearLayout)view.findViewById(R.id.profile_fragment_layout);
+//        Add = new Button(getContext());
+//        Add.setText("SET");
 
     userName = (EditText)view.findViewById(R.id.profile_edittext_user_name);
     fullName = (EditText)view.findViewById(R.id.profile_edit_text_fullname);
@@ -112,6 +117,26 @@ public class ProfileFragment extends Fragment {
         mobileNo = null;
             }
     }
+
+//    public Boolean checkFieldEmpty(){
+//        String UserName = userName.getText().toString();
+//           String FullName = fullName.getText().toString();
+//            String HouseDetails = houseDetails.getText().toString();
+//            String StreetDetails = streetDetails.getText().toString();
+//            String LandMark = landMark.getText().toString();
+//            String PinCode = pinCode.getText().toString();
+//            String City = city.getText().toString();
+//            String State = state.getText().toString();
+//            String Country = country.getText().toString();
+//            String MobileNo = mobileNo.getText().toString();
+//        if(UserName.isEmpty()||FullName.isEmpty()||
+//                   HouseDetails.isEmpty()||StreetDetails.isEmpty()||
+//                    LandMark.isEmpty()||PinCode.isEmpty()||City.isEmpty()||
+//                    State.isEmpty()||Country.isEmpty()||MobileNo.isEmpty()
+//            ) return false;
+//
+//        else return true;
+//    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

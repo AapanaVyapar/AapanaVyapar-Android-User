@@ -1,7 +1,7 @@
 package com.aapanavyapar.viewData;
 
 public class OrderedProductData {
-    Integer orederedProductImage;
+    Integer orderedProductImage;
     String orderedProductName;
     String orderedProductId;
     String orderedProductPrice;
@@ -10,8 +10,8 @@ public class OrderedProductData {
     String orderedTime;
     String orderedDeliveredTime;
 
-    public OrderedProductData(Integer orederedProductImage, String orderedProductName, String orderedProductId, String orderedProductPrice, String orderedProductQty, String orderedProductStatus, String orderedTime, String orderedDeliveredTime) {
-        this.orederedProductImage = orederedProductImage;
+    public OrderedProductData(Integer orderedProductImage, String orderedProductName, String orderedProductId, String orderedProductPrice, String orderedProductQty, String orderedProductStatus, String orderedTime, String orderedDeliveredTime) {
+        this.orderedProductImage = orderedProductImage;
         this.orderedProductName = orderedProductName;
         this.orderedProductId = orderedProductId;
         this.orderedProductPrice = orderedProductPrice;
@@ -21,12 +21,12 @@ public class OrderedProductData {
         this.orderedDeliveredTime = orderedDeliveredTime;
     }
 
-    public Integer getOrederedProductImage() {
-        return orederedProductImage;
+    public Integer getOrderedProductImage() {
+        return orderedProductImage;
     }
 
-    public void setOrederedProductImage(Integer orederedProductImage) {
-        this.orederedProductImage = orederedProductImage;
+    public void setOrderedProductImage(Integer orderedProductImage) {
+        this.orderedProductImage = orderedProductImage;
     }
 
     public String getOrderedProductName() {
