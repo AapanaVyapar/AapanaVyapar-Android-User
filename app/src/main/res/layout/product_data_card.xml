@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    android:background="@color/black"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
     app:strokeColor="@color/black"
@@ -40,11 +39,12 @@
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/asap"
+                android:textColor="?android:textColor"
                 android:layout_margin="10dp"
                 android:layout_gravity="start"
                 android:text="Product Name"
                 android:textAlignment="viewStart"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="20dp">
 
@@ -60,8 +60,9 @@
                     android:layout_gravity="end"
                     android:layout_toStartOf="@+id/product_likes"
                     android:text="1.2k"
+                    android:fontFamily="@font/inknut_antiqua_light"
+                    android:textColor="?android:textColor"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/black"
                     android:textSize="20dp" />
 
                 <ImageView
@@ -71,6 +72,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/heart"
+                    android:elevation="10dp"
+                    android:outlineSpotShadowColor="?android:textColorSecondary"
                     android:scaleX=".5"
                     android:scaleY=".5"/>
 
@@ -92,8 +95,9 @@
                 android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:text="Shop Name"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black">
+                android:fontFamily="@font/asap"
+                android:textColor="?android:textColor"
+                android:textAlignment="viewStart">
 
             </TextView>
 
@@ -113,6 +117,7 @@
                     android:isIndicator="false"
                     android:numStars="5"
                     android:rating="5">
+
 
                 </RatingBar>
             </RelativeLayout>
