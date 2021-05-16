@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/black"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="10dp">
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:background="@color/black"
+    app:cardCornerRadius="40dp"
+    app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,64 +22,165 @@
 
             </ImageView>
 
-            <TextView
-                android:id="@+id/product_name"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_gravity="start"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="Product Name"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="20dp">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/shop_name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="Shop Name"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black">
+                android:orientation="horizontal">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Product Name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20dp">
 
-            <TextView
-                android:id="@+id/shop_description"
+                </TextView>
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:text="1.2k"
+                    android:textSize="20dp"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="Shop Description"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black">
+                android:orientation="horizontal">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Shop Name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black">
 
-            <RatingBar
-                android:id="@+id/shop_rating_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:saveEnabled="true"
-                android:stepSize="0.1"
-                android:scaleX=".5"
-                android:scaleY=".5">
+                </TextView>
 
-            </RatingBar>
+
+                <RatingBar
+                    android:id="@+id/shop_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:layout_gravity="right"
+                    android:saveEnabled="true"
+                    android:layout_margin="5dp"
+                    android:stepSize="5dp"
+                    android:scaleX=".5"
+                    android:scaleY=".5">
+
+                </RatingBar>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:orientation="vertical">-->
+
+
+<!--<com.google.android.material.card.MaterialCardView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="10dp"-->
+<!--    android:background="@color/black"-->
+<!--    app:cardCornerRadius="40dp"-->
+<!--    app:cardElevation="10dp">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/product_image"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="248dp"-->
+<!--            android:scaleType="centerCrop">-->
+
+<!--        </ImageView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/product_name"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="44dp"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:text="Product Name"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="20dp">-->
+
+<!--        </TextView>-->
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/shop_name"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                android:text="Shop Name"-->
+<!--                android:textAlignment="viewStart"-->
+<!--                android:textColor="@color/black">-->
+
+<!--            </TextView>-->
+
+
+<!--            <RatingBar-->
+<!--                android:id="@+id/shop_rating_bar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/end_component_gap"-->
+<!--                android:numStars="5"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:saveEnabled="true"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:stepSize="5dp"-->
+<!--                android:scaleX=".5"-->
+<!--                android:scaleY=".5">-->
+
+<!--            </RatingBar>-->
+
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+<!--</com.google.android.material.card.MaterialCardView>-->
+
+<!--</LinearLayout>-->
