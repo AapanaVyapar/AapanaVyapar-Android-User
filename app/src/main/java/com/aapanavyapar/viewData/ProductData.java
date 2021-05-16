@@ -4,13 +4,13 @@ public class ProductData {
     Integer product_image;
     String product_name;
     String shop_name;
-    String shop_description;
 
-    public ProductData(Integer product_image, String product_name, String shop_name, String shop_description) {
+
+    public ProductData(Integer product_image, String product_name, String shop_name) {
         this.product_image = product_image;
         this.product_name = product_name;
         this.shop_name = shop_name;
-        this.shop_description = shop_description;
+
     }
 
     public Integer getProduct_image() {
@@ -37,11 +37,5 @@ public class ProductData {
         this.shop_name = shop_name;
     }
 
-    public String getShop_description() {
-        return shop_description;
-    }
 
-    public void setShop_description(String shop_description) {
-        this.shop_description = shop_description;
-    }
 }

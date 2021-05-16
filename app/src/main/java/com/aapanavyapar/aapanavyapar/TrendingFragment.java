@@ -74,10 +74,10 @@ public class TrendingFragment extends Fragment {
             recycler_View.setLayoutManager(new LinearLayoutManager(getContext()));
 
             ProductData[] product_data = new ProductData[]{
-                    new ProductData(R.drawable.logoav,"Rolex Women's Watch","Fashion Wrist Watches","Shop Description"),
-                    new ProductData(R.drawable.logoav,"Acer Laptop","Sonam Electronics","Shop Description"),
-                    new ProductData(R.drawable.logoav,"Classic Cheeseburger","We Desi","Shop Description"),
-                    new ProductData(R.drawable.logoav,"Yonex Badminton Kit","Jalgaon Sports","Shop Description"),
+                    new ProductData(R.drawable.logoav,"Rolex Women's Watch","Fashion Wrist Watches"),
+                    new ProductData(R.drawable.logoav,"Acer Laptop","Sonam Electronics"),
+                    new ProductData(R.drawable.logoav,"Classic Cheeseburger","We Desi"),
+                    new ProductData(R.drawable.logoav,"Yonex Badminton Kit","Jalgaon Sports"),
             };
 
             ProductAdapter product_adapter = new ProductAdapter(product_data, getContext());

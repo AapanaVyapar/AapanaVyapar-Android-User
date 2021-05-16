@@ -43,7 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.productImage.setImageResource(productCard.getProduct_image());
         holder.productName.setText(productCard.getProduct_name());
         holder.shopName.setText(productCard.getShop_name());
-        holder.shopDesc.setText(productCard.getShop_description());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         ImageView productImage;
         TextView productName;
         TextView shopName;
-        TextView shopDesc;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 //           itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +86,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             productImage = itemView.findViewById(R.id.product_image);
             productName = itemView.findViewById(R.id.product_name);
             shopName = itemView.findViewById(R.id.shop_name);
-            shopDesc = itemView.findViewById(R.id.shop_description);
         }
     }
 }
