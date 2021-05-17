@@ -25,7 +25,6 @@ import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
@@ -74,20 +73,16 @@ public class SigninFragment extends Fragment {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupFragment) {
-                    NavDirections actionToForgotPassword = SigninFragmentDirections.actionSigninFragmentToForgotPasswordFragment();
-                    Navigation.findNavController(view).navigate(actionToForgotPassword);
-                }
+                NavDirections actionToForgotPassword = SigninFragmentDirections.actionSigninFragmentToForgotPasswordFragment();
+                Navigation.findNavController(view).navigate(actionToForgotPassword);
             }
         });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupFragment) {
-                    NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
-                    Navigation.findNavController(view).navigate(actionToUp);
-                }
+                NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
+                Navigation.findNavController(view).navigate(actionToUp);
             }
         });
 
@@ -126,10 +121,8 @@ public class SigninFragment extends Fragment {
 
                         } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
                             Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
-                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupFragment) {
-                                NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
-                                Navigation.findNavController(view).navigate(actionToUp);
-                            }
+                            NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionToUp);
 
                         } else if(e.getStatus().getCode().toString().equals("DEADLINE_EXCEEDED")) {
                             Toast.makeText(view.getContext(), "Network Error", Toast.LENGTH_SHORT).show();
