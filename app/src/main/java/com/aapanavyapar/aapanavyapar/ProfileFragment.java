@@ -34,88 +34,89 @@ public class ProfileFragment extends Fragment {
         ProfileDB g = new ProfileDB(getContext());
         SQLiteDatabase db = g.getReadableDatabase();
 
-//        LinearLayout layout = (LinearLayout)view.findViewById(R.id.profile_fragment_layout);
-//        Add = new Button(getContext());
-//        Add.setText("SET");
+    //        LinearLayout layout = (LinearLayout)view.findViewById(R.id.profile_fragment_layout);
+    //        Add = new Button(getContext());
+    //        Add.setText("SET");
 
-    userName = (EditText)view.findViewById(R.id.profile_edittext_user_name);
-    fullName = (EditText)view.findViewById(R.id.profile_edit_text_fullname);
-    houseDetails = (EditText)view.findViewById(R.id.profile_edit_text_housedetails);
-    streetDetails = (EditText)view.findViewById(R.id.profile_edit_text_streetdetails);
-    landMark = (EditText)view.findViewById(R.id.profile_edit_text_landmark);
-    pinCode = (EditText)view.findViewById(R.id.profile_edit_text_pincode);
-    city = (EditText)view.findViewById(R.id.profile_edit_text_city);
-    state = (EditText)view.findViewById(R.id.profile_edit_text_state);
-    country = (EditText)view.findViewById(R.id.profile_edit_text_country);
-    mobileNo = (EditText)view.findViewById(R.id.profile_edit_text_mobileno);
-    Add = (Button)view.findViewById(R.id.profile_button);
-
-
-
-    Add.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String UserName = userName.getText().toString();
-            String FullName = fullName.getText().toString();
-            String HouseDetails = houseDetails.getText().toString();
-            String StreetDetails = streetDetails.getText().toString();
-            String LandMark = landMark.getText().toString();
-            String PinCode = pinCode.getText().toString();
-            String City = city.getText().toString();
-            String State = state.getText().toString();
-            String Country = country.getText().toString();
-            String MobileNo = mobileNo.getText().toString();
-
-            if(UserName.isEmpty()||FullName.isEmpty()||
-                    HouseDetails.isEmpty()||StreetDetails.isEmpty()||
-                    LandMark.isEmpty()||PinCode.isEmpty()||City.isEmpty()||
-                    State.isEmpty()||Country.isEmpty()||MobileNo.isEmpty()
-            ){
-                Toast.makeText(getContext(),"fill all required fields",Toast.LENGTH_SHORT).show();
-            }
-            else{
+        userName = (EditText)view.findViewById(R.id.profile_edittext_user_name);
+        fullName = (EditText)view.findViewById(R.id.profile_edit_text_fullname);
+        houseDetails = (EditText)view.findViewById(R.id.profile_edit_text_housedetails);
+        streetDetails = (EditText)view.findViewById(R.id.profile_edit_text_streetdetails);
+        landMark = (EditText)view.findViewById(R.id.profile_edit_text_landmark);
+        pinCode = (EditText)view.findViewById(R.id.profile_edit_text_pincode);
+        city = (EditText)view.findViewById(R.id.profile_edit_text_city);
+        state = (EditText)view.findViewById(R.id.profile_edit_text_state);
+        country = (EditText)view.findViewById(R.id.profile_edit_text_country);
+        mobileNo = (EditText)view.findViewById(R.id.profile_edit_text_mobileno);
+        Add = (Button)view.findViewById(R.id.profile_button);
 
 
-                boolean i= g.insert_Data(UserName,FullName,
-                        HouseDetails,StreetDetails,LandMark,
-                       PinCode,City,State,Country,MobileNo);
-                if(i==true){
-                    Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String UserName = userName.getText().toString();
+                String FullName = fullName.getText().toString();
+                String HouseDetails = houseDetails.getText().toString();
+                String StreetDetails = streetDetails.getText().toString();
+                String LandMark = landMark.getText().toString();
+                String PinCode = pinCode.getText().toString();
+                String City = city.getText().toString();
+                String State = state.getText().toString();
+                String Country = country.getText().toString();
+                String MobileNo = mobileNo.getText().toString();
+
+                if(UserName.isEmpty()||FullName.isEmpty()||
+                        HouseDetails.isEmpty()||StreetDetails.isEmpty()||
+                        LandMark.isEmpty()||PinCode.isEmpty()||City.isEmpty()||
+                        State.isEmpty()||Country.isEmpty()||MobileNo.isEmpty()
+                ){
+                    Toast.makeText(getContext(),"fill all required fields",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getContext(),"Not Successful",Toast.LENGTH_SHORT).show();
-                }
-            }
 
-        }
-    });
-    if(g.profileInfo()==true){
-        Cursor t = g.getInfo();
-        while(t.moveToNext()) {
-            userName.setText(t.getString(1));
-            fullName.setText(t.getString(2));
-            houseDetails.setText(t.getString(3));
-            streetDetails.setText(t.getString(4));
-            landMark.setText(t.getString(5));
-            pinCode.setText(t.getString(6));
-            city.setText(t.getString(7));
-            state.setText(t.getString(8));
-            country.setText(t.getString(9));
-            mobileNo.setText(t.getString(10));
-        }
-    }
-    else {
-        userName =
-        fullName =
-        houseDetails =
-        streetDetails =
-        landMark =
-        pinCode =
-        city =
-        state =
-        country =
-        mobileNo = null;
+
+                    boolean i= g.insert_Data(UserName,FullName,
+                            HouseDetails,StreetDetails,LandMark,
+                           PinCode,City,State,Country,MobileNo);
+                    if(i){
+                        Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(),"Not Successful",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
+        });
+
+        if(g.profileInfo()){
+            Cursor t = g.getInfo();
+            while(t.moveToNext()) {
+                userName.setText(t.getString(1));
+                fullName.setText(t.getString(2));
+                houseDetails.setText(t.getString(3));
+                streetDetails.setText(t.getString(4));
+                landMark.setText(t.getString(5));
+                pinCode.setText(t.getString(6));
+                city.setText(t.getString(7));
+                state.setText(t.getString(8));
+                country.setText(t.getString(9));
+                mobileNo.setText(t.getString(10));
+            }
+        }
+        else {
+            userName =
+            fullName =
+            houseDetails =
+            streetDetails =
+            landMark =
+            pinCode =
+            city =
+            state =
+            country =
+            mobileNo = null;
+        }
     }
 
 //    public Boolean checkFieldEmpty(){

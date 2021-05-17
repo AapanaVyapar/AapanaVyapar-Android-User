@@ -21,8 +21,6 @@ public class ProductOnCardClick extends Fragment {
         super(R.layout.fragment_product_on_card_click);
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

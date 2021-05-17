@@ -3,7 +3,7 @@ package com.aapanavyapar.dataModel;
 import androidx.lifecycle.ViewModel;
 
 public class DataModel extends ViewModel {
-    String authToken, refreshToken, passToken;
+    String authToken = "", refreshToken = "", passToken = "";
     int []access;
 
     public void setTokens(String auth, String ref, int []tokenIdentifier){
@@ -41,6 +41,10 @@ public class DataModel extends ViewModel {
     }
 
     public boolean CanWeUseTokenForThis(int method){
+        if(this.access == null) {
+            return false;
+        }
+
         for (int i: this.access) {
             if(i == method){
                 return true;

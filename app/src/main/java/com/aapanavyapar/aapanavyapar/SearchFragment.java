@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 
 public class SearchFragment extends Fragment {
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

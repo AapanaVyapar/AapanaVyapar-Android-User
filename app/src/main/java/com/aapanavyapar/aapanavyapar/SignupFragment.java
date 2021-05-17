@@ -22,6 +22,7 @@ import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
@@ -86,8 +87,10 @@ public class SignupFragment extends Fragment {
 
                         dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
-                        NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupFragment) {
+                            NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     }
                     catch(StatusRuntimeException e){
@@ -107,8 +110,11 @@ public class SignupFragment extends Fragment {
 
                             } else{
                                 Toast.makeText(view.getContext(), "Please Enter Otp", Toast.LENGTH_SHORT).show();
-                                NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
-                                Navigation.findNavController(view).navigate(actionWithOtp);
+
+                                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupFragment) {
+                                    NavDirections actionWithOtp = SignupFragmentDirections.actionSignupFragmentToSignupConfirmOtpFragment();
+                                    Navigation.findNavController(view).navigate(actionWithOtp);
+                                }
 
                             }
 

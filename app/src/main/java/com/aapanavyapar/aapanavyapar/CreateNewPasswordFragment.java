@@ -20,6 +20,7 @@ import com.aapanavyapar.aapanavyapar.services.SetNewPasswordRequest;
 import com.aapanavyapar.aapanavyapar.services.SetNewPasswordResponse;
 import com.aapanavyapar.dataModel.DataModel;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
@@ -83,8 +84,11 @@ public class CreateNewPasswordFragment extends Fragment {
 
                     dataModel.setPassToken("");
 
-                    NavDirections actionCreateNewPasswordFragmentToSigninFragment = CreateNewPasswordFragmentDirections.actionCreateNewPasswordFragmentToSigninFragment();
-                    Navigation.findNavController(view).navigate(actionCreateNewPasswordFragmentToSigninFragment);
+                    if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.CreateNewPasswordFragment) {
+                        NavDirections actionCreateNewPasswordFragmentToSigninFragment = CreateNewPasswordFragmentDirections.actionCreateNewPasswordFragmentToSigninFragment();
+                        Navigation.findNavController(view).navigate(actionCreateNewPasswordFragmentToSigninFragment);
+                    }
+
 
 
                 } catch (StatusRuntimeException e) {
@@ -96,8 +100,10 @@ public class CreateNewPasswordFragment extends Fragment {
                     } else {
                         Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionCreateNewPasswordFragmentToSigninFragment = CreateNewPasswordFragmentDirections.actionCreateNewPasswordFragmentToSigninFragment();
-                        Navigation.findNavController(view).navigate(actionCreateNewPasswordFragmentToSigninFragment);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.CreateNewPasswordFragment) {
+                            NavDirections actionCreateNewPasswordFragmentToSigninFragment = CreateNewPasswordFragmentDirections.actionCreateNewPasswordFragmentToSigninFragment();
+                            Navigation.findNavController(view).navigate(actionCreateNewPasswordFragmentToSigninFragment);
+                        }
 
                     }
                 }

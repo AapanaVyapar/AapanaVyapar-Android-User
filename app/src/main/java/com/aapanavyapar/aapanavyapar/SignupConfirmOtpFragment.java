@@ -27,6 +27,7 @@ import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.serviceWrappers.UpdateToken;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
@@ -74,8 +75,10 @@ public class SignupConfirmOtpFragment extends Fragment {
                 if(!dataModel.CanWeUseTokenForThis(constants.ResendOTP)){
                     Toast.makeText(getContext(), "Please Try Again ..!!", Toast.LENGTH_LONG).show();
 
-                    NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                    Navigation.findNavController(view).navigate(actionWithOtp);
+                    if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                        Navigation.findNavController(view).navigate(actionWithOtp);
+                    }
                 }
                 ResendOTPRequest request = ResendOTPRequest.newBuilder()
                         .setToken(dataModel.getAuthToken())
@@ -87,27 +90,21 @@ public class SignupConfirmOtpFragment extends Fragment {
                     Log.d("ConfirmOtpFragment", String.valueOf(response.getResponse().getNumber()));
                     Log.d("ConfirmOtpFragment", String.valueOf(response.getTimeToWaitForNextRequest()));
 
-                    if(response.getResponse().getNumber() == 1){
-                        Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
+                    ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
+                    timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            Log.d("Timer", String.valueOf(millisUntilFinished));
+                            ((TextView) view.findViewById(R.id.resend_otp_signup)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                        }
 
-                    }else {
-                        ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
-                        timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(response.getTimeToWaitForNextRequest().getSeconds()), 1000) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-                                Log.d("Timer", String.valueOf(millisUntilFinished));
-                                ((TextView) view.findViewById(R.id.resend_otp)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
-                            }
+                        @Override
+                        public void onFinish() {
+                            ((TextView) view.findViewById(R.id.resend_otp_signup)).setText("resend OTP");
+                            ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
 
-                            @Override
-                            public void onFinish() {
-                                ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
-                                ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
-
-                            }
-                        }.start();
-
-                    }
+                        }
+                    }.start();
 
                 }
                 catch (StatusRuntimeException e){
@@ -126,27 +123,22 @@ public class SignupConfirmOtpFragment extends Fragment {
                                         .build();
 
                                 ResendOTPResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(reRequest);
-                                if (reResponse.getResponse().getNumber() == 1) {
-                                    Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
+                                ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
+                                timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 1000) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+                                        Log.d("Timer", String.valueOf(millisUntilFinished));
+                                        ((TextView) view.findViewById(R.id.resend_otp_signup)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
+                                    }
 
-                                } else {
-                                    ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
-                                    timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 1000) {
-                                        @Override
-                                        public void onTick(long millisUntilFinished) {
-                                            Log.d("Timer", String.valueOf(millisUntilFinished));
-                                            ((TextView) view.findViewById(R.id.resend_otp)).setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
-                                        }
+                                    @Override
+                                    public void onFinish() {
+                                        ((TextView) view.findViewById(R.id.resend_otp_signup)).setText("resend OTP");
+                                        ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
 
-                                        @Override
-                                        public void onFinish() {
-                                            ((TextView) view.findViewById(R.id.resend_otp)).setText("resend OTP");
-                                            ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(true);
+                                    }
+                                }.start();
 
-                                        }
-                                    }.start();
-
-                                }
                                 Log.d("ConfirmOtpFragment", String.valueOf(reResponse.getResponse().getNumber()));
 
                                 Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
@@ -156,17 +148,20 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 Log.d("ERROR : ", e.getMessage());
                                 Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
-                                NavDirections actionSignupConfirmOtpFragment = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                                Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
-
+                                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                                    NavDirections actionSignupConfirmOtpFragment = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                                    Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
+                                }
                             }
 
                         } else {
                             Log.d("ERROR : ", "Fail To Update Auth Token");
                             Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionSignupConfirmOtpFragment = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                            Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                                NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                                Navigation.findNavController(view).navigate(actionWithOtp);
+                            }
                         }
                     }
                 }
@@ -182,8 +177,10 @@ public class SignupConfirmOtpFragment extends Fragment {
                 if(!dataModel.CanWeUseTokenForThis(constants.ConformContact)){
                     Toast.makeText(getContext(), "Please Try Again ..!!", Toast.LENGTH_LONG).show();
 
-                    NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                    Navigation.findNavController(view).navigate(actionWithOtp);
+                    if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                        Navigation.findNavController(view).navigate(actionWithOtp);
+                    }
                 }
 
                 ContactConformationRequest request = ContactConformationRequest.newBuilder()
@@ -235,48 +232,60 @@ public class SignupConfirmOtpFragment extends Fragment {
                             }catch (StatusRuntimeException e1){
                                 Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
-                                NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                                Navigation.findNavController(view).navigate(actionWithOtp);
-
+                                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                                    NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                                    Navigation.findNavController(view).navigate(actionWithOtp);
+                                }
                             }
 
                         } else {
                             Toast.makeText(view.getContext(), "Please Update Your Application", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                            Navigation.findNavController(view).navigate(actionWithOtp);
-
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                                NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                                Navigation.findNavController(view).navigate(actionWithOtp);
+                            }
                         }
 
                     } else if(e.getStatus().getCode().toString().equals("UNKNOWN")) {
                         Toast.makeText(view.getContext(), "Server Error ..!!. Please Try After Some Time.", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
                         Toast.makeText(view.getContext(), "Please Try Again OTP Expired .. !!", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     } else if(e.getStatus().getCode().toString().equals("ABORTED")) {
                         Toast.makeText(view.getContext(), "Please Update The App .. !!. App Is Corrupted", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                         Toast.makeText(view.getContext(), "Please Try To SignIn", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     } else {
                         Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
-                        NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
-                        Navigation.findNavController(view).navigate(actionWithOtp);
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.SignupConfirmOtpFragment) {
+                            NavDirections actionWithOtp = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionWithOtp);
+                        }
 
                     }
 

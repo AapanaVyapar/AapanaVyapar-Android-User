@@ -23,6 +23,7 @@ import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannel;
@@ -81,16 +82,19 @@ public class ForgotPasswordFragment extends Fragment {
 
                         dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
 
-                        NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
-                        Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
-
+                        if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                            NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
+                            Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                        }
 
                     } catch (StatusRuntimeException e) {
                         if(e.getStatus().getCode().toString().equals("UNAUTHENTICATED")){
                             Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
-                            Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            }
 
                         } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")){
                             Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
@@ -98,34 +102,43 @@ public class ForgotPasswordFragment extends Fragment {
                         } else if(e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
                             Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSignupFragment();
-                            Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSignupFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            }
 
                         } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
                             Toast.makeText(view.getContext(), "Server Error", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
-                            Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            }
 
                         } else if(e.getStatus().getCode().toString().equals("ALREADY_EXISTS")) {
                             if(dataModel.getAuthToken() == null || dataModel.getAuthToken().isEmpty()){
                                 Toast.makeText(view.getContext(), "Please Try Again After An Hour ..!!", Toast.LENGTH_SHORT).show();
 
-                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
-                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                    NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                                    Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                                }
 
                             }else {
                                 Toast.makeText(view.getContext(), "Please Enter OTP", Toast.LENGTH_SHORT).show();
 
-                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
-                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                                if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                    NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordConfirmOtpFragment();
+                                    Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                                }
                             }
                         } else {
                             Toast.makeText(view.getContext(), "Unknown Error Occurred", Toast.LENGTH_SHORT).show();
 
-                            NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
-                            Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
-
+                            if (Objects.requireNonNull(Navigation.findNavController(view).getCurrentDestination()).getId() == R.id.ForgotPasswordFragment) {
+                                NavDirections actionForgotPasswordFragmentToForgotPasswordConfirmOtp = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToSigninFragment();
+                                Navigation.findNavController(view).navigate(actionForgotPasswordFragmentToForgotPasswordConfirmOtp);
+                            }
                         }
                         Log.d("ForgotPasswordFragment", e.toString());
 
