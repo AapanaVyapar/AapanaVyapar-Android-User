@@ -32,8 +32,6 @@ import io.grpc.StatusRuntimeException;
 
 public class ForgotPasswordFragment extends Fragment {
 
-    public static final String host = MainActivity.IPAddress;
-
     private DataModel dataModel;
 
     ManagedChannel mChannel;
@@ -50,7 +48,7 @@ public class ForgotPasswordFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(MainActivity.AUTH_SERVICE_ADDRESS).usePlaintext().build();
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
         return inflater.inflate(R.layout.fragment_forgot_password, container, false);

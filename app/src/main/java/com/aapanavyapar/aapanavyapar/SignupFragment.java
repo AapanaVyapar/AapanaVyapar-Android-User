@@ -30,8 +30,6 @@ import io.grpc.StatusRuntimeException;
 
 public class SignupFragment extends Fragment {
 
-    public static final String host = MainActivity.IPAddress;
-
     ManagedChannel mChannel;
     AuthenticationGrpc.AuthenticationBlockingStub blockingStub;
     AuthenticationGrpc.AuthenticationStub asyncStub;
@@ -50,7 +48,7 @@ public class SignupFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(MainActivity.AUTH_SERVICE_ADDRESS).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);

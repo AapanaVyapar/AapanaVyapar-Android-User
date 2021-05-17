@@ -35,8 +35,6 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class SigninFragment extends Fragment {
 
-    public static final String host = MainActivity.IPAddress;
-
     private DataModel dataModel;
 
     EditText phoneNo;
@@ -53,7 +51,7 @@ public class SigninFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(MainActivity.AUTH_SERVICE_ADDRESS).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
@@ -79,6 +77,7 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToForgotPassword);
             }
         });
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,17 +85,10 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToUp);
             }
         });
-         Intent intent  = new Intent(getContext(), ViewProvider.class);
-//       String val = inputText.getText().toString();
-//       intent.putExtra(EXTRA_MESSAGE, val);
-         startActivity(intent);
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent  = new Intent(getContext(), ViewProvider.class);
-//                //String val = inputText.getText().toString();
-//                //intent.putExtra(EXTRA_MESSAGE, val);
-//                startActivity(intent);
                 if(validators.validatePhone(phoneNo) && validators.validatePasswordSignIn(password)){
                     SignInRequest request = SignInRequest.newBuilder()
                             .setPhoneNo(phoneNo.getText().toString())
@@ -116,13 +108,8 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
-//                        Intent intent  = new Intent(getContext(), ViewProvider.class);
-//                        String val = inputText.getText().toString();
-//                        intent.putExtra(EXTRA_MESSAGE, val);
-//                        startActivity(intent);
-
-
-            //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+                        startActivity(intent);
 
                     }catch (StatusRuntimeException e){
 

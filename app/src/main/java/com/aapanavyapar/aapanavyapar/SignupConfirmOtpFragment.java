@@ -1,5 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -20,12 +21,11 @@ import androidx.navigation.Navigation;
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
 import com.aapanavyapar.aapanavyapar.services.ContactConformationRequest;
 import com.aapanavyapar.aapanavyapar.services.ContactConformationResponse;
-import com.aapanavyapar.aapanavyapar.services.NewTokenRequest;
-import com.aapanavyapar.aapanavyapar.services.NewTokenResponse;
 import com.aapanavyapar.aapanavyapar.services.ResendOTPRequest;
 import com.aapanavyapar.aapanavyapar.services.ResendOTPResponse;
 import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.serviceWrappers.UpdateToken;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,9 +35,6 @@ import io.grpc.StatusRuntimeException;
 
 
 public class SignupConfirmOtpFragment extends Fragment {
-
-
-    public static final String host = MainActivity.IPAddress;
 
     private DataModel dataModel;
 
@@ -56,7 +53,7 @@ public class SignupConfirmOtpFragment extends Fragment {
 
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
-        mChannel = ManagedChannelBuilder.forTarget(host).usePlaintext().build();
+        mChannel = ManagedChannelBuilder.forTarget(MainActivity.AUTH_SERVICE_ADDRESS).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
@@ -116,29 +113,24 @@ public class SignupConfirmOtpFragment extends Fragment {
                 catch (StatusRuntimeException e){
                     Log.d("ERROR : ", e.getMessage());
 
-                    if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
-                        if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
-                            Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
-                            NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
-                                    .setApiKey(MainActivity.API_KEY)
-                                    .setRefreshToken(dataModel.getRefreshToken())
-                                    .build();
+                    if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
+                        Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
 
+                        UpdateToken updateToken = new UpdateToken();
+                        if(updateToken.GetUpdatedToken(dataModel.getRefreshToken())) {
+                            dataModel.setAuthToken(updateToken.getAuthToken());
                             try {
-                                NewTokenResponse newTokenResponse = blockingStub.getNewToken(newTokenRequest);
-                                dataModel.setAuthToken(newTokenResponse.getToken());
-
                                 ResendOTPRequest reRequest = ResendOTPRequest.newBuilder()
                                         .setToken(dataModel.getAuthToken())
                                         .setApiKey(MainActivity.API_KEY)
                                         .build();
 
                                 ResendOTPResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).resendOTP(reRequest);
-                                if(reResponse.getResponse().getNumber() == 1){
+                                if (reResponse.getResponse().getNumber() == 1) {
                                     Toast.makeText(view.getContext(), "Please Enter OTP .. !!", Toast.LENGTH_SHORT).show();
 
-                                }else {
-                                    ((TextView)view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
+                                } else {
+                                    ((TextView) view.findViewById(R.id.resend_otp_signup)).setEnabled(false);
                                     timer = new CountDownTimer(TimeUnit.SECONDS.toMillis(reResponse.getTimeToWaitForNextRequest().getSeconds()), 1000) {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
@@ -160,7 +152,7 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
 
 
-                            } catch (StatusRuntimeException e1){
+                            } catch (StatusRuntimeException e1) {
                                 Log.d("ERROR : ", e.getMessage());
                                 Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
 
@@ -168,9 +160,15 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
 
                             }
+
+                        } else {
+                            Log.d("ERROR : ", "Fail To Update Auth Token");
+                            Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();
+
+                            NavDirections actionSignupConfirmOtpFragment = SignupConfirmOtpFragmentDirections.actionSignupConfirmOtpFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionSignupConfirmOtpFragment);
                         }
                     }
-
                 }
             }
         });
@@ -201,26 +199,24 @@ public class SignupConfirmOtpFragment extends Fragment {
                     int []access = {constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
                     dataModel.setTokens(response.getToken(), response.getRefreshToken(), access);
 
+                    Intent intent  = new Intent(getContext(), ViewProvider.class);
+                    startActivity(intent);
 
                 }catch (StatusRuntimeException e){
                     if (e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")) {
                         Toast.makeText(view.getContext(), "Invalid OTP Try Again ..!!", Toast.LENGTH_SHORT).show();
 
-                    } else if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
-                        if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
+                    } else if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
+                        UpdateToken updateToken = new UpdateToken();
+                        if(updateToken.GetUpdatedToken(dataModel.getRefreshToken())) {
+                            dataModel.setAuthToken(updateToken.getAuthToken());
+
+                            int []access = {constants.GetNewToken, constants.LogOut, constants.External};
+                            dataModel.setAccess(access);
+                            dataModel.setAuthToken(updateToken.getAuthToken());
+
                             Toast.makeText(view.getContext(), "Update Refresh Token", Toast.LENGTH_SHORT).show();
-                            NewTokenRequest newTokenRequest = NewTokenRequest.newBuilder()
-                                    .setApiKey(MainActivity.API_KEY)
-                                    .setRefreshToken(dataModel.getRefreshToken())
-                                    .build();
-
                             try {
-                                NewTokenResponse response = blockingStub.getNewToken(newTokenRequest);
-
-                                int []access = {constants.GetNewToken, constants.LogOut, constants.External};
-                                dataModel.setAccess(access);
-                                dataModel.setAuthToken(response.getToken());
-
                                 ContactConformationRequest reRequest = ContactConformationRequest.newBuilder()
                                         .setOtp(otpText.getText().toString().trim())
                                         .setToken(dataModel.getAuthToken())
@@ -228,8 +224,13 @@ public class SignupConfirmOtpFragment extends Fragment {
                                         .build();
 
                                 ContactConformationResponse reResponse = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).contactConformation(reRequest);
-                                Toast.makeText(getContext(), "Success .. !! " + response.getToken(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "Success .. !! " + dataModel.getAuthToken(), Toast.LENGTH_LONG).show();
 
+                                access = new int[]{constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
+                                dataModel.setTokens(reResponse.getToken(), reResponse.getRefreshToken(), access);
+
+                                Intent intent  = new Intent(getContext(), ViewProvider.class);
+                                startActivity(intent);
 
                             }catch (StatusRuntimeException e1){
                                 Toast.makeText(view.getContext(), "Please Try Again .. !!", Toast.LENGTH_SHORT).show();

@@ -1,9 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Base64;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     public static String API_KEY;
 
 //    tcp://0.tcp.ngrok.io:18538
-    public static String IPAddress = "0.tcp.ngrok.io:18538";
+    public static String VIEW_SERVICE_ADDRESS = "0.tcp.ngrok.io:18538";
+    public static String AUTH_SERVICE_ADDRESS = "0.tcp.ngrok.io:18538";
 //    public static final int port = 4356;
 
     @Override
