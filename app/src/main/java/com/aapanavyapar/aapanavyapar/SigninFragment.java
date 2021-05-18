@@ -1,6 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,8 +31,6 @@ import java.util.concurrent.TimeUnit;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class SigninFragment extends Fragment {
 
@@ -85,6 +84,8 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToUp);
             }
         });
+//        Intent intent  = new Intent(getContext(), ViewProvider.class);
+//        startActivity(intent);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +109,15 @@ public class SigninFragment extends Fragment {
                         Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
                         Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
 
+                        AuthDB authdb = new AuthDB(getContext());
+                        SQLiteDatabase db = authdb.getReadableDatabase();
+
+                        authdb.insertData(dataModel.getRefreshToken(),access);
+
                         Intent intent  = new Intent(getContext(), ViewProvider.class);
+                        intent.putExtra("Token",dataModel.getRefreshToken());
+                        intent.putExtra("AuthToken",dataModel.getAuthToken());
+                        intent.putExtra("Access",access);
                         startActivity(intent);
 
                     }catch (StatusRuntimeException e){

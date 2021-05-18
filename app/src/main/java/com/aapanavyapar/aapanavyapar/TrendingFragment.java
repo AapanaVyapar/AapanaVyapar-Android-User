@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 
 import com.aapanavyapar.adapter.ProductAdapter;
+import com.aapanavyapar.dataModel.DataModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
@@ -31,6 +33,7 @@ public class TrendingFragment extends Fragment {
     Chip chip;
     RecyclerView recycler_View;
 //    RatingBar rating_Bar;
+    DataModel dataModel;
 
 
     public TrendingFragment() {
@@ -41,6 +44,8 @@ public class TrendingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+
 
         return inflater.inflate(R.layout.fragment_trending, container, false);
     }
@@ -48,6 +53,7 @@ public class TrendingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toast.makeText(getContext(),dataModel.getRefreshToken().toString(),Toast.LENGTH_SHORT).show();
         String arr[] = {"Food", "Clothes", "Electronics", "Devotional", "Sports", "Cosmetics"};
 
         chipGroup = view.findViewById(R.id.chipgroup);

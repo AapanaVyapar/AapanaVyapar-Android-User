@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -21,12 +22,13 @@ public class ProfileDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query =" create table ProfileDataTable (id integer primary key ,UserName text,FullName text,HouseDetails text,StreetDetails text,LandMark text,PinCode text,City text,State text,Countrytext text,MobileNo text)";
         db.execSQL(query);
+        Log.d("ProfileDB"," Is created");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists ProfileDataTable");
+        db.execSQL("delete from ProfileDataTable");
         onCreate(db);
     }
     public Boolean insert_Data(String userName,String fullName,String houseDetails,String streetDetails,String landMark,String pinCode,String city,String state,String country,String mobileNo){

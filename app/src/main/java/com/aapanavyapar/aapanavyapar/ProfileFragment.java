@@ -38,17 +38,17 @@ public class ProfileFragment extends Fragment {
     //        Add = new Button(getContext());
     //        Add.setText("SET");
 
-        userName = (EditText)view.findViewById(R.id.profile_edittext_user_name);
-        fullName = (EditText)view.findViewById(R.id.profile_edit_text_fullname);
-        houseDetails = (EditText)view.findViewById(R.id.profile_edit_text_housedetails);
-        streetDetails = (EditText)view.findViewById(R.id.profile_edit_text_streetdetails);
-        landMark = (EditText)view.findViewById(R.id.profile_edit_text_landmark);
-        pinCode = (EditText)view.findViewById(R.id.profile_edit_text_pincode);
-        city = (EditText)view.findViewById(R.id.profile_edit_text_city);
-        state = (EditText)view.findViewById(R.id.profile_edit_text_state);
-        country = (EditText)view.findViewById(R.id.profile_edit_text_country);
-        mobileNo = (EditText)view.findViewById(R.id.profile_edit_text_mobileno);
-        Add = (Button)view.findViewById(R.id.profile_button);
+        userName = view.findViewById(R.id.profile_edittext_user_name);
+        fullName = view.findViewById(R.id.profile_edit_text_fullname);
+        houseDetails = view.findViewById(R.id.profile_edit_text_housedetails);
+        streetDetails = view.findViewById(R.id.profile_edit_text_streetdetails);
+        landMark = view.findViewById(R.id.profile_edit_text_landmark);
+        pinCode = view.findViewById(R.id.profile_edit_text_pincode);
+        city = view.findViewById(R.id.profile_edit_text_city);
+        state = view.findViewById(R.id.profile_edit_text_state);
+        country = view.findViewById(R.id.profile_edit_text_country);
+        mobileNo = view.findViewById(R.id.profile_edit_text_mobileno);
+        Add = view.findViewById(R.id.profile_button);
 
 
 
@@ -106,16 +106,16 @@ public class ProfileFragment extends Fragment {
             }
         }
         else {
-            userName =
-            fullName =
-            houseDetails =
-            streetDetails =
-            landMark =
-            pinCode =
-            city =
-            state =
-            country =
-            mobileNo = null;
+            userName.setText("");
+            fullName.setText("");
+            houseDetails.setText("");
+            streetDetails.setText("");
+            landMark.setText("");
+            pinCode.setText("");
+            city.setText("");
+            state.setText("");
+            country.setText("");
+            mobileNo.setText("");
         }
     }
 
