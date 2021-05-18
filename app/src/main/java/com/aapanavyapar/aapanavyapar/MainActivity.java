@@ -2,12 +2,10 @@ package com.aapanavyapar.aapanavyapar;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
-import android.net.*;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.aapanavyapar.serviceWrappers.UpdateToken;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     static {
         System.loadLibrary("keys");
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 //    tcp://0.tcp.ngrok.io:18538
 
     public static String VIEW_SERVICE_ADDRESS = "0.tcp.ngrok.io:18538";
-    public static String AUTH_SERVICE_ADDRESS = "2.tcp.ngrok.io:14937";
+    public static String AUTH_SERVICE_ADDRESS = "192.168.43.189:4356";
 //    public static final int port = 4356;
 
     @Override
@@ -34,12 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MainActivity.API_KEY = new String(Base64.decode(getNativeKey(), Base64.DEFAULT));
 
-        if(checkInternetConenction()) {
-
-
+        if(checkInternetConnection()) {
             AuthDB authdb = new AuthDB(getApplicationContext());
-            SQLiteDatabase db = authdb.getReadableDatabase();
-
             if (!authdb.dbIsEmpty()) {
                 Cursor c = authdb.getRefToken();
                 String token = "", access = "";
@@ -47,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     token = c.getString(1);
                     access = c.getString(2);
                 }
-                if(token!="" && access!="") {
+                c.close();
+
+                if(!token.equals("") && !access.equals("")) {
 
                     int[] accessInt = AuthDB.convertStringToArray(access);
                     UpdateToken updateToken = new UpdateToken();
@@ -64,30 +62,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
         setContentView(R.layout.activity_main);
     }
-    private boolean checkInternetConenction() {
+
+    private boolean checkInternetConnection() {
         // get Connectivity Manager object to check connection
-        ConnectivityManager connec
-                =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        ConnectivityManager connect = (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() ==
-                android.net.NetworkInfo.State.CONNECTED ||
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+        if ( connect.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connect.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connect.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connect.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
             Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
             return true;
         }else if (
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() ==
-                                android.net.NetworkInfo.State.DISCONNECTED  ) {
+                connect.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                connect.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
             Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
             return false;
         }
