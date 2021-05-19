@@ -34,9 +34,6 @@ public class ViewProvider extends AppCompatActivity {
                         case R.id.av_trend:
                             selectedFragment = new TrendingFragment();
                             break;
-                        case R.id.av_cart:
-                            selectedFragment = new CartFragment();
-                            break;
                         case R.id.av_search:
                             selectedFragment = new SearchFragment();
                             break;
