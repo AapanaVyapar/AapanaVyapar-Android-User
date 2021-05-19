@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.aapanavyapar.adapter.OrderedProductAdapter;
 import com.aapanavyapar.adapter.ProductAdapter;
@@ -49,6 +51,9 @@ public class OrderFragment extends Fragment {
         cartImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,CartFragment.class,null).addToBackStack(null).commit();
 //                NavDirections OrderFragmentToCartFragment = OrderFragment.actionOrderFragmentToCartFragment();
 //                Navigation.findNavController(view).navigate(OrderFragmentToCartFragment);
             }
