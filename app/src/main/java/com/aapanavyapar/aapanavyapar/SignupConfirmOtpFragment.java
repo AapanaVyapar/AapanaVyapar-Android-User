@@ -1,6 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -196,7 +197,15 @@ public class SignupConfirmOtpFragment extends Fragment {
                     int []access = {constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
                     dataModel.setTokens(response.getToken(), response.getRefreshToken(), access);
 
+                    AuthDB authdb = new AuthDB(getContext());
+                    SQLiteDatabase db = authdb.getReadableDatabase();
+
+                    authdb.insertData(dataModel.getRefreshToken(),access);
+
                     Intent intent  = new Intent(getContext(), ViewProvider.class);
+                    intent.putExtra("Token",dataModel.getRefreshToken());
+                    intent.putExtra("AuthToken",dataModel.getAuthToken());
+                    intent.putExtra("Access",access);
                     startActivity(intent);
 
                 }catch (StatusRuntimeException e){
@@ -226,7 +235,15 @@ public class SignupConfirmOtpFragment extends Fragment {
                                 access = new int[]{constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
                                 dataModel.setTokens(reResponse.getToken(), reResponse.getRefreshToken(), access);
 
+                                AuthDB authdb = new AuthDB(getContext());
+                                SQLiteDatabase db = authdb.getReadableDatabase();
+
+                                authdb.insertData(dataModel.getRefreshToken(),access);
+
                                 Intent intent  = new Intent(getContext(), ViewProvider.class);
+                                intent.putExtra("Token",dataModel.getRefreshToken());
+                                intent.putExtra("AuthToken",dataModel.getAuthToken());
+                                intent.putExtra("Access",access);
                                 startActivity(intent);
 
                             }catch (StatusRuntimeException e1){
