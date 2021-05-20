@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 //    tcp://0.tcp.ngrok.io:18538
 
     public static String VIEW_SERVICE_ADDRESS = "0.tcp.ngrok.io:18538";
-    public static String AUTH_SERVICE_ADDRESS = "192.168.43.189:4356";
+    public static String AUTH_SERVICE_ADDRESS = "2.tcp.ngrok.io:12689";
 //    public static final int port = 4356;
 
     @Override
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ViewProvider.class);
                         intent.putExtra("Token", token);
                         intent.putExtra("Access", accessInt);
+                        intent.putExtra("AuthToken",updateToken.getAuthToken());
                         startActivity(intent);
                     } else {
                         authdb.clearDatabase();
