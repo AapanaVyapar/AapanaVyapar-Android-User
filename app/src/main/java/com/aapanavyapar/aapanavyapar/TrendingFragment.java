@@ -53,6 +53,11 @@ public class TrendingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (ViewProvider.mService != null) {
+            Toast.makeText(getContext(), "Lat : " + ViewProvider.mService.getLocation().getLatitude() + ", Long : " + ViewProvider.mService.getLocation().getLongitude(), Toast.LENGTH_SHORT).show();
+        }
+
         Toast.makeText(getContext(),dataModel.getRefreshToken().toString(),Toast.LENGTH_SHORT).show();
         String arr[] = {"Food", "Clothes", "Electronics", "Devotional", "Sports", "Cosmetics"};
 
