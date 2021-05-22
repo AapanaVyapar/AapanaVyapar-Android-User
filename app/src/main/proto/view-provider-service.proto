@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+import "trending-message.proto";
+import "detailed-message.proto";
+import "user-commands-message.proto";
+import "search-message.proto";
+
+service ViewProviderService {
+  rpc GetTrendingShops (GetTrendingShopsRequest) returns (stream GetTrendingShopsResponse);
+  rpc GetTrendingProductsByShop (GetTrendingProductsByShopRequest) returns (stream GetTrendingProductsByShopResponse);
+
+  rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+  rpc GetShop (GetShopRequest) returns (GetShopResponse);
+
+  rpc GetProductsBySearch (GetProductsBySearchRequest) returns (stream GetProductsBySearchResponse);
+  rpc GetShopsBySearch (GetShopsBySearchRequest) returns (stream GetShopsBySearchResponse);
+
+  rpc AddToLikeProduct (AddToLikeProductRequest) returns (AddToLikeProductResponse);
+  rpc RemoveFromLikeProduct (RemoveFromLikeProductRequest) returns (RemoveFromLikeProductResponse);
+
+  rpc AddToCartProduct (AddToCartProductRequest) returns (AddToCartProductResponse);
+  rpc RemoveFromCartProduct (RemoveFromCartProductRequest) returns (RemoveFromCartProductResponse);
+
+  rpc GetOrders(GetOrdersRequest) returns (stream GetOrdersResponse);
+  rpc GetCart(GetCartRequest) returns (stream GetCartResponse);
+
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc UpdateAddress(UpdateAddressRequest) returns (UpdateAddressResponse);
+
+  rpc InitUser(InitUserRequest) returns (InitUserResponse);
+
+}

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+import "view-common-message.proto";
+
+message GetTrendingShopsRequest {
+  string apiKey = 10;
+  string token = 11;
+  Location location = 12;
+  string distanceInMeter = 13;
+
+}
+
+message GetTrendingShopsResponse {
+  ShopsNearBy shops = 14;
+}
+
+message GetTrendingProductsByShopRequest {
+  string apiKey = 21;
+  string token = 22;
+  repeated string shopId = 23;
+}
+
+message GetTrendingProductsByShopResponse {
+  ProductsOfShopsNearBy categoryData = 24;
+}
+
+/*
+Store the trends in trends Hash Map.
+Get All the trends by hkys form hash.
+
+Hash Map Name is of Main Category and it contains key = subcategory and value = productIds array
+
+*/

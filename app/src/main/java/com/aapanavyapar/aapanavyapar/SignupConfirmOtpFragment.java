@@ -26,6 +26,7 @@ import com.aapanavyapar.aapanavyapar.services.ResendOTPRequest;
 import com.aapanavyapar.aapanavyapar.services.ResendOTPResponse;
 import com.aapanavyapar.constants.constants;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.serviceWrappers.InitUserWrapper;
 import com.aapanavyapar.serviceWrappers.UpdateToken;
 
 import java.util.Objects;
@@ -192,8 +193,6 @@ public class SignupConfirmOtpFragment extends Fragment {
                 try {
                     ContactConformationResponse response = blockingStub.withDeadlineAfter(1, TimeUnit.MINUTES).contactConformation(request);
 
-                    Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
-
                     int []access = {constants.GetNewToken, constants.LogOut, constants.GetNewToken, constants.External};
                     dataModel.setTokens(response.getToken(), response.getRefreshToken(), access);
 
@@ -201,6 +200,14 @@ public class SignupConfirmOtpFragment extends Fragment {
                     SQLiteDatabase db = authdb.getReadableDatabase();
 
                     authdb.insertData(dataModel.getRefreshToken(),access);
+
+                    InitUserWrapper initUserWrapper = new InitUserWrapper();
+                    if(!initUserWrapper.CreateUser(dataModel.getAuthToken())){
+                        Toast.makeText(getContext(), "Unable To Process Your Request ..!!", Toast.LENGTH_LONG).show();
+                        requireActivity().finish();
+                    }
+
+                    Toast.makeText(getContext(), "Success .. !! ", Toast.LENGTH_LONG).show();
 
                     Intent intent  = new Intent(getContext(), ViewProvider.class);
                     intent.putExtra("Token",dataModel.getRefreshToken());

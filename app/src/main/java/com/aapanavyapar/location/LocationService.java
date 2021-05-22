@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -15,8 +16,6 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-
-import java.util.Random;
 
 public class LocationService extends Service {
 
@@ -33,7 +32,6 @@ public class LocationService extends Service {
     Location currentLocation = null;
 
     private final IBinder binder = new LocalBinder();
-    private final Random mGenerator = new Random();
 
     @Override
     public void onCreate() {
@@ -107,6 +105,7 @@ public class LocationService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d("MYSERVICE", "HELLO");
         return binder;
     }
 

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    tcp://0.tcp.ngrok.io:18538
 
-    public static String VIEW_SERVICE_ADDRESS = "0.tcp.ngrok.io:18538";
+    public static String VIEW_SERVICE_ADDRESS = "192.168.43.200:4996";
     public static String AUTH_SERVICE_ADDRESS = "192.168.43.200:4356";
 //    public static final int port = 4356;
 
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainActivity.API_KEY = new String(Base64.decode(getNativeKey(), Base64.DEFAULT));
+        setContentView(R.layout.activity_main);
 
         if(checkInternetConnection()) {
             AuthDB authdb = new AuthDB(getApplicationContext());
@@ -59,11 +60,8 @@ public class MainActivity extends AppCompatActivity {
                         authdb.clearDatabase();
                     }
                 }
-
             }
         }
-
-        setContentView(R.layout.activity_main);
     }
 
     private boolean checkInternetConnection() {

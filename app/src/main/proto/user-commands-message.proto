@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+import  "view-common-message.proto";
+
+message AddToLikeProductRequest {
+  string token = 25;
+  string apiKey = 26;
+  string productId = 27;
+}
+
+message AddToLikeProductResponse {
+  bool status = 28;
+}
+
+message RemoveFromLikeProductRequest {
+  string token = 29;
+  string apiKey = 30;
+  string productId = 31;
+}
+
+message RemoveFromLikeProductResponse {
+  bool status = 32;
+}
+
+message AddToCartProductRequest {
+  string token = 33;
+  string apiKey = 34;
+  string productId = 35;
+}
+
+message AddToCartProductResponse {
+  bool status = 36;
+}
+
+message RemoveFromCartProductRequest {
+  string token = 37;
+  string apiKey = 38;
+  string productId = 39;
+}
+
+message RemoveFromCartProductResponse {
+  bool status = 40;
+}
+
+message GetOrdersRequest {
+  string token = 96;
+  string apiKey = 97;
+}
+
+message GetOrdersResponse {
+  string orderId = 98;
+  Status status = 99;
+  string productId = 100;
+  string deliveryTimeStamp = 101;
+  string orderTimeStamp = 102;
+  float price = 103;
+  uint32 quantity = 104;
+  string productName = 105;
+  string productImage = 106;
+}
+
+message GetCartRequest {
+  string token = 107;
+  string apiKey = 108;
+}
+
+message GetCartResponse {
+  ProductsOfShopsNearBy products = 109;
+}
+
+message GetProfileRequest {
+  string token = 110;
+  string apiKey = 111;
+}
+
+message GetProfileResponse {
+  string userName = 112;
+  Address address = 113;
+}
+
+message UpdateAddressRequest {
+  string token = 114;
+  string apiKey = 115;
+  Address address = 116;
+}
+
+message UpdateAddressResponse {
+  bool status = 117;
+}
+
+message InitUserRequest {
+  string token = 127;
+  string apiKey = 128;
+}
+
+message InitUserResponse {
+  bool status = 129;
+}

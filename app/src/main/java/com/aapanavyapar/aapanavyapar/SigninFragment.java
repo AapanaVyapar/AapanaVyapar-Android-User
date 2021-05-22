@@ -84,8 +84,6 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToUp);
             }
         });
-//        Intent intent  = new Intent(getContext(), ViewProvider.class);
-//        startActivity(intent);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
