@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;

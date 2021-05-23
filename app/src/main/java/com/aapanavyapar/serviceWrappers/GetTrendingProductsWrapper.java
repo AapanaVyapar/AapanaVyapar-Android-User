@@ -94,13 +94,15 @@ public class GetTrendingProductsWrapper {
                             productsByShopResponse.getCategoryData().getLikes(),
                             shopFromMap.getShops().getRating(),
                             shopFromMap.getShops().getShopkeeper(),
-                            shopFromMap.getShops().getLocation()
+                            shopFromMap.getShops().getLocation().getLatitude(),
+                            shopFromMap.getShops().getLocation().getLongitude()
                     );
                 }
                 Log.d("GetTrendingProducts", "Packed Product Data");
-                if(productData != null){
-                    updater.updateRecycleView(productData);
+                if(productData == null) {
+                    return false;
                 }
+                updater.updateRecycleView(productData);
                 Log.d("GetTrendingProducts", "Sending Product Data");
             }
             mProductChannel.shutdown();

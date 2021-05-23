@@ -23,9 +23,10 @@ public class ProductData implements Serializable {
     double shopRating;
     String shopKeeper = "";
 
-    Location shopLocation;
+    String shopLatitude;
+    String shopLongitude;
 
-    public ProductData(String productId, String productName, String shopId, String shopName, String productImage, String shopPrimaryImage, Category[] productCategories, Category[] shopCategories, long productLikes, double shopRating, String shopKeeper, Location location) {
+    public ProductData(String productId, String productName, String shopId, String shopName, String productImage, String shopPrimaryImage, Category[] productCategories, Category[] shopCategories, long productLikes, double shopRating, String shopKeeper, String shopLatitude, String shopLongitude) {
         this.productId = productId;
         this.productName = productName;
         this.shopId = shopId;
@@ -37,7 +38,8 @@ public class ProductData implements Serializable {
         this.productLikes = productLikes;
         this.shopRating = shopRating;
         this.shopKeeper = shopKeeper;
-        this.shopLocation = location;
+        this.shopLatitude = shopLatitude;
+        this.shopLongitude = shopLongitude;
     }
 
     public String getProductId() {
@@ -128,11 +130,19 @@ public class ProductData implements Serializable {
         this.shopKeeper = shopKeeper;
     }
 
-    public Location getShopLocation() {
-        return shopLocation;
+    public String getShopLatitude() {
+        return shopLatitude;
     }
 
-    public void setShopLocation(Location shopLocation) {
-        this.shopLocation = shopLocation;
+    public void setShopLatitude(String shopLatitude) {
+        this.shopLatitude = shopLatitude;
+    }
+
+    public String getShopLongitude() {
+        return shopLongitude;
+    }
+
+    public void setShopLongitude(String shopLongitude) {
+        this.shopLongitude = shopLongitude;
     }
 }

@@ -61,20 +61,34 @@ public class BuyingActivity extends AppCompatActivity implements PaymentResultLi
         Intent intent = getIntent();
         BuyingData buyingData = (BuyingData) intent.getSerializableExtra("BuyingData");
 
-        CreateOrderRequest request = CreateOrderRequest.newBuilder()
-                .setApiKey(new String(Base64.decode(getNativeAPIKey(), Base64.DEFAULT)))
-                .setToken(buyingData.getAuthToken())
-                .setProductId(buyingData.getProductId())
-                .setShopId(buyingData.getShopId())
-                .setAddress(buyingData.getAddress())
-                .setQuantity(buyingData.getQuantity())
-                .build();
-
         CreateOrderResponse response = null;
         try {
+            CreateOrderRequest request = CreateOrderRequest.newBuilder()
+                    .setApiKey(new String(Base64.decode(getNativeAPIKey(), Base64.DEFAULT)))
+                    .setToken(buyingData.getAuthToken())
+                    .setProductId(buyingData.getProductId())
+                    .setShopId(buyingData.getShopId())
+                    .setAddress(Address.newBuilder()
+                            .setFullName(buyingData.getFullName())
+                            .setHouseDetails(buyingData.getHouseDetails())
+                            .setStreetDetails(buyingData.getStreetDetails())
+                            .setLandMark(buyingData.getLandmark())
+                            .setPinCode(buyingData.getPinCode())
+                            .setCity(buyingData.getCity())
+                            .setState(buyingData.getState())
+                            .setCountry(buyingData.getCountry())
+                            .setPhoneNo(buyingData.getPhoneNo())
+                            .build())
+                    .setQuantity(buyingData.getQuantity())
+                    .build();
+
+            Log.d("BuyingActivity", buyingData.getProductId());
+            Log.d("BuyingActivity", buyingData.getShopId());
+
             response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).placeOrder(request);
 
         }catch (StatusRuntimeException e) {
+            e.printStackTrace();
             if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
                 UpdateToken updateToken = new UpdateToken();
                 if (updateToken.GetUpdatedToken(buyingData.getRefreshToken())) {
@@ -85,13 +99,35 @@ public class BuyingActivity extends AppCompatActivity implements PaymentResultLi
                             .setToken(buyingData.getAuthToken())
                             .setProductId(buyingData.getProductId())
                             .setShopId(buyingData.getShopId())
-                            .setAddress(buyingData.getAddress())
+                            .setAddress(Address.newBuilder()
+                                    .setFullName(buyingData.getFullName())
+                                    .setHouseDetails(buyingData.getHouseDetails())
+                                    .setStreetDetails(buyingData.getStreetDetails())
+                                    .setLandMark(buyingData.getLandmark())
+                                    .setPinCode(buyingData.getPinCode())
+                                    .setCity(buyingData.getCity())
+                                    .setState(buyingData.getState())
+                                    .setCountry(buyingData.getCountry())
+                                    .setPhoneNo(buyingData.getPhoneNo())
+                                    .build())
                             .setQuantity(buyingData.getQuantity())
                             .build();
+
+                    Log.d("BuyingActivity", buyingData.getFullName());
+                    Log.d("BuyingActivity", buyingData.getHouseDetails());
+                    Log.d("BuyingActivity", buyingData.getStreetDetails());
+                    Log.d("BuyingActivity", buyingData.getLandmark());
+                    Log.d("BuyingActivity", buyingData.getPinCode());
+                    Log.d("BuyingActivity", buyingData.getCity());
+                    Log.d("BuyingActivity", buyingData.getState());
+                    Log.d("BuyingActivity", buyingData.getCountry());
+                    Log.d("BuyingActivity", buyingData.getPhoneNo());
+
                     try {
                         response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).placeOrder(reRequest);
 
                     }catch (StatusRuntimeException e1) {
+                        e1.printStackTrace();
                         Toast.makeText(getApplicationContext(), "Error While Creating Your Order ..!!", Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -108,7 +144,7 @@ public class BuyingActivity extends AppCompatActivity implements PaymentResultLi
         checkout.setKeyID(new String(Base64.decode(getNativeKeyRazorPay(), Base64.DEFAULT)));
         Toast.makeText(getApplicationContext(), new String(Base64.decode(getNativeKeyRazorPay(), Base64.DEFAULT)), Toast.LENGTH_LONG).show();
 
-        checkout.setImage(R.mipmap.ic_launcher);
+        checkout.setImage(R.drawable.logoav);
 
         orderId = response.getOrderId();
 
@@ -127,9 +163,9 @@ public class BuyingActivity extends AppCompatActivity implements PaymentResultLi
             retryObj.put("enabled", false);
             options.put("retry", retryObj);
 
-            checkout.open(this, options);
+            checkout.open(BuyingActivity.this, options);
 
-            Checkout.clearUserData(getApplicationContext());
+//            Checkout.clearUserData(this);
 
         } catch (JSONException e) {
             Toast.makeText(getApplicationContext(), "Error Occurred", Toast.LENGTH_LONG).show();
@@ -163,14 +199,16 @@ public class BuyingActivity extends AppCompatActivity implements PaymentResultLi
                             .setRazorpayOrderId(orderId)
                             .build();
                     try {
-                        response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).capturePayment(request);
+                        response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).capturePayment(reRequest);
 
                     }catch (StatusRuntimeException e1) {
                         Toast.makeText(getApplicationContext(), "Fail To Capture Your Payment If Payment Debited From Your Account it Will Be Back in 6 - 7 working days", Toast.LENGTH_LONG).show();
                         return;
                     }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Unable To Update Refresh Token ..!!", Toast.LENGTH_LONG).show();
+                    return;
                 }
-
             }else {
                 Toast.makeText(getApplicationContext(), "Fail To Capture Your Payment If Payment Debited From Your Account it Will Be Back in 6 - 7 working days", Toast.LENGTH_LONG).show();
                 return;

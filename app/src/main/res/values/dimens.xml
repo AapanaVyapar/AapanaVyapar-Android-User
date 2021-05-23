@@ -2,7 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="major_component_gap">30dp</dimen>
     <dimen name="minor_component_gap">20dp</dimen>
-    <dimen name="end_component_gap">30dp</dimen>
+    <dimen name="end_component_gap">60dp</dimen>
     <dimen name="MAJOR_Component_Gap">60dp</dimen>
     <dimen name="MINOR_Component_Gap">40dp</dimen>
     <dimen name="END_Component_Gap">60dp</dimen>

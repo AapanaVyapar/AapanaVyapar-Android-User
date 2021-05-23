@@ -4,28 +4,28 @@ option go_package = ".;pb";
 option java_multiple_files = true;
 option java_package = "com.aapanavyapar.aapanavyapar.services";
 
-import "view-common-message.proto";
+import "common-message.proto";
 
 message GetTrendingShopsRequest {
-  string apiKey = 10;
-  string token = 11;
-  Location location = 12;
-  string distanceInMeter = 13;
+  string apiKey = 83;
+  string token = 84;
+  Location location = 85;
+  string distanceInMeter = 86;
 
 }
 
 message GetTrendingShopsResponse {
-  ShopsNearBy shops = 14;
+  ShopsNearBy shops = 87;
 }
 
 message GetTrendingProductsByShopRequest {
-  string apiKey = 21;
-  string token = 22;
-  repeated string shopId = 23;
+  string apiKey = 88;
+  string token = 89;
+  repeated string shopId = 90;
 }
 
 message GetTrendingProductsByShopResponse {
-  ProductsOfShopsNearBy categoryData = 24;
+  ProductsOfShopsNearBy categoryData = 91;
 }
 
 /*

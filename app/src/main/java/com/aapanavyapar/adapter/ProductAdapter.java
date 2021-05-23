@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.ProductOnCardClick;
 import com.aapanavyapar.aapanavyapar.R;
+import com.aapanavyapar.aapanavyapar.TrendingFragment;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
 
@@ -57,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TrendingFragment.caller.interrupt();
                 Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();

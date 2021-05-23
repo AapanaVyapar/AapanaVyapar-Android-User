@@ -77,21 +77,19 @@ public class BuyingDetailsFragment extends Fragment {
                     }
 
                     BuyingData buyingData = new BuyingData(
+                            productData.getProductId(),
                             dataModel.getAuthToken(),
                             dataModel.getRefreshToken(),
-                            productData.getProductId(),
                             productData.getShopId(),
-                            Address.newBuilder()
-                                    .setFullName(fullNameEditText.getText().toString())
-                                    .setHouseDetails(buildingDetailsEditText.getText().toString())
-                                    .setStreetDetails(stateDetailsEditText.getText().toString())
-                                    .setLandMark(landmarkEditText.getText().toString())
-                                    .setPinCode(pinCodeEditText.getText().toString())
-                                    .setCity(cityDetailsEditText.getText().toString())
-                                    .setState(stateDetailsEditText.getText().toString())
-                                    .setCountry(countryDetailsEditText.getText().toString())
-                                    .setPhoneNo(phoneNoEditText.getText().toString())
-                                    .build(),
+                            fullNameEditText.getText().toString(),
+                            buildingDetailsEditText.getText().toString(),
+                            stateDetailsEditText.getText().toString(),
+                            landmarkEditText.getText().toString(),
+                            pinCodeEditText.getText().toString(),
+                            cityDetailsEditText.getText().toString(),
+                            stateDetailsEditText.getText().toString(),
+                            countryDetailsEditText.getText().toString(),
+                            phoneNoEditText.getText().toString(),
                             Integer.parseInt(quantityDetailsEditText.getText().toString())
                     );
 

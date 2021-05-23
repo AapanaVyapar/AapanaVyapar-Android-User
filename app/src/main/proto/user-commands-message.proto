@@ -4,99 +4,99 @@ option go_package = ".;pb";
 option java_multiple_files = true;
 option java_package = "com.aapanavyapar.aapanavyapar.services";
 
-import  "view-common-message.proto";
+import "common-message.proto";
 
 message AddToLikeProductRequest {
-  string token = 25;
-  string apiKey = 26;
-  string productId = 27;
+  string token = 92;
+  string apiKey = 93;
+  string productId = 94;
 }
 
 message AddToLikeProductResponse {
-  bool status = 28;
+  bool status = 95;
 }
 
 message RemoveFromLikeProductRequest {
-  string token = 29;
-  string apiKey = 30;
-  string productId = 31;
+  string token = 96;
+  string apiKey = 97;
+  string productId = 98;
 }
 
 message RemoveFromLikeProductResponse {
-  bool status = 32;
+  bool status = 99;
 }
 
 message AddToCartProductRequest {
-  string token = 33;
-  string apiKey = 34;
-  string productId = 35;
+  string token = 100;
+  string apiKey = 101;
+  string productId = 102;
 }
 
 message AddToCartProductResponse {
-  bool status = 36;
+  bool status = 103;
 }
 
 message RemoveFromCartProductRequest {
-  string token = 37;
-  string apiKey = 38;
-  string productId = 39;
+  string token = 104;
+  string apiKey = 105;
+  string productId = 106;
 }
 
 message RemoveFromCartProductResponse {
-  bool status = 40;
+  bool status = 107;
 }
 
 message GetOrdersRequest {
-  string token = 96;
-  string apiKey = 97;
+  string token = 108;
+  string apiKey = 109;
 }
 
 message GetOrdersResponse {
-  string orderId = 98;
-  Status status = 99;
-  string productId = 100;
-  string deliveryTimeStamp = 101;
-  string orderTimeStamp = 102;
-  float price = 103;
-  uint32 quantity = 104;
-  string productName = 105;
-  string productImage = 106;
+  string orderId = 110;
+  Status status = 111;
+  string productId = 112;
+  string deliveryTimeStamp = 113;
+  string orderTimeStamp = 114;
+  float price = 115;
+  uint32 quantity = 116;
+  string productName = 117;
+  string productImage = 118;
 }
 
 message GetCartRequest {
-  string token = 107;
-  string apiKey = 108;
+  string token = 119;
+  string apiKey = 120;
 }
 
 message GetCartResponse {
-  ProductsOfShopsNearBy products = 109;
+  ProductsOfShopsNearBy products = 121;
 }
 
 message GetProfileRequest {
-  string token = 110;
-  string apiKey = 111;
+  string token = 122;
+  string apiKey = 123;
 }
 
 message GetProfileResponse {
-  string userName = 112;
-  Address address = 113;
+  string userName = 124;
+  Address address = 125;
 }
 
 message UpdateAddressRequest {
-  string token = 114;
-  string apiKey = 115;
-  Address address = 116;
+  string token = 126;
+  string apiKey = 127;
+  Address address = 128;
 }
 
 message UpdateAddressResponse {
-  bool status = 117;
+  bool status = 129;
 }
 
 message InitUserRequest {
-  string token = 127;
-  string apiKey = 128;
+  string token = 130;
+  string apiKey = 131;
 }
 
 message InitUserResponse {
-  bool status = 129;
+  bool status = 132;
 }

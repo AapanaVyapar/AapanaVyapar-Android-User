@@ -33,7 +33,7 @@ public class TrendingFragment extends Fragment {
     RecyclerView recyclerView;
     DataModel dataModel;
 
-    Thread caller;
+    public static Thread caller = null;
     ProductAdapter productAdapter;
 
     public TrendingFragment() {
@@ -100,7 +100,8 @@ public class TrendingFragment extends Fragment {
                             }
                         });
                         if (!b) {
-                            Toast.makeText(getContext(), "Error Occurred While Receiving Data ...!!", Toast.LENGTH_LONG).show();
+                            Log.d("TRENDING_FRAGMENT", "Error Occurred While Receiving Data ...!!");
+//                            Toast.makeText(getContext(), "Error Occurred While Receiving Data ...!!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
