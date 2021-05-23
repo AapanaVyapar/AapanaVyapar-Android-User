@@ -6,7 +6,6 @@ option java_package = "com.aapanavyapar.aapanavyapar.services";
 
 import "view-common-message.proto";
 
-
 message GetProductRequest {
   string apiKey = 41;
   string token = 42;
@@ -29,16 +28,6 @@ message GetProductResponse {
   repeated Category category = 56;
   string timestamp = 57;
 
-}
-
-message OperationalHours {
-  repeated string Sunday = 60;
-  repeated string Monday = 61;
-  repeated string Tuesday = 62;
-  repeated string Wednesday = 63;
-  repeated string Thursday = 64;
-  repeated string Friday = 65;
-  repeated string Saturday = 66;
 }
 
 message RatingOfShop {

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+
+message CapturePaymentRequest {
+  string apiKey = 12;
+  string token = 13;
+  string razorpayPaymentId = 14;
+  string razorpayOrderId = 15;
+}
+
+message CapturePaymentResponse {
+  bool status = 16;
+  string orderId = 17;
+}

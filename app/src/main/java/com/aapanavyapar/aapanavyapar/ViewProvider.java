@@ -28,6 +28,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class ViewProvider extends AppCompatActivity {
 
+    static {
+        System.loadLibrary("keys");
+    }
+
+    public static native String getNativeKeyRazorPay();
+
     public static final String TAG = "ViewProvider";
     private static final int PERMISSION_LOCATION = 10;
 

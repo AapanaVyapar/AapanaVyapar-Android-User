@@ -4,19 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.viewData.ProductData;
 
 
 public class ProductOnCardClick extends Fragment {
 
-    private DataModel dataModel;
-
     ProductData productData;
+    Button buyNow;
 
     public ProductOnCardClick() {
         // Required empty public constructor
@@ -39,10 +38,19 @@ public class ProductOnCardClick extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
 
-        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
-
         assert getArguments() != null;
         productData = (ProductData) getArguments().getSerializable("dataFill");
+
+        buyNow = view.findViewById(R.id.productoncardclick_button_buy);
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                Bundle args = new Bundle();
+                args.putSerializable("dataFill", productData);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, BuyingDetailsFragment.class, args).addToBackStack(null).commit();
+            }
+        });
 
     }
 
