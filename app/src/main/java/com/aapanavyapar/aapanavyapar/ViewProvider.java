@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -14,7 +16,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.aapanavyapar.aapanavyapar.services.BuyingServiceGrpc;
+import com.aapanavyapar.aapanavyapar.services.CapturePaymentRequest;
+import com.aapanavyapar.aapanavyapar.services.CapturePaymentResponse;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.serviceWrappers.UpdateToken;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -23,14 +29,30 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentData;
+import com.razorpay.PaymentResultWithDataListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ViewProvider extends AppCompatActivity {
+import java.util.concurrent.TimeUnit;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
+
+public class ViewProvider extends AppCompatActivity implements PaymentResultWithDataListener {
+
+    static {
+        System.loadLibrary("keys");
+    }
+
+    public static native String getNativeKeyRazorPay();
 
     public static final String TAG = "ViewProvider";
     private static final int PERMISSION_LOCATION = 10;
 
+    public static final String BUYING_SERVICE_ADDRESS = "192.168.43.200:9359";
     public static final int PRIORITY_ACCURACY = LocationRequest.PRIORITY_HIGH_ACCURACY;
     public static final int DEFAULT_UPDATE_INTERVAL = 3;
     public static final int FAST_UPDATE_INTERVAL = 5;
@@ -39,6 +61,7 @@ public class ViewProvider extends AppCompatActivity {
 
     LocationRequest locationRequest;
 
+    DataModel dataModel;
     private LocationCallback locationCallback;
 
     static public Location currentLocation = null;
@@ -69,7 +92,7 @@ public class ViewProvider extends AppCompatActivity {
         String authToken = intent.getStringExtra("AuthToken");
         int[] access =  intent.getIntArrayExtra("Access");
 
-        DataModel dataModel = new ViewModelProvider(this).get(DataModel.class);
+        dataModel = new ViewModelProvider(this).get(DataModel.class);
         dataModel.setRefreshToken(token);
         dataModel.setAccess(access);
         dataModel.setAuthToken(authToken);
@@ -179,6 +202,79 @@ public class ViewProvider extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
+        Toast.makeText(this,"Payment successful", Toast.LENGTH_SHORT).show();
+
+        ManagedChannel mChannel = ManagedChannelBuilder.forTarget(BUYING_SERVICE_ADDRESS).usePlaintext().build();
+        BuyingServiceGrpc.BuyingServiceBlockingStub blockingStub = BuyingServiceGrpc.newBlockingStub(mChannel);
+
+        CapturePaymentRequest request = CapturePaymentRequest.newBuilder()
+                .setApiKey(MainActivity.API_KEY)
+                .setRazorpayPaymentId(paymentData.getPaymentId())
+                .setToken(dataModel.getAuthToken())
+                .setRazorpayOrderId(paymentData.getOrderId())
+                .build();
+        CapturePaymentResponse response = null;
+        try{
+            response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).capturePayment(request);
+
+        }catch (StatusRuntimeException e) {
+            if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {
+                UpdateToken updateToken = new UpdateToken();
+                if (updateToken.GetUpdatedToken(dataModel.getRefreshToken())) {
+                    dataModel.setAuthToken(updateToken.getAuthToken());
+                    CapturePaymentRequest reRequest = CapturePaymentRequest.newBuilder()
+                            .setApiKey(MainActivity.API_KEY)
+                            .setRazorpayPaymentId(paymentData.getPaymentId())
+                            .setToken(dataModel.getAuthToken())
+                            .setRazorpayOrderId(paymentData.getOrderId())
+                            .build();
+                    try {
+                        response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).capturePayment(reRequest);
+
+                    }catch (StatusRuntimeException e1) {
+                        Toast.makeText(getApplicationContext(), "Fail To Capture Your Payment If Payment Debited From Your Account it Will Be Back in 6 - 7 working days", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Unable To Update Refresh Token ..!!", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Fail To Capture Your Payment If Payment Debited From Your Account it Will Be Back in 6 - 7 working days", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
+
+        Toast.makeText(getApplicationContext(), "PayMent Successfull ..!!", Toast.LENGTH_LONG).show();
+
+        Log.d(TAG, "Response : " + response);
+        Log.d(TAG, "Success : " + paymentData.getPaymentId());
+
+    }
+
+    @Override
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
+        switch (i) {
+            case Checkout.NETWORK_ERROR:
+                Toast.makeText(this,"Payment is not successful NETWORK_ERROR", Toast.LENGTH_SHORT).show();
+                break;
+            case Checkout.INVALID_OPTIONS:
+                Toast.makeText(this,"Payment is not successful INVALID_OPTIONS", Toast.LENGTH_SHORT).show();
+                break;
+            case Checkout.PAYMENT_CANCELED:
+                Toast.makeText(this,"Payment is not successful PAYMENT_CANCELED", Toast.LENGTH_SHORT).show();
+                break;
+            case Checkout.TLS_ERROR:
+                Toast.makeText(this,"Payment is not successful TLS_ERROR", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        Toast.makeText(this,"Payment is not successful", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "Error : " + s);
     }
 }
 
