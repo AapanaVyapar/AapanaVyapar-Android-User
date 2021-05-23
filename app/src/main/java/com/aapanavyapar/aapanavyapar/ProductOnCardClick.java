@@ -1,20 +1,22 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.viewData.ProductData;
 
 
 public class ProductOnCardClick extends Fragment {
 
-    ImageView productImage;
-    TextView productName;
+    private DataModel dataModel;
+
+    ProductData productData;
 
     public ProductOnCardClick() {
         // Required empty public constructor
@@ -26,16 +28,6 @@ public class ProductOnCardClick extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-    @Override
-    public void onViewCreated(View view,Bundle savedInstanceState){
-        productImage = (ImageView)view.findViewById(R.id.productoncardclick_image);
-        productName = (TextView)view.findViewById(R.id.productoncardclick_productname_text);
-
-//        productImage.setImageResource(getActivity().getIntent().getIntExtra("productImage",0));
-//        productName.setText(getActivity().getIntent().getStringExtra("productName"));
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,4 +35,15 @@ public class ProductOnCardClick extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_on_card_click, container, false);
     }
+
+    @Override
+    public void onViewCreated(View view,Bundle savedInstanceState){
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+
+        assert getArguments() != null;
+        productData = (ProductData) getArguments().getSerializable("dataFill");
+
+    }
+
 }
