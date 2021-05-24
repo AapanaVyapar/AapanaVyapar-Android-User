@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.viewData.OrderedProductData;
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 
 public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAdapter.ViewHolder> {
-    OrderedProductData[] orderedProductDataList;
+    ArrayList<OrderedProductData> orderedProductDataList;
     Context context;
 
-    public OrderedProductAdapter(OrderedProductData[] orderedProductDataList, Context context) {
+    public OrderedProductAdapter(ArrayList<OrderedProductData> orderedProductDataList, Context context) {
         this.orderedProductDataList = orderedProductDataList;
         this.context = context;
     }
@@ -34,42 +37,58 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
 
     @Override
     public void onBindViewHolder(@NonNull OrderedProductAdapter.ViewHolder holder, int position) {
-        final OrderedProductData orderedProductCard = orderedProductDataList[position];
-        holder.ordered_Product_Image.setImageResource(orderedProductCard.getOrderedProductImage());
-        holder.ordered_Product_Name.setText(orderedProductCard.getOrderedProductName());
-        holder.ordered_Product_Id.setText(orderedProductCard.getOrderedProductId());
-        holder.ordered_Product_Price.setText(orderedProductCard.getOrderedProductPrice());
-        holder.ordered_Product_Qty.setText(orderedProductCard.getOrderedProductQty());
-        holder.ordered_Product_Status.setText(orderedProductCard.getOrderedProductStatus());
-        holder.ordered_Time.setText(orderedProductCard.getOrderedTime());
-        holder.ordered_Delivered_Time.setText(orderedProductCard.getOrderedDeliveredTime());
+        final OrderedProductData orderedProductCard = orderedProductDataList.get(position);
+
+        Glide.with(this.context)
+                .load(orderedProductCard.getOrderedProductImage())
+                .centerCrop()
+                .fitCenter()
+                .into(holder.orderedProductImage);
+
+        holder.orderedProductName.setText(orderedProductCard.getOrderedProductName());
+        holder.orderedProductId.setText(orderedProductCard.getOrderedProductId());
+        holder.orderedProductPrice.setText(orderedProductCard.getOrderedProductPrice());
+        holder.orderedProductQty.setText(orderedProductCard.getOrderedProductQty());
+        holder.orderedProductStatus.setText(orderedProductCard.getOrderedProductStatus());
+        holder.orderedTime.setText(orderedProductCard.getOrderedTime());
+        holder.orderedDeliveredTime.setText(orderedProductCard.getOrderedDeliveredTime());
 
     }
 
     @Override
     public int getItemCount() {
-        return orderedProductDataList.length;
+        return orderedProductDataList.size();
+    }
+
+    public void notifyData(ArrayList<OrderedProductData> myList) {
+        this.orderedProductDataList = myList;
+        notifyDataSetChanged();
+    }
+
+    public void addNewData(OrderedProductData data) {
+        this.orderedProductDataList.add(data);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView ordered_Product_Image;
-        TextView ordered_Product_Name;
-        TextView ordered_Product_Id;
-        TextView ordered_Product_Price;
-        TextView ordered_Product_Qty;
-        TextView ordered_Product_Status;
-        TextView ordered_Time;
-        TextView ordered_Delivered_Time;
+        ImageView orderedProductImage;
+        TextView orderedProductName;
+        TextView orderedProductId;
+        TextView orderedProductPrice;
+        TextView orderedProductQty;
+        TextView orderedProductStatus;
+        TextView orderedTime;
+        TextView orderedDeliveredTime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ordered_Product_Image = itemView.findViewById(R.id.order_product_imageview);
-            ordered_Product_Name = itemView.findViewById(R.id.order_product_name);
-            ordered_Product_Id = itemView.findViewById(R.id.order_id);
-            ordered_Product_Price = itemView.findViewById(R.id.order_product_price);
-            ordered_Product_Qty = itemView.findViewById(R.id.order_product_qty);
-            ordered_Product_Status = itemView.findViewById(R.id.order_status);
-            ordered_Time = itemView.findViewById(R.id.order_on);
-            ordered_Delivered_Time = itemView.findViewById(R.id.order_delivered_on);
+            orderedProductImage = itemView.findViewById(R.id.order_product_imageview);
+            orderedProductName = itemView.findViewById(R.id.order_product_name);
+            orderedProductId = itemView.findViewById(R.id.order_id);
+            orderedProductPrice = itemView.findViewById(R.id.order_product_price);
+            orderedProductQty = itemView.findViewById(R.id.order_product_qty);
+            orderedProductStatus = itemView.findViewById(R.id.order_status);
+            orderedTime = itemView.findViewById(R.id.order_on);
+            orderedDeliveredTime = itemView.findViewById(R.id.order_delivered_on);
         }
     }
 }
