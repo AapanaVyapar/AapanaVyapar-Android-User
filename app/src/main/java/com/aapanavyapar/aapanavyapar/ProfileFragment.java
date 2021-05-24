@@ -104,6 +104,7 @@ public class ProfileFragment extends Fragment {
                 country.setText(t.getString(9));
                 mobileNo.setText(t.getString(10));
             }
+            t.close();
         }
         else {
             userName.setText("");

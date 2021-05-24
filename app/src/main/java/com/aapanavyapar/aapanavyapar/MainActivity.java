@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    tcp://0.tcp.ngrok.io:18538
 
-    public static String VIEW_SERVICE_ADDRESS = "192.168.43.189:4996";
-    public static String AUTH_SERVICE_ADDRESS = "192.168.43.189:4356";
+    public static String VIEW_SERVICE_ADDRESS = "4.tcp.ngrok.io:13650";
+    public static String AUTH_SERVICE_ADDRESS = "6.tcp.ngrok.io:14714";
 //    public static final int port = 4356;
 
     @Override
