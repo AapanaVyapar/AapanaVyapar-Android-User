@@ -34,10 +34,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
-                <ImageView
-                    android:id="@+id/productoncardclick_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_heart_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/heart" />
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_bookmark_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="52dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bookmark_outline" />
+                </RelativeLayout>
 
              </androidx.cardview.widget.CardView>
 
