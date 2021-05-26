@@ -131,7 +131,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
                         selectedFragment = new TrendingFragment();
                         break;
                     case R.id.av_search:
-                        selectedFragment = new SearchFragment();
+                        selectedFragment = new ProductSearchFragment();
                         break;
                     case R.id.av_orders:
                         selectedFragment = new OrderFragment();
