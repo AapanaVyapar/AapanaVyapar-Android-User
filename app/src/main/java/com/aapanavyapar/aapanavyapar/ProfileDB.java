@@ -85,7 +85,7 @@ public class ProfileDB extends SQLiteOpenHelper {
     public Cursor getInfo(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cur = db.rawQuery("select * from ProfileDataTable",null);
-        db.close();
+
         return cur;
     }
 }
