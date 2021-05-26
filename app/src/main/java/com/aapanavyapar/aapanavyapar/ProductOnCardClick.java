@@ -34,6 +34,7 @@ public class ProductOnCardClick extends Fragment {
     DataModel dataModel;
 
 
+
     public ProductOnCardClick() {
         // Required empty public constructor
         super(R.layout.fragment_product_on_card_click);

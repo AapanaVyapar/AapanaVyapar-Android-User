@@ -28,7 +28,7 @@
              </LinearLayout>
 
         <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
+            android:id="@+id/search_mapView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
             <ImageView
+                android:id="@+id/searched_shop_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/logoav" />
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent">
 
                 <TextView
+                    android:id="@+id/search_shop_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -57,6 +59,7 @@
                     android:textStyle="bold" />
 
                 <RatingBar
+                    android:id="@+id/sreach_shop_ratings"
                     style="@style/RatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,10 +75,12 @@
 
             </RelativeLayout>
         <TextView
+            android:id="@+id/shopkeeper_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shopkeeper Name"/>
         <TextView
+            android:id="@+id/operational_hours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Operational Hours"
@@ -87,16 +92,19 @@
             android:layout_height="wrap_content"
             />
         <TextView
+            android:id="@+id/business_information_heading"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Business Information"/>
 
         <TextView
+            android:id="@+id/business_information_Description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Business Information Description" />
 
         <TextView
+            android:id="@+id/search_shop_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reviews"
@@ -105,6 +113,7 @@
             android:textColor="?android:textColor"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_shop_recyclerview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
