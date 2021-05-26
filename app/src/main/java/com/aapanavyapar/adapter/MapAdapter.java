@@ -23,25 +23,25 @@ public class MapAdapter extends AppCompatActivity {
         smf = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.ps_map);
         client = LocationServices.getFusedLocationProviderClient(this);
 
-        new FusedLocationProviderClient(new PermissionListener() {
-
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse)
-            {
-
-            }
-
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse)
-            {
-
-            }
-
-            public void onPermissionRationaleShouldBeShown()
-            {
-
-            }
-        });
+//        new FusedLocationProviderClient(new PermissionListener() {
+//
+//            @Override
+//            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse)
+//            {
+//
+//            }
+//
+//            @Override
+//            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse)
+//            {
+//
+//            }
+//
+//            public void onPermissionRationaleShouldBeShown()
+//            {
+//
+//            }
+//        });
 
     }
 

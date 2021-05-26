@@ -3,58 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ViewProvider">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--SearchBar And DropDownMenu-->
 
-    <LinearLayout
-        android:id="@+id/ps_linear_layout"
-        android:layout_width="match_parent"
+    <SearchView
+        android:id="@+id/ps_search_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/ps_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!--Spinner widget-->
-
-        <SearchView
-            android:id="@+id/ps_search_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <Spinner
-            android:id="@+id/ps_spinner"
-            android:layout_width="157dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:textAlignment="gravity"/>
-
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/ps_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toTopOf="@+id/ps_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ps_search_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--Google Map-->
+
+    <!--Chips And Product Cards-->
+
     <fragment
         android:id="@+id/ps_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/ps_chip_layout"
+        android:layout_height="400dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ps_linear_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/ps_search_title"
+        android:padding="30dp"/>
 
-    <!--Chips And Product Cards-->
     <LinearLayout
         android:id="@+id/ps_chip_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/ps_map">
 
         <HorizontalScrollView
             android:layout_width="match_parent"

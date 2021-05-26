@@ -56,7 +56,7 @@ public class SearchedProductAdapter extends RecyclerView.Adapter<SearchedProduct
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductSearchFragment.interrupt();
+                ProductSearchFragment.caller.interrupt();
                 Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();

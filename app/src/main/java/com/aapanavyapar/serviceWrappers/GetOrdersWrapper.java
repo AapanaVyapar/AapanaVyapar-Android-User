@@ -51,6 +51,7 @@ public class GetOrdersWrapper {
             return true;
 
         } catch (StatusRuntimeException e) {
+            e.printStackTrace();
             mChannel.shutdown();
             return false;
 

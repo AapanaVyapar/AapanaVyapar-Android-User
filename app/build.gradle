@@ -34,7 +34,7 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
-    ndkVersion '23.0.7196353 rc2'
+    ndkVersion '21.1.6352462'
 }
 
 protobuf {
@@ -81,7 +81,6 @@ dependencies {
     implementation 'io.grpc:grpc-protobuf:1.36.0'
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
-    implementation 'com.karumi:dexter:6.2.1'
 
 
     def nav_version = "2.3.3"

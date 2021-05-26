@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class Search_Shop_OnCardClick extends Fragment {
+public class SearchShopOnCardClick extends Fragment {
 
 
-    public Search_Shop_OnCardClick() {
+    public SearchShopOnCardClick() {
 
     }
 
@@ -28,6 +28,6 @@ public class Search_Shop_OnCardClick extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search__shop__on_card_click, container, false);
+        return inflater.inflate(R.layout.fragment_search_shop_on_card_click, container, false);
     }
 }

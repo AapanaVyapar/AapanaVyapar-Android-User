@@ -52,7 +52,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
     public static final String TAG = "ViewProvider";
     private static final int PERMISSION_LOCATION = 10;
 
-    public static final String BUYING_SERVICE_ADDRESS = "192.168.43.189:9359";
+    public static final String BUYING_SERVICE_ADDRESS = "192.168.43.200:9359";
     public static final int PRIORITY_ACCURACY = LocationRequest.PRIORITY_HIGH_ACCURACY;
     public static final int DEFAULT_UPDATE_INTERVAL = 3;
     public static final int FAST_UPDATE_INTERVAL = 5;
@@ -118,7 +118,14 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
 
         setContentView(R.layout.view_provider);
         Toast.makeText(this.getApplicationContext(), "View Provider...", Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        updateGPS();
+        startLocationUpdates();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setItemHorizontalTranslationEnabled(true);
@@ -145,6 +152,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
             }
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TrendingFragment()).commit();
+
     }
 
     @Override
