@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.viewData.CartProductData;
+import com.aapanavyapar.viewData.OrderedProductData;
+import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 
 
 public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.ViewHolder>{
-    CartProductData[] cartProductDataList;
+    ArrayList<CartProductData> cartProductDataList;
     Context context;
 
-    public CartProductAdapter(CartProductData[] cartProductDataList, Context context) {
+    public CartProductAdapter(ArrayList<CartProductData> cartProductDataList, Context context) {
         this.cartProductDataList = cartProductDataList;
         this.context = context;
     }
@@ -35,30 +38,43 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final CartProductData cartProductCard = cartProductDataList[position];
-        holder.cartProductImage.setImageResource(cartProductCard.getCart_product_image());
-        holder.cartProductName.setText(cartProductCard.getCart_product_name());
-        holder.cartShopName.setText(cartProductCard.getCart_shop_name());
-        holder.cartShopDesc.setText(cartProductCard.getCart_shop_description());
+        final CartProductData cartProductCard = cartProductDataList.get(position);
+
+        Glide.with(this.context)
+                .load(cartProductCard.getCartProductImage())
+                .centerCrop()
+                .fitCenter()
+                .into(holder.cartProductImage);
+
+        holder.cartProductName.setText(cartProductCard.getCartProductName());
+        holder.cartShopName.setText(cartProductCard.getCartShopName());
 
     }
 
     @Override
     public int getItemCount() {
-        return cartProductDataList.length;
+        return cartProductDataList.size();
+    }
+
+    public void notifyData(ArrayList<CartProductData> myList) {
+        this.cartProductDataList = myList;
+        notifyDataSetChanged();
+    }
+
+    public void addNewData(CartProductData data) {
+        this.cartProductDataList.add(data);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cartProductImage;
         TextView cartProductName;
         TextView cartShopName;
-        TextView cartShopDesc;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            cartProductImage = itemView.findViewById(R.id.cart_product_image);
-            cartProductName = itemView.findViewById(R.id.cart_product_name);
-            cartShopName = itemView.findViewById(R.id.cart_shop_name);
-            cartShopDesc = itemView.findViewById(R.id.cart_shop_description);
+            cartProductImage = itemView.findViewById(R.id.cartProductImage);
+            cartProductName = itemView.findViewById(R.id.cartProductName);
+            cartShopName = itemView.findViewById(R.id.cartShopName);
         }
     }
 }

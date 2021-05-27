@@ -1,47 +1,57 @@
 package com.aapanavyapar.viewData;
 
 public class CartProductData {
-    Integer cart_product_image;
-    String cart_product_name;
-    String cart_shop_name;
-    String cart_shop_description;
+    String cartProductImage;
+    String cartProductName;
+    String cartShopName;
+    long likes;
+    String cartShopId;
 
-    public CartProductData(Integer cart_product_image, String cart_product_name, String cart_shop_name, String cart_shop_description) {
-        this.cart_product_image = cart_product_image;
-        this.cart_product_name = cart_product_name;
-        this.cart_shop_name = cart_shop_name;
-        this.cart_shop_description = cart_shop_description;
+    public CartProductData(String cartProductImage, String cartShopId, String cartProductName, String cartShopName, long likes) {
+        this.cartProductImage = cartProductImage;
+        this.cartProductName = cartProductName;
+        this.cartShopName = cartShopName;
+        this.likes = likes;
+        this.cartShopId = cartShopId;
     }
 
-    public Integer getCart_product_image() {
-        return cart_product_image;
+    public String getCartProductImage() {
+        return cartProductImage;
     }
 
-    public void setCart_product_image(Integer cart_product_image) {
-        this.cart_product_image = cart_product_image;
+    public void setCartProductImage(String cartProductImage) {
+        this.cartProductImage = cartProductImage;
     }
 
-    public String getCart_product_name() {
-        return cart_product_name;
+    public String getShopId() {
+        return cartShopId;
     }
 
-    public void setCart_product_name(String cart_product_name) {
-        this.cart_product_name = cart_product_name;
+    public void setCartShopId(String shopId) {
+        this.cartShopId = shopId;
     }
 
-    public String getCart_shop_name() {
-        return cart_shop_name;
+    public String getCartProductName() {
+        return cartProductName;
     }
 
-    public void setCart_shop_name(String cart_shop_name) {
-        this.cart_shop_name = cart_shop_name;
+    public void setCartProductName(String cartProductName) {
+        this.cartProductName = cartProductName;
     }
 
-    public String getCart_shop_description() {
-        return cart_shop_description;
+    public String getCartShopName() {
+        return cartShopName;
     }
 
-    public void setCart_shop_description(String cart_shop_description) {
-        this.cart_shop_description = cart_shop_description;
+    public void setCartShopName(String cartShopName) {
+        this.cartShopName = cartShopName;
+    }
+
+    public long getCartLikes() {
+        return likes;
+    }
+
+    public void setLikes(long likes) {
+        this.likes = likes;
     }
 }
