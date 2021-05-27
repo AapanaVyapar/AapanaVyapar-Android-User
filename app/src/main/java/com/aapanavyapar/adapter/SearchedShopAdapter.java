@@ -55,7 +55,7 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductSearchFragment.interrupt();
+                ProductSearchFragment.caller.interrupt();
                 Toast.makeText(context , shopCardData.getProductName(),Toast.LENGTH_LONG).show();
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();
@@ -77,6 +77,11 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
 
     public void addNewData(ProductData data) {
         this.shopDataList.add(data);
+        notifyDataSetChanged();
+    }
+
+    public void makeEmpty() {
+        this.shopDataList.clear();
         notifyDataSetChanged();
     }
 

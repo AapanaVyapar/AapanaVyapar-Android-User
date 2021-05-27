@@ -21,11 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.services.Location;
 import com.aapanavyapar.adapter.ProductAdapter;
-import com.aapanavyapar.adapter.ProductAdapter;
+import com.aapanavyapar.adapter.SearchedShopAdapter;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
 import com.aapanavyapar.serviceWrappers.GetProductsBySearchWrapper;
+import com.aapanavyapar.serviceWrappers.GetShopsBySearchWrapper;
 import com.aapanavyapar.serviceWrappers.GetTrendingShopsWrapper;
 import com.aapanavyapar.viewData.ProductData;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -142,13 +143,18 @@ public class ProductSearchFragment extends Fragment {
                 switch(position) {
                     case 0:
                         Toast.makeText(getContext(),"Product Search", Toast.LENGTH_LONG).show();
+
+                        ArrayList<ProductData> productDataForProduct = new ArrayList<>();
+                        searchedAdapter = new ProductAdapter(productDataForProduct, getContext());
+                        recyclerView.setAdapter((ProductAdapter) searchedAdapter);
+
                         break;
                     case 1:
                         Toast.makeText(getContext(),"Shop Search", Toast.LENGTH_LONG).show();
 
-                        ArrayList<ProductData> productData = new ArrayList<>();
-                        searchedAdapter = new ProductAdapter(productData, getContext());
-                        recyclerView.setAdapter((ProductAdapter) searchedAdapter);
+                        ArrayList<ProductData> productDataForShop = new ArrayList<>();
+                        searchedAdapter = new SearchedShopAdapter(productDataForShop, getContext());
+                        recyclerView.setAdapter((SearchedShopAdapter) searchedAdapter);
 
                         break;
                 }
@@ -187,17 +193,33 @@ public class ProductSearchFragment extends Fragment {
         mSearchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(spinner.getSelectedItem().equals(choice[0])) {
+                    ((ProductAdapter) searchedAdapter).makeEmpty();
 
-                ((ProductAdapter) searchedAdapter).makeEmpty();
+                    String searchString = mSearchView.getQuery().toString();
+                    GetProductsBySearchWrapper searchWrapper = new GetProductsBySearchWrapper(requireActivity());
+                    searchWrapper.getProductBySearch(dataModel.getAuthToken(), dataModel.getRefreshToken(), searchString, new RecycleViewUpdater() {
+                        @Override
+                        public void updateRecycleView(Object object) {
+                            ((ProductAdapter) searchedAdapter).addNewData((ProductData) object);
+                        }
+                    });
+                } else {
+                    ((SearchedShopAdapter) searchedAdapter).makeEmpty();
 
-                String searchString = mSearchView.getQuery().toString();
-                GetProductsBySearchWrapper searchWrapper = new GetProductsBySearchWrapper(requireActivity());
-                searchWrapper.getProductBySearch(dataModel.getAuthToken(), dataModel.getRefreshToken(), searchString, new RecycleViewUpdater() {
-                    @Override
-                    public void updateRecycleView(Object object) {
-                        ((ProductAdapter) searchedAdapter).addNewData((ProductData) object);
-                    }
-                });
+                    String searchString = mSearchView.getQuery().toString();
+                    GetShopsBySearchWrapper searchWrapper = new GetShopsBySearchWrapper(requireActivity());
+                    searchWrapper.getShopsBySearch(dataModel.getAuthToken(), dataModel.getRefreshToken(), searchString, Location.newBuilder()
+                            .setLatitude(String.valueOf(ViewProvider.currentLocation.getLatitude()))
+                            .setLongitude(String.valueOf(ViewProvider.currentLocation.getLatitude()))
+                            .build(), new RecycleViewUpdater() {
+                        @Override
+                        public void updateRecycleView(Object object) {
+                            ((SearchedShopAdapter) searchedAdapter).addNewData((ProductData) object);
+                        }
+                    });
+
+                }
             }
         });
 
