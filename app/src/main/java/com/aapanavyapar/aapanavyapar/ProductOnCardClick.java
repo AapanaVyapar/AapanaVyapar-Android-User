@@ -1,5 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,8 @@ public class ProductOnCardClick extends Fragment {
     TextView shippingInfo;
     TextView description;
     DataModel dataModel;
+    ImageView bookmark, addToFavourite;
+
 
 
 
@@ -67,7 +71,8 @@ public class ProductOnCardClick extends Fragment {
         deliveryCharges = view.findViewById(R.id.productoncardclick_deliveryamount_text);
         description = view.findViewById(R.id.productoncardclick_description_text);
         shippingInfo = view.findViewById(R.id.productoncardclick_shipping_info);
-
+        bookmark = view.findViewById(R.id.productoncardclick_bookmark_image);
+        addToFavourite = view.findViewById(R.id.productoncardclick_favourite_image);
         int res = 2;
         GetProductInfo getProductInfo = new GetProductInfo();
 
@@ -97,8 +102,43 @@ public class ProductOnCardClick extends Fragment {
         shippingInfo.setText(getProductInfo.getResponse().getShippingInfo());
         description.setText(getProductInfo.getResponse().getProductDescription());
 
+        addToFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isFavourite = readState();
 
+                if (isFavourite) {
+                    bookmark.setBackgroundResource(R.drawable.heart_empty);
+                    isFavourite = false;
+                    saveState(isFavourite);
 
+                } else {
+                    bookmark.setBackgroundResource(R.drawable.heart_filled);
+                    isFavourite = true;
+                    saveState(isFavourite);
+
+                }
+            }
+        });
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean isFavourite = readState();
+
+                if (isFavourite) {
+                    bookmark.setBackgroundResource(R.drawable.bookmark_empty);
+                    isFavourite = false;
+                    saveState(isFavourite);
+
+                } else {
+                    bookmark.setBackgroundResource(R.drawable.bookmark_filled);
+                    isFavourite = true;
+                    saveState(isFavourite);
+
+                }
+            }
+        });
         buyNow = view.findViewById(R.id.productoncardclick_button_buy);
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +150,17 @@ public class ProductOnCardClick extends Fragment {
             }
         });
 
+    }
+    private void saveState(boolean isFavourite) {
+        SharedPreferences aSharedPreferences = this.getSharedPreferences("Favourite", Context.MODE_PRIVATE);
+        SharedPreferences.Editor aSharedPreferencesEdit = aSharedPreferences.edit();
+        aSharedPreferencesEdit.putBoolean("State", isFavourite);
+        aSharedPreferencesEdit.commit();
+    }
+
+    private boolean readState() {
+        SharedPreferences aSharedPreferences = this.getSharedPreferences("Favourite", Context.MODE_PRIVATE);
+        return aSharedPreferences.getBoolean("State", true);
     }
 
 }

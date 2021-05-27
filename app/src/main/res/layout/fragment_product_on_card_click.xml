@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageView
-                        android:id="@+id/productoncardclick_heart_image"
+                        android:id="@+id/productoncardclick_favourite_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/productoncardclick_image"
