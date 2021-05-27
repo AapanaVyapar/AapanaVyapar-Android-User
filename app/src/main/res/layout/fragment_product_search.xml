@@ -30,7 +30,7 @@
 
     <!--Chips And Product Cards-->
 
-    <fragment
+    <com.google.android.gms.maps.MapView
         android:id="@+id/ps_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"

@@ -81,6 +81,11 @@ public class SearchedProductAdapter extends RecyclerView.Adapter<SearchedProduct
         notifyDataSetChanged();
     }
 
+    public void makeEmpty() {
+        this.productDataList.clear();
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView productImage;
         TextView productName;
