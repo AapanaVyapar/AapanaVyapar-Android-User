@@ -17,7 +17,7 @@
 
     <Spinner
         android:id="@+id/ps_spinner"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="24dp"
         android:textAlignment="gravity"
@@ -30,7 +30,7 @@
 
     <!--Chips And Product Cards-->
 
-    <fragment
+    <com.google.android.gms.maps.MapView
         android:id="@+id/ps_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"

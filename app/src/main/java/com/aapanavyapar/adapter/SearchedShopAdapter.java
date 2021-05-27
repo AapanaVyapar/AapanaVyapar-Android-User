@@ -17,19 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aapanavyapar.aapanavyapar.ProductOnCardClick;
 import com.aapanavyapar.aapanavyapar.ProductSearchFragment;
 import com.aapanavyapar.aapanavyapar.R;
-import com.aapanavyapar.aapanavyapar.TrendingFragment;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class SearchedProductAdapter extends RecyclerView.Adapter<SearchedProductAdapter.ViewHolder> {
+public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapter.ViewHolder> {
 
-    ArrayList<ProductData> productDataList;
+    ArrayList<ProductData> shopDataList;
     Context context;
 
-    public SearchedProductAdapter(ArrayList<ProductData> productData, Context activity) {
-        this.productDataList = productData;
+    public SearchedShopAdapter(ArrayList<ProductData> shopData, Context activity) {
+        this.shopDataList = shopData;
         this.context = activity;
     }
 
@@ -37,30 +36,30 @@ public class SearchedProductAdapter extends RecyclerView.Adapter<SearchedProduct
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.product_data_card,parent,false);
+        View view = layoutInflater.inflate(R.layout.shop_data_card,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final ProductData productCardData = productDataList.get(position);
+        final ProductData shopCardData = shopDataList.get(position);
 
         Glide.with(this.context)
-                .load(productCardData.getProductImage()).centerCrop().fitCenter().into(holder.productImage);
+                .load(shopCardData.getProductImage()).centerCrop().fitCenter().into(holder.shopImage);
 
-        holder.productName.setText(productCardData.getProductName());
-        holder.shopName.setText(productCardData.getShopName());
-        holder.productLikes.setText(String.valueOf(productCardData.getProductLikes()));
-        holder.ratingBar.setRating((float) productCardData.getShopRating());
+
+        holder.shopName.setText(shopCardData.getShopName());
+        holder.shopKeeperName.setText(shopCardData.getShopName());
+        holder.ratingBar.setRating((float) shopCardData.getShopRating());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductSearchFragment.caller.interrupt();
-                Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
+                ProductSearchFragment.interrupt();
+                Toast.makeText(context , shopCardData.getProductName(),Toast.LENGTH_LONG).show();
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();
-                args.putSerializable("dataFill", productCardData);
+                args.putSerializable("dataFill", shopCardData);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProductOnCardClick.class,args).addToBackStack(null).commit();
             }
         });
@@ -68,32 +67,31 @@ public class SearchedProductAdapter extends RecyclerView.Adapter<SearchedProduct
 
     @Override
     public int getItemCount() {
-        return productDataList.size();
+        return shopDataList.size();
     }
 
     public void notifyData(ArrayList<ProductData> myList) {
-        this.productDataList = myList;
+        this.shopDataList = myList;
         notifyDataSetChanged();
     }
 
     public void addNewData(ProductData data) {
-        this.productDataList.add(data);
+        this.shopDataList.add(data);
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView productImage;
-        TextView productName;
-        TextView productLikes;
+
+        ImageView shopImage;
         TextView shopName;
+        TextView shopKeeperName;
         RatingBar ratingBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.productImage);
-            productName = itemView.findViewById(R.id.productName);
-            productLikes = itemView.findViewById(R.id.product_likes);
+            shopImage = itemView.findViewById(R.id.shopImage);
             shopName = itemView.findViewById(R.id.shopName);
+            shopKeeperName = itemView.findViewById(R.id.shop_keeper_name);
             ratingBar = itemView.findViewById(R.id.shop_rating_bar);
         }
     }
