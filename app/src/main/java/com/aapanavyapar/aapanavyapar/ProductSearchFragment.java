@@ -20,7 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.services.Location;
-import com.aapanavyapar.adapter.SearchedProductAdapter;
+import com.aapanavyapar.adapter.ProductAdapter;
+import com.aapanavyapar.adapter.ProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
@@ -54,7 +55,7 @@ public class ProductSearchFragment extends Fragment {
     DataModel dataModel;
     ViewDataModel viewDataModel;
 
-    SearchedProductAdapter searchedProductAdapter;
+    RecyclerView.Adapter searchedAdapter;
 
     public static Thread caller;
 
@@ -139,8 +140,17 @@ public class ProductSearchFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
 
                 switch(position) {
-                    case 0: Toast.makeText(getContext(),"Product Search", Toast.LENGTH_LONG).show();
-                    case 1: Toast.makeText(getContext(),"Shop Search", Toast.LENGTH_LONG).show();
+                    case 0:
+                        Toast.makeText(getContext(),"Product Search", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getContext(),"Shop Search", Toast.LENGTH_LONG).show();
+
+                        ArrayList<ProductData> productData = new ArrayList<>();
+                        searchedAdapter = new ProductAdapter(productData, getContext());
+                        recyclerView.setAdapter((ProductAdapter) searchedAdapter);
+
+                        break;
                 }
             }
 
@@ -159,8 +169,8 @@ public class ProductSearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ArrayList<ProductData> productData = new ArrayList<>();
-        searchedProductAdapter = new SearchedProductAdapter(productData, getContext());
-        recyclerView.setAdapter(searchedProductAdapter);
+        searchedAdapter = new ProductAdapter(productData, getContext());
+        recyclerView.setAdapter((ProductAdapter) searchedAdapter);
 
         caller = new Thread(new Runnable() {
             @Override
@@ -178,14 +188,14 @@ public class ProductSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                searchedProductAdapter.makeEmpty();
+                ((ProductAdapter) searchedAdapter).makeEmpty();
 
                 String searchString = mSearchView.getQuery().toString();
                 GetProductsBySearchWrapper searchWrapper = new GetProductsBySearchWrapper(requireActivity());
                 searchWrapper.getProductBySearch(dataModel.getAuthToken(), dataModel.getRefreshToken(), searchString, new RecycleViewUpdater() {
                     @Override
                     public void updateRecycleView(Object object) {
-                        searchedProductAdapter.addNewData((ProductData) object);
+                        ((ProductAdapter) searchedAdapter).addNewData((ProductData) object);
                     }
                 });
             }
