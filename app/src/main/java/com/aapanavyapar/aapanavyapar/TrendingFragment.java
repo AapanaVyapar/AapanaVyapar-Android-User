@@ -18,6 +18,7 @@ import com.aapanavyapar.adapter.ProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
 import com.aapanavyapar.serviceWrappers.GetTrendingProductsWrapper;
+import com.aapanavyapar.serviceWrappers.GetTrendingShopsWrapper;
 import com.aapanavyapar.viewData.ProductData;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
@@ -89,20 +90,18 @@ public class TrendingFragment extends Fragment {
 //                        Log.d("TrendingFragment", "Waiting For Location");
 //                    }
                     if(ViewProvider.currentLocation != null) {
-//                        Toast.makeText(getContext(), "Lat : " + String.valueOf(ViewProvider.currentLocation.getLatitude()) + ", Long : " + String.valueOf(ViewProvider.currentLocation.getLongitude()), Toast.LENGTH_SHORT).show();
 
-                        GetTrendingProductsWrapper getTrendingProductsWrapper = new GetTrendingProductsWrapper();
-                        boolean b = getTrendingProductsWrapper.GetTrendingProducts(dataModel.getAuthToken(), ViewProvider.currentLocation, new RecycleViewUpdater() {
+                        GetTrendingShopsWrapper shopsWrapper = new GetTrendingShopsWrapper(requireActivity());
+                        shopsWrapper.GetTrendingShops(dataModel.getAuthToken(), dataModel.getRefreshToken(), ViewProvider.currentLocation);
+
+                        GetTrendingProductsWrapper getTrendingProductsWrapper = new GetTrendingProductsWrapper(requireActivity());
+                        getTrendingProductsWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), new RecycleViewUpdater() {
                             @Override
                             public void updateRecycleView(Object object) {
                                 Log.d("TRENDING_FRAGMENT", "Received Update");
                                 productAdapter.addNewData((ProductData) object);
                             }
                         });
-                        if (!b) {
-                            Log.d("TRENDING_FRAGMENT", "Error Occurred While Receiving Data ...!!");
-//                            Toast.makeText(getContext(), "Error Occurred While Receiving Data ...!!", Toast.LENGTH_LONG).show();
-                        }
                     }
                 }
             });

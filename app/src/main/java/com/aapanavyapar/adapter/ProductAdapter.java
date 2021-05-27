@@ -72,6 +72,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+    public void makeEmpty() {
+        this.productDataList.clear();
+        notifyDataSetChanged();
+    }
+
     public void addNewData(ProductData data) {
         this.productDataList.add(data);
         notifyDataSetChanged();

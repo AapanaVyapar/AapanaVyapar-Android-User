@@ -11,7 +11,7 @@ Java_com_aapanavyapar_aapanavyapar_MainActivity_getNativeKey(JNIEnv *env, jobjec
 
 JNIEXPORT jstring JNICALL
 Java_com_aapanavyapar_aapanavyapar_BuyingActivity_getNativeKeyRazorPay(JNIEnv *env, jobject thiz) {
-    return (*env)->NewStringUTF(env, "cnpwX3Rlc3RfQnhDWTRJV0k3bGJEQlA=");
+    return (*env)->NewStringUTF(env, "cnpwX3Rlc3RfS0VVakFCdFppemE1Mm8=");
 }
 
 JNIEXPORT jstring JNICALL
@@ -21,5 +21,5 @@ Java_com_aapanavyapar_aapanavyapar_BuyingActivity_getNativeAPIKey(JNIEnv *env, j
 
 JNIEXPORT jstring JNICALL
 Java_com_aapanavyapar_aapanavyapar_ViewProvider_getNativeKeyRazorPay(JNIEnv *env, jobject thiz) {
-    return (*env)->NewStringUTF(env, "cnpwX3Rlc3RfQnhDWTRJV0k3bGJEQlA=");
+    return (*env)->NewStringUTF(env, "cnpwX3Rlc3RfS0VVakFCdFppemE1Mm8=");
 }
