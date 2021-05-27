@@ -45,26 +45,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         final ProductData productCardData = productDataList.get(position);
 
         Glide.with(this.context)
-                .load(productCardData.getProductImage())
-                .centerCrop()
-                .fitCenter()
-                .into(holder.productImage);
+                .load(productCardData.getProductImage()).centerCrop().fitCenter().into(holder.productImage);
 
         holder.productName.setText(productCardData.getProductName());
         holder.shopName.setText(productCardData.getShopName());
         holder.productLikes.setText(String.valueOf(productCardData.getProductLikes()));
         holder.ratingBar.setRating((float) productCardData.getShopRating());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TrendingFragment.caller.interrupt();
-                Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                Bundle args = new Bundle();
-                args.putSerializable("dataFill", productCardData);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProductOnCardClick.class,args).addToBackStack(null).commit();
-            }
+        holder.itemView.setOnClickListener(v -> {
+            TrendingFragment.caller.interrupt();
+            Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
+            AppCompatActivity activity = (AppCompatActivity)v.getContext();
+            Bundle args = new Bundle();
+            args.putSerializable("dataFill", productCardData);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProductOnCardClick.class,args).addToBackStack(null).commit();
         });
     }
 
