@@ -1,9 +1,12 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -17,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.AuthenticationGrpc;
-import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseRequest;
-import com.aapanavyapar.aapanavyapar.services.SignInForMailBaseResponse;
+import com.aapanavyapar.aapanavyapar.services.SignInRequest;
+import com.aapanavyapar.aapanavyapar.services.SignInResponse;
+import com.aapanavyapar.constants.constants;
+import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.validators.validators;
 
 import java.util.concurrent.TimeUnit;
@@ -29,11 +34,9 @@ import io.grpc.StatusRuntimeException;
 
 public class SigninFragment extends Fragment {
 
-    public static final String host = "192.168.8.21";
-    public static final int port = 4356;
+    private DataModel dataModel;
 
-
-    EditText email;
+    EditText phoneNo;
     Button signIn, signUp;
     EditText password;
     TextView forgotPassword;
@@ -45,7 +48,9 @@ public class SigninFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+
+        mChannel = ManagedChannelBuilder.forTarget(MainActivity.AUTH_SERVICE_ADDRESS).usePlaintext().build();
 
         blockingStub = AuthenticationGrpc.newBlockingStub(mChannel);
         asyncStub = AuthenticationGrpc.newStub(mChannel);
@@ -58,11 +63,11 @@ public class SigninFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        email = (EditText)view.findViewById(R.id.sign_in_input_email);
+        phoneNo = (EditText)view.findViewById(R.id.sign_in_input_phoneNo_port);
         signIn = (Button)view.findViewById(R.id.sign_in);
         signUp = (Button)view.findViewById(R.id.sign_up_in);
-        password = (EditText)view.findViewById(R.id.sign_in_input_password);
-        forgotPassword = (TextView)view.findViewById(R.id.sign_in_forgot_password);
+        password = (EditText)view.findViewById(R.id.sign_in_input_password_port);
+        forgotPassword = (TextView)view.findViewById(R.id.sign_in_forgot_password_port);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +76,7 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToForgotPassword);
             }
         });
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,37 +84,68 @@ public class SigninFragment extends Fragment {
                 Navigation.findNavController(view).navigate(actionToUp);
             }
         });
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validators.validateMail(email) && validators.validatePassword(password)){
-                    SignInForMailBaseRequest request = SignInForMailBaseRequest.newBuilder()
-                            .setMail(email.getText().toString())
+                if(validators.validatePhone(phoneNo) && validators.validatePasswordSignIn(password)){
+                    SignInRequest request = SignInRequest.newBuilder()
+                            .setPhoneNo(phoneNo.getText().toString())
                             .setPassword(password.getText().toString())
-                            .setApiKey("fdfdsb&*h3uhfdskjwrhufds998Aihwihvbjfjhiur2732wefiuhsd7e98fdsa")
+                            .setApiKey(MainActivity.API_KEY)
                             .build();
 
+
                     try {
-                        SignInForMailBaseResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signInWithMail(request);
+                        SignInResponse response = blockingStub.withDeadlineAfter(2, TimeUnit.MINUTES).signIn(request);
 
-                        if (response.hasResponseData()) {
-                            Log.d("MainActivity", "Success .. !!");
-                            Toast.makeText(view.getContext(), response.getResponseData().getToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
-                            Toast.makeText(view.getContext(), response.getResponseData().getRefreshToken(), Toast.LENGTH_SHORT).show();
-                            Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
+                        int []access = {constants.GetNewToken, constants.LogOut, constants.External};
 
-                        } else {
-                            Toast.makeText(view.getContext(), response.getCode().name(), Toast.LENGTH_SHORT).show();
+                        dataModel.setTokens(response.getResponseData().getToken(), response.getResponseData().getRefreshToken(), access);
+
+                        Log.d("MainActivity", "Success .. !!");
+                        Log.d("MainActivity", "Auth Token : " + response.getResponseData().getToken());
+                        Log.d("MainActivity", "Refresh Token : " + response.getResponseData().getRefreshToken());
+
+                        AuthDB authdb = new AuthDB(getContext());
+                        SQLiteDatabase db = authdb.getReadableDatabase();
+
+                        authdb.insertData(dataModel.getRefreshToken(),access);
+
+                        Intent intent  = new Intent(getContext(), ViewProvider.class);
+                        intent.putExtra("Token",dataModel.getRefreshToken());
+                        intent.putExtra("AuthToken",dataModel.getAuthToken());
+                        intent.putExtra("Access",access);
+                        startActivity(intent);
+
+                    }catch (StatusRuntimeException e){
+
+                        if (e.getStatus().getCode().toString().equals("UNAUTHENTICATED")) {
+                            Toast.makeText(view.getContext(),"Please Update Your Application", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("INVALID_ARGUMENT")) {
+                            Toast.makeText(view.getContext(), "Please Enter Valid Inputs", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("NOT_FOUND")) {
+                            Toast.makeText(view.getContext(), "User Not Exist", Toast.LENGTH_SHORT).show();
+                            NavDirections actionToUp = SigninFragmentDirections.actionSigninFragmentToSignupFragment();
+                            Navigation.findNavController(view).navigate(actionToUp);
+
+                        } else if(e.getStatus().getCode().toString().equals("DEADLINE_EXCEEDED")) {
+                            Toast.makeText(view.getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("PERMISSION_DENIED")) {
+                            Toast.makeText(view.getContext(), "Invalid UserName Or Password", Toast.LENGTH_SHORT).show();
+
+                        } else if(e.getStatus().getCode().toString().equals("INTERNAL")) {
+                            Toast.makeText(view.getContext(), "Server Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }  else {
+                            Toast.makeText(view.getContext(), "Unknown Error Occurred : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
 
-            //            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
-
-                    }catch (StatusRuntimeException e){
-                        Log.d("MainActivity", e.getMessage());
                     }
-                    //SignInRequest request = SignInRequest.newBuilder().setEmail(email.getText().toString()).build();
                 }
             }
         });

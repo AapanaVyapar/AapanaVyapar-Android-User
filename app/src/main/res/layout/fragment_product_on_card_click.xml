@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProductOnCardClick"
+    android:clickable="true"
+    android:id="@+id/productoncardclick_constraintlayout">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_favourite_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/heart_empty" />
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_bookmark_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="52dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bookmark_empty" />
+                </RelativeLayout>
+
+
+          </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/productoncardclick_productname_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Product Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/productoncardclick_productprice_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="4dp"
+        android:text="Price :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/productoncardclick_price_amount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="1000/-"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/productoncardclick_productprice_text"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/productoncardclick_quantity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productoncardclick_productname_text"
+        android:layout_marginTop="10dp"
+        android:text="Quantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productname_text" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="44dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/productoncardclick_quantity_text"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productname_text" />
+
+    <TextView
+        android:id="@+id/productoncardclick_stock_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productoncardclick_productname_text"
+        android:layout_marginStart="264dp"
+        android:text="Available Stock :"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productprice_text"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/productoncardclick_stockno_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productoncardclick_productname_text"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="5dp"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@+id/productoncardclick_stock_text"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productprice_text" />
+
+    <TextView
+        android:id="@+id/productoncardclick_deliverycharges_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Delivery Charges :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_quantity_text" />
+
+    <TextView
+        android:id="@+id/productoncardclick_deliveryamount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500Paise"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/productoncardclick_deliverycharges_text"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_quantity_text" />
+
+    <Button
+        android:id="@+id/productoncardclick_button_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="45dp"
+        android:text="Buy Now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_stock_text" />
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="412dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_deliverycharges_text"/>
+
+    <TextView
+        android:id="@+id/productoncardclick_description_text_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Description"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_line" />
+
+    <TextView
+        android:id="@+id/productoncardclick_description_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Product Description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_description_text_heading" />
+
+    <View
+        android:id="@+id/second_line"
+        android:layout_width="412dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_description_text"/>
+
+
+    <TextView
+        android:id="@+id/productoncardclick_shipping_info_text_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Shipping Info"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_line" />
+
+    <TextView
+        android:id="@+id/productoncardclick_shipping_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Shipping Info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productoncardclick_shipping_info_text_heading" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

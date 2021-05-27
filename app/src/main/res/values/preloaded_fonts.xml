@@ -2,6 +2,15 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
 
+        <item>/@font/</item>
+        <item>@font/adamina</item>
+        <item>@font/aladin</item>
+        <item>@font/alice</item>
+        <item>@font/antic</item>
+        <item>@font/asap</item>
+        <item>@font/asap_medium</item>
+        <item>@font/berkshire_swash</item>
+        <item>@font/emblema_one</item>
         <item>@font/inknut_antiqua_light</item>
     </array>
 </resources>

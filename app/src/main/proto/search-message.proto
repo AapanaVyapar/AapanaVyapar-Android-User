@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_multiple_files = true;
+option java_package = "com.aapanavyapar.aapanavyapar.services";
+
+import "common-message.proto";
+
+message GetProductsBySearchRequest {
+  string apiKey = 72;
+  string token = 73;
+  string search = 74;
+  repeated string shopIds = 75;
+}
+
+message GetProductsBySearchResponse {
+  ProductsOfShopsNearBy products = 76;
+}
+
+message GetShopsBySearchRequest {
+  string apiKey = 77;
+  string token = 78;
+  string search = 79;
+  string distanceInMeter = 80;
+  Location location = 81;
+}
+
+message GetShopsBySearchResponse {
+  ShopsNearBy shops = 82;
+}

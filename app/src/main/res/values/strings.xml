@@ -13,4 +13,20 @@
     <string name="singin_fragment_label">SignIn Into Your Account</string>
     <string name="singup_Confirm_Otp_fragment_label">Confirm Your OTP For Signup</string>
     <string name="forgot_password_fragment_label">Forgot Password</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="confirm"><![CDATA[Confirm >>]]></string>
+    <string name="logo_for_sign_in_page">Logo For Sign In Page</string>
+    <string name="aapanavyapar">AapanaVyapar</string>
+    <string name="hi_there_nice_to_see_you_again">Hi there! Nice to see you again</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in_with_otp"><![CDATA[Sign In With OTP >>]]></string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+
+
 </resources>
