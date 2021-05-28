@@ -195,17 +195,26 @@ public class ProductSearchFragment extends Fragment {
             public void onClick(View v) {
                 if(spinner.getSelectedItem().equals(choice[0])) {
                     ((ProductAdapter) searchedAdapter).makeEmpty();
+                    googleMap.clear();
 
                     String searchString = mSearchView.getQuery().toString();
                     GetProductsBySearchWrapper searchWrapper = new GetProductsBySearchWrapper(requireActivity());
                     searchWrapper.getProductBySearch(dataModel.getAuthToken(), dataModel.getRefreshToken(), searchString, new RecycleViewUpdater() {
                         @Override
                         public void updateRecycleView(Object object) {
+
+                            ProductData pd = (ProductData) object;
+                            LatLng point = new LatLng(Double.parseDouble(pd.getShopLatitude()), Double.parseDouble(pd.getShopLongitude()));
+                            googleMap.addMarker(new MarkerOptions().position(point).title(pd.getShopName()));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 12.0f));
+
                             ((ProductAdapter) searchedAdapter).addNewData((ProductData) object);
                         }
                     });
                 } else {
                     ((SearchedShopAdapter) searchedAdapter).makeEmpty();
+                    googleMap.clear();
 
                     String searchString = mSearchView.getQuery().toString();
                     GetShopsBySearchWrapper searchWrapper = new GetShopsBySearchWrapper(requireActivity());
@@ -215,6 +224,13 @@ public class ProductSearchFragment extends Fragment {
                             .build(), new RecycleViewUpdater() {
                         @Override
                         public void updateRecycleView(Object object) {
+
+                            ProductData pd = (ProductData) object;
+                            LatLng point = new LatLng(Double.parseDouble(pd.getShopLatitude()), Double.parseDouble(pd.getShopLongitude()));
+                            googleMap.addMarker(new MarkerOptions().position(point).title(pd.getShopName()));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 12.0f));
+
                             ((SearchedShopAdapter) searchedAdapter).addNewData((ProductData) object);
                         }
                     });
