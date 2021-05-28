@@ -1,6 +1,7 @@
 package com.aapanavyapar.aapanavyapar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.aapanavyapar.aapanavyapar.services.Location;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.serviceWrappers.AddToCartWrapper;
 import com.aapanavyapar.serviceWrappers.AddToFavWrapper;
 import com.aapanavyapar.serviceWrappers.GetProductInfo;
@@ -37,8 +40,10 @@ public class ProductOnCardClick extends Fragment {
     TextView deliveryCharges;
     TextView shippingInfo;
     TextView description;
-    DataModel dataModel;
     CheckBox bookmark, addToFavourite;
+
+    DataModel dataModel;
+    ViewDataModel viewDataModel;
 
     public ProductOnCardClick() {
         // Required empty public constructor
@@ -54,8 +59,11 @@ public class ProductOnCardClick extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+        viewDataModel = new ViewModelProvider(requireActivity()).get(ViewDataModel.class);
+
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_on_card_click, container, false);
 
     }
@@ -104,17 +112,20 @@ public class ProductOnCardClick extends Fragment {
         shippingInfo.setText(getProductInfo.getResponse().getShippingInfo());
         description.setText(getProductInfo.getResponse().getProductDescription());
 
+        addToFavourite.setChecked(viewDataModel.IsProductInLikeList(productData.getProductId()));
+        bookmark.setChecked(viewDataModel.IsProductInCartList(productData.getProductId()));
+
         addToFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     boolean res = new AddToFavWrapper().addToFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
-                    g.insertToFavTable(productData.getProductId());
+                    if(res)
+                        viewDataModel.addToLike(getContext(), productData.getProductId());
                 } else {
                     boolean res = new RemoveFromFavWrapper().removeFromFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
-                    g.deleteFromFavTable(productData.getProductId());
+                    if(res)
+                        viewDataModel.DeleteFromLikeList(getContext(),productData.getProductId());
                 }
             }
         });
@@ -125,11 +136,11 @@ public class ProductOnCardClick extends Fragment {
                 if(isChecked) {
                     boolean res = new AddToCartWrapper().addToCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
-                    g.insertToCartTable(productData.getProductId());
+                    viewDataModel.addToCart(getContext(), productData.getProductId());
                 } else {
                     boolean res = new RemoveFromCartWrapper().removeFromCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
-                    g.deleteFromCartTable(productData.getProductId());
+                    viewDataModel.DeleteFromCartList(getContext(),productData.getProductId());
                 }
             }
         });

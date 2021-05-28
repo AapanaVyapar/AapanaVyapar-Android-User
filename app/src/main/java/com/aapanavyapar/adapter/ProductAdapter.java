@@ -23,6 +23,7 @@ import com.aapanavyapar.aapanavyapar.ProductSearchFragment;
 import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.TrendingFragment;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.serviceWrappers.AddToCartWrapper;
 import com.aapanavyapar.serviceWrappers.RemoveFromCartWrapper;
 import com.aapanavyapar.viewData.ProductData;
@@ -35,11 +36,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     ArrayList<ProductData> productDataList;
     Context context;
     DataModel dataModel;
+    ViewDataModel viewDataModel;
 
     public ProductAdapter(ArrayList<ProductData> productData, Context activity) {
         this.productDataList = productData;
         this.context = activity;
         dataModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(DataModel.class);
+        viewDataModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(ViewDataModel.class);
     }
 
     @NonNull
@@ -62,23 +65,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.productLikes.setText(String.valueOf(productCardData.getProductLikes()));
         holder.ratingBar.setRating((float) productCardData.getShopRating());
 
+        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+
         holder.addToCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     boolean res = new AddToCartWrapper().addToCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productCardData.getProductId());
-                    Toast.makeText(context, "Result : " + res, Toast.LENGTH_LONG).show();
+                    if(res) {
+                        viewDataModel.addToCart(context, productCardData.getProductId());
+                        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+                    }
                 } else {
                     boolean res = new RemoveFromCartWrapper().removeFromCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productCardData.getProductId());
-                    Toast.makeText(context, "Result : " + res, Toast.LENGTH_LONG).show();
+                    if(res) {
+                        viewDataModel.DeleteFromCartList(context, productCardData.getProductId());
+                        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+                    }
                 }
             }
         });
 
         holder.itemView.setOnClickListener(v -> {
-
-            TrendingFragment.caller.interrupt();
-            ProductSearchFragment.caller.interrupt();
+            if(TrendingFragment.caller != null)
+                TrendingFragment.caller.interrupt();
+            if(ProductSearchFragment.caller != null)
+                ProductSearchFragment.caller.interrupt();
 
             Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
             AppCompatActivity activity = (AppCompatActivity)v.getContext();

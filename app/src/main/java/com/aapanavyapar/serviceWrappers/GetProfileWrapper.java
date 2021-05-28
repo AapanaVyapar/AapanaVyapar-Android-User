@@ -44,14 +44,20 @@ public class GetProfileWrapper {
                 state = 1;
                 mChannel.shutdown();
                 viewDataModel.setUserName(getProfileResponse.getUserName());
-                if(getProfileResponse.getCartList() != null && getProfileResponse.getCartList().size() == 0)
-                    viewDataModel.setCartList(context, (ArrayList<String>) getProfileResponse.getCartList());
+                if(getProfileResponse.getCartList() != null && getProfileResponse.getCartList().size() != 0) {
+                    viewDataModel.setCartList(context, new ArrayList<String>(getProfileResponse.getCartList()));
 
-                if(getProfileResponse.getFavouriteList() != null && getProfileResponse.getFavouriteList().size() == 0)
-                    viewDataModel.setLikeList(context, (ArrayList<String>) getProfileResponse.getFavouriteList());
+                }
 
-                if(getProfileResponse.getAddress() != null)
+                if(getProfileResponse.getFavouriteList() != null && getProfileResponse.getFavouriteList().size() != 0) {
+                    viewDataModel.setLikeList(context, new ArrayList<String>(getProfileResponse.getFavouriteList()));
+
+                }
+
+                if(getProfileResponse.getAddress() != null) {
                     viewDataModel.setAddress(context, getProfileResponse.getAddress());
+
+                }
 
             } catch (StatusRuntimeException e) {
                 if (e.getMessage().equals("UNAUTHENTICATED: Request With Invalid Token")) {

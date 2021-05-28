@@ -1,6 +1,7 @@
 package com.aapanavyapar.dataModel;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
@@ -57,9 +58,13 @@ public class ViewDataModel extends ViewModel {
         return cartList.contains(productId);
     }
 
-    public void DeleteFromCartList(String productId) {
-        if(cartList.contains(productId)) {
-            cartList.remove(productId);
+    public void DeleteFromCartList(Context context, String productId) {
+        ProfileDB profileDB = new ProfileDB(context);
+        boolean b = profileDB.deleteFromCartTable(productId);
+        if (b) {
+            if (cartList.contains(productId)) {
+                cartList.remove(productId);
+            }
         }
     }
 
@@ -87,9 +92,13 @@ public class ViewDataModel extends ViewModel {
         return likeList.contains(productId);
     }
 
-    public void DeleteFromLikeList(String productId) {
-        if(likeList.contains(productId)) {
-            likeList.remove(productId);
+    public void DeleteFromLikeList(Context context, String productId) {
+        ProfileDB profileDB = new ProfileDB(context);
+        boolean b = profileDB.deleteFromFavTable(productId);
+        if (b) {
+            if (likeList.contains(productId)) {
+                likeList.remove(productId);
+            }
         }
     }
 

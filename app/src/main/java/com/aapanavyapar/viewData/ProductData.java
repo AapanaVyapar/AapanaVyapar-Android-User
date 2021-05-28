@@ -145,4 +145,5 @@ public class ProductData implements Serializable {
     public void setShopLongitude(String shopLongitude) {
         this.shopLongitude = shopLongitude;
     }
+
 }
