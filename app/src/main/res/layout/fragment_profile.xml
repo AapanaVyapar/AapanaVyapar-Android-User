@@ -510,7 +510,6 @@
                 android:background="?colorSecondary"
                 android:fontFamily="sans-serif-medium"
                 android:text="Update >>"
-                android:enabled="false"
                 app:backgroundTint="?colorSecondary"
                 app:cornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"

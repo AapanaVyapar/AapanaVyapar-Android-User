@@ -153,7 +153,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
                 return true;
             }
         });
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TrendingFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
 
     }
 

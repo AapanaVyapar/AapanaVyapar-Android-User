@@ -97,9 +97,11 @@ public class ProfileDB extends SQLiteOpenHelper {
         c.put("ObjectId",objectId);
         long r=db.insert("FavTable",null,c);
         if(r==-1){
+            db.close();
             return false;
         }
         else {
+            db.close();
             return true;
         }
 
@@ -110,16 +112,19 @@ public class ProfileDB extends SQLiteOpenHelper {
         long numRows = DatabaseUtils.queryNumEntries(db, "FavTable");
         if(numRows>0){
            long r = db.delete("FavTable","ObjectId=?",new String[]{objId});
-           if(r==-1)return false;
+           if(r==-1){
+               db.close();
+               return false;
+           }
            else{
+               db.close();
                return true;
            }
-
         }
         else{
+            db.close();
             return false;
         }
-
     }
 
 
@@ -128,16 +133,31 @@ public class ProfileDB extends SQLiteOpenHelper {
         long numRows = DatabaseUtils.queryNumEntries(db, "CartTable");
         if(numRows>0){
             long r = db.delete("CartTable","ObjectId=?",new String[]{objId});
-            if(r==-1)return false;
+            if(r==-1){
+                db.close();
+                return false;
+            }
             else{
+                db.close();
                 return true;
             }
-
         }
         else{
+            db.close();
             return false;
         }
+    }
+    public void clearFavTable(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("delete from FavTable");
+        db.close();
+    }
 
+
+    public void clearCartTable(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("delete from CartTable");
+        db.close();
     }
 
     public boolean insertToCartTable(String objectId){
@@ -145,6 +165,7 @@ public class ProfileDB extends SQLiteOpenHelper {
         ContentValues c=new ContentValues();
         c.put("ObjectId",objectId);
         long r=db.insert("CartTable",null,c);
+        db.close();
         if(r==-1){
             return false;
         }
