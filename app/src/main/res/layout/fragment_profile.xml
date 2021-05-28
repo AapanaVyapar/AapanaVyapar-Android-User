@@ -9,6 +9,544 @@
     android:fadeScrollbars="true">
 
     <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/sign_in_logo2"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:scrollbarSize="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.049"
+                app:srcCompat="@drawable/logoav" />
+
+            <TextView
+                android:id="@+id/sign_in_logo_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:fontFamily="@font/asap"
+                android:letterSpacing="0.1"
+                android:scrollbarSize="8dp"
+                android:text="AapanaVyapar"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/sign_in_logo2"
+                app:layout_constraintStart_toStartOf="@+id/sign_in_logo2"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo2"
+                tools:ignore="MissingConstraints"/>
+
+            <Space
+                android:id="@+id/space6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_logo_text2"/>
+
+            <TextView
+                android:id="@+id/sign_up_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="62dp"
+                android:fontFamily="@font/inknut_antiqua_light"
+                android:text="Profile"
+                android:textColor="?colorPrimary"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.107"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space6" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/sign_up_fill_form"
+                app:layout_constraintEnd_toStartOf="@+id/sign_up_heading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space6"/>
+
+            <TextView
+                android:id="@+id/sign_up_fill_form"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="Welcome To App"
+                android:textColor="?android:textColor"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@+id/sign_up_heading"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/sign_up_heading"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_heading"/>
+
+
+            <Space
+                android:id="@+id/space5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_up_fill_form"/>
+
+            <TextView
+                android:id="@+id/profile_user_name_input_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="UserName"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_name_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_name_input"
+                app:layout_constraintTop_toBottomOf="@+id/space5"/>
+
+            <EditText
+                android:id="@+id/profile_user_name_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Enter Your Name"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_name_input_heading"
+                app:layout_goneMarginEnd="2dp"/>
+
+            <Space
+                android:id="@+id/space7"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/minor_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_name_input"/>
+
+
+            <TextView
+                android:id="@+id/profile_user_address_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:fontFamily="@font/inknut_antiqua_light"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_name_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_name_input"
+                app:layout_constraintTop_toBottomOf="@+id/space7" />
+
+            <Space
+                android:id="@+id/space77"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/minor_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_address_heading"/>
+
+            <TextView
+                android:id="@+id/profile_user_full_name_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="Full Name"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_full_name_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_full_name_input"
+                app:layout_constraintTop_toBottomOf="@+id/space77"/>
+
+            <EditText
+                android:id="@+id/profile_user_full_name_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="First Middle Last"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_full_name_heading"/>
+
+            <Space
+                android:id="@+id/space13"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_full_name_input"/>
+
+
+            <TextView
+                android:id="@+id/profile_user_street_house_details_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="House/Building Details"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_street_house_details_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_street_house_details_input"
+                app:layout_constraintTop_toBottomOf="@+id/space13"/>
+
+            <EditText
+                android:id="@+id/profile_user_street_house_details_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="House/Building Name"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_street_house_details_heading"/>
+
+            <Space
+                android:id="@+id/space14"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_street_house_details_input"/>
+
+            <TextView
+                android:id="@+id/profile_user_street_details_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="Street Details"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_street_details_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_street_details_input"
+                app:layout_constraintTop_toBottomOf="@+id/space14"/>
+
+            <EditText
+                android:id="@+id/profile_user_street_details_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Street Name"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_street_details_heading"/>
+
+            <Space
+                android:id="@+id/space15"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_street_details_input"/>
+
+            <TextView
+                android:id="@+id/profile_user_landmark_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="Landmark"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_landmark_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_landmark_input"
+                app:layout_constraintTop_toBottomOf="@+id/space15"/>
+
+            <EditText
+                android:id="@+id/profile_user_landmark_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Land Mark"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_landmark_heading"/>
+
+            <Space
+                android:id="@+id/space16"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_landmark_input"/>
+
+
+            <TextView
+                android:id="@+id/profile_user_pin_code_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="Pin Code"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_pin_code_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_pin_code_input"
+                app:layout_constraintTop_toBottomOf="@+id/space16"/>
+
+            <EditText
+                android:id="@+id/profile_user_pin_code_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="425107"
+                android:inputType="number"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_pin_code_heading"/>
+
+            <Space
+                android:id="@+id/space17"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_pin_code_input"/>
+
+
+
+            <TextView
+                android:id="@+id/profile_user_city_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="City"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_city_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_city_input"
+                app:layout_constraintTop_toBottomOf="@+id/space17"/>
+
+            <EditText
+                android:id="@+id/profile_user_city_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="city"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_city_heading"/>
+
+            <Space
+                android:id="@+id/space18"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_city_input"/>
+
+
+            <TextView
+                android:id="@+id/profile_user_state_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="State"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_state_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_state_input"
+                app:layout_constraintTop_toBottomOf="@+id/space18"/>
+
+            <EditText
+                android:id="@+id/profile_user_state_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="State"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_state_heading"/>
+
+            <Space
+                android:id="@+id/space19"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_state_input"/>
+
+
+            <TextView
+                android:id="@+id/profile_user_country_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/asap_medium"
+                android:text="Country"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_country_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_country_input"
+                app:layout_constraintTop_toBottomOf="@+id/space19"/>
+
+            <EditText
+                android:id="@+id/profile_user_country_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Country"
+                android:inputType="text"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_country_heading"/>
+
+            <Space
+                android:id="@+id/space20"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_country_input"/>
+
+            <TextView
+                android:id="@+id/profile_user_phoneNo_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Phone No."
+                android:fontFamily="@font/asap_medium"
+                android:textColor="?android:textColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_phoneNo_input"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_phoneNo_input"
+                app:layout_constraintTop_toBottomOf="@+id/space20"/>
+
+            <EditText
+                android:id="@+id/profile_user_phoneNo_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3CCCC"
+                android:ems="15"
+                android:fontFamily="@font/asap_medium"
+                android:hint="Phone No."
+                android:inputType="number"
+                android:textColorHint="#BFBDBD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_phoneNo_heading"/>
+
+            <Space
+                android:id="@+id/space21"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_component_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_phoneNo_input"/>
+
+
+            <Button
+                android:id="@+id/profile_user_updateData"
+                android:layout_width="307dp"
+                android:layout_height="0dp"
+                android:background="?colorSecondary"
+                android:fontFamily="sans-serif-medium"
+                android:text="Update >>"
+                android:enabled="false"
+                app:backgroundTint="?colorSecondary"
+                app:cornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space21"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/end_component_gap"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.48"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_updateData"
+                app:layout_constraintVertical_bias="0.0"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:fadeScrollbars="true">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -339,3 +877,5 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+-->

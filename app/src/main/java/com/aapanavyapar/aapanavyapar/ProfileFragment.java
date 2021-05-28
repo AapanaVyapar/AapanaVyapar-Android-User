@@ -38,17 +38,17 @@ public class ProfileFragment extends Fragment {
     //        Add = new Button(getContext());
     //        Add.setText("SET");
 
-        userName = view.findViewById(R.id.profile_edittext_user_name);
-        fullName = view.findViewById(R.id.profile_edit_text_fullname);
-        houseDetails = view.findViewById(R.id.profile_edit_text_housedetails);
-        streetDetails = view.findViewById(R.id.profile_edit_text_streetdetails);
-        landMark = view.findViewById(R.id.profile_edit_text_landmark);
-        pinCode = view.findViewById(R.id.profile_edit_text_pincode);
-        city = view.findViewById(R.id.profile_edit_text_city);
-        state = view.findViewById(R.id.profile_edit_text_state);
-        country = view.findViewById(R.id.profile_edit_text_country);
-        mobileNo = view.findViewById(R.id.profile_edit_text_mobileno);
-        Add = view.findViewById(R.id.profile_button);
+        userName = view.findViewById(R.id.profile_user_name_input);
+        fullName = view.findViewById(R.id.profile_user_full_name_input);
+        houseDetails = view.findViewById(R.id.profile_user_street_house_details_input);
+        streetDetails = view.findViewById(R.id.profile_user_street_details_input);
+        landMark = view.findViewById(R.id.profile_user_landmark_input);
+        pinCode = view.findViewById(R.id.profile_user_pin_code_input);
+        city = view.findViewById(R.id.profile_user_city_input);
+        state = view.findViewById(R.id.profile_user_state_input);
+        country = view.findViewById(R.id.profile_user_country_input);
+        mobileNo = view.findViewById(R.id.profile_user_phoneNo_input);
+        Add = view.findViewById(R.id.profile_user_updateData);
 
 
 
