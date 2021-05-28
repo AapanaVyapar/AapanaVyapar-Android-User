@@ -22,6 +22,8 @@ public class ProfileDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query =" create table ProfileDataTable (id integer primary key ,UserName text,FullName text,HouseDetails text,StreetDetails text,LandMark text,PinCode text,City text,State text,Countrytext text,MobileNo text)";
         db.execSQL(query);
+        db.execSQL("create table FavTable (id integer primary key,ObjectId text)");
+        db.execSQL("create table CartTable (id integer primary key,ObjectId text )");
     }
 
     @Override
@@ -87,5 +89,67 @@ public class ProfileDB extends SQLiteOpenHelper {
         Cursor cur = db.rawQuery("select * from ProfileDataTable",null);
 
         return cur;
+    }
+
+    public boolean insertToFavTable(String objectId){
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues c=new ContentValues();
+        c.put("ObjectId",objectId);
+        long r=db.insert("FavTable",null,c);
+        if(r==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    public boolean deleteFromFavTable(String objId){
+        SQLiteDatabase db =this.getWritableDatabase();
+        long numRows = DatabaseUtils.queryNumEntries(db, "FavTable");
+        if(numRows>0){
+           long r = db.delete("FavTable","ObjectId=?",new String[]{objId});
+           if(r==-1)return false;
+           else{
+               return true;
+           }
+
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
+    public boolean deleteFromCartTable(String objId){
+        SQLiteDatabase db =this.getWritableDatabase();
+        long numRows = DatabaseUtils.queryNumEntries(db, "CartTable");
+        if(numRows>0){
+            long r = db.delete("CartTable","ObjectId=?",new String[]{objId});
+            if(r==-1)return false;
+            else{
+                return true;
+            }
+
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public boolean insertToCartTable(String objectId){
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues c=new ContentValues();
+        c.put("ObjectId",objectId);
+        long r=db.insert("CartTable",null,c);
+        if(r==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

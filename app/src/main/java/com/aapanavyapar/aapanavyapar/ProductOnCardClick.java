@@ -63,6 +63,7 @@ public class ProductOnCardClick extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         assert getArguments() != null;
+        ProfileDB g = new ProfileDB(getContext());
         productData = (ProductData) getArguments().getSerializable("dataFill");
 
         productImage = view.findViewById(R.id.productoncardclick_image);
@@ -109,9 +110,11 @@ public class ProductOnCardClick extends Fragment {
                 if(isChecked) {
                     boolean res = new AddToFavWrapper().addToFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
+                    g.insertToFavTable(productData.getProductId());
                 } else {
                     boolean res = new RemoveFromFavWrapper().removeFromFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
+                    g.deleteFromFavTable(productData.getProductId());
                 }
             }
         });
@@ -122,9 +125,11 @@ public class ProductOnCardClick extends Fragment {
                 if(isChecked) {
                     boolean res = new AddToCartWrapper().addToCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
+                    g.insertToCartTable(productData.getProductId());
                 } else {
                     boolean res = new RemoveFromCartWrapper().removeFromCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
                     Toast.makeText(getContext(), "Result : " + res, Toast.LENGTH_LONG).show();
+                    g.deleteFromCartTable(productData.getProductId());
                 }
             }
         });
