@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class SearchShopOnCardClick extends Fragment {
+public class ShopOnCardClick extends Fragment {
 
 
-    public SearchShopOnCardClick() {
+    public ShopOnCardClick() {
 
     }
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aapanavyapar.aapanavyapar.ProductOnCardClick;
 import com.aapanavyapar.aapanavyapar.ProductSearchFragment;
 import com.aapanavyapar.aapanavyapar.R;
+import com.aapanavyapar.aapanavyapar.ShopOnCardClick;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
 
@@ -60,7 +61,7 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();
                 args.putSerializable("dataFill", shopCardData);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProductOnCardClick.class,args).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ShopOnCardClick.class,args).addToBackStack(null).commit();
             }
         });
     }
