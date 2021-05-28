@@ -1,11 +1,12 @@
 package com.aapanavyapar.serviceWrappers;
 
 import com.aapanavyapar.aapanavyapar.MainActivity;
+import com.aapanavyapar.aapanavyapar.services.Category;
 import com.aapanavyapar.aapanavyapar.services.GetCartRequest;
 import com.aapanavyapar.aapanavyapar.services.GetCartResponse;
 import com.aapanavyapar.aapanavyapar.services.ViewProviderServiceGrpc;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
-import com.aapanavyapar.viewData.CartProductData;
+import com.aapanavyapar.viewData.ProductData;
 
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -37,14 +38,22 @@ public class GetCartWrapper {
                 Iterator<GetCartResponse> getCartResponse = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).getCart(getCartRequest);
                 while(getCartResponse.hasNext()) {
                     GetCartResponse response = getCartResponse.next();
-                    CartProductData cartProductData = new CartProductData(
-                            response.getProducts().getPrimaryImage(),
-                            response.getProducts().getShopId(),
+                    ProductData productData = new ProductData(
+                            response.getProducts().getProductId(),
                             response.getProducts().getProductName(),
+                            response.getProducts().getShopId(),
                             "",
-                            response.getProducts().getLikes()
+                            response.getProducts().getPrimaryImage(),
+                            response.getProducts().getPrimaryImage(),
+                            response.getProducts().getCategoryList().toArray(new Category[0]),
+                            response.getProducts().getCategoryList().toArray(new Category[0]),
+                            response.getProducts().getLikes(),
+                            0,
+                            "",
+                            "",
+                            ""
                     );
-                    updater.updateRecycleView(cartProductData);
+                    updater.updateRecycleView(productData);
                 }
                 state = 1;
                 mChannel.shutdown();

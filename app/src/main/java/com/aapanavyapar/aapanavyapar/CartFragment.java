@@ -18,9 +18,6 @@ import com.aapanavyapar.adapter.CartProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
 import com.aapanavyapar.serviceWrappers.GetCartWrapper;
-import com.aapanavyapar.serviceWrappers.GetTrendingProductsWrapper;
-import com.aapanavyapar.serviceWrappers.GetTrendingShopsWrapper;
-import com.aapanavyapar.viewData.CartProductData;
 import com.aapanavyapar.viewData.ProductData;
 
 import java.util.ArrayList;
@@ -56,7 +53,7 @@ public class CartFragment extends Fragment {
         cartRecyclerView.setHasFixedSize(true);
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<CartProductData> cartProductData = new ArrayList<>();
+        ArrayList<ProductData> cartProductData = new ArrayList<>();
         CartProductAdapter cartProductAdapter = new CartProductAdapter(cartProductData, getContext());
         cartRecyclerView.setAdapter(cartProductAdapter);
 
@@ -69,7 +66,7 @@ public class CartFragment extends Fragment {
                     @Override
                     public void updateRecycleView(Object object) {
                         Log.d("CART_FRAGMENT", "Received Update");
-                        cartProductAdapter.addNewData((CartProductData) object);
+                        cartProductAdapter.addNewData((ProductData) object);
                     }
                 });
 

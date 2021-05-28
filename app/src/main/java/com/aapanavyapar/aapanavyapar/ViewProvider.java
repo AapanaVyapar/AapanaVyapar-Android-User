@@ -131,6 +131,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setItemHorizontalTranslationEnabled(true);
+        bottomNav.setSelectedItemId(R.id.av_profile);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
