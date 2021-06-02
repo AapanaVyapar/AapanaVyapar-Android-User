@@ -2,6 +2,7 @@ package com.aapanavyapar.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
         final ProductData shopCardData = shopDataList.get(position);
 
         Glide.with(this.context)
-                .load(shopCardData.getProductImage()).centerCrop().fitCenter().into(holder.shopImage);
+                .load(shopCardData.getShopPrimaryImage()).centerCrop().fitCenter().into(holder.shopImage);
 
 
         holder.shopName.setText(shopCardData.getShopName());

@@ -50,5 +50,5 @@ message GetShopResponse {
   OperationalHours operationalHours = 69;
   repeated RatingOfShop ratings = 70;
   string timestamp = 71;
-
+  float totalRating = 72;
 }

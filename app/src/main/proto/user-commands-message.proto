@@ -102,3 +102,15 @@ message InitUserRequest {
 message InitUserResponse {
   bool status = 133;
 }
+
+message RateShopRequest {
+  string token = 134;
+  string apiKey = 135;
+  string comment = 136;
+  Ratings ratings = 137;
+  string shopId = 138;
+}
+
+message RateShopResponse {
+  bool status = 138;
+}
