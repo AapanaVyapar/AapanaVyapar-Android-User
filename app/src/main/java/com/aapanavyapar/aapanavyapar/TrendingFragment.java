@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.adapter.ProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.interfaces.RecycleViewUpdater;
 import com.aapanavyapar.serviceWrappers.GetTrendingProductsWrapper;
 import com.aapanavyapar.serviceWrappers.GetTrendingShopsWrapper;
@@ -44,6 +45,7 @@ public class TrendingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
         // Inflate the layout for this fragment
@@ -98,7 +100,6 @@ public class TrendingFragment extends Fragment {
                         getTrendingProductsWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), new RecycleViewUpdater() {
                             @Override
                             public void updateRecycleView(Object object) {
-                                Log.d("TRENDING_FRAGMENT", "Received Update");
                                 productAdapter.addNewData((ProductData) object);
                             }
                         });

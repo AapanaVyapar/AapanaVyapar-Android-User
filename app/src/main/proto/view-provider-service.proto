@@ -33,4 +33,6 @@ service ViewProviderService {
 
   rpc InitUser(InitUserRequest) returns (InitUserResponse);
 
+  rpc RateShop(RateShopRequest) returns (RateShopResponse);
+
 }

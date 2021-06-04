@@ -10,6 +10,7 @@
         android:id="@+id/ps_search_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:iconifiedByDefault="false"
         app:layout_constraintEnd_toStartOf="@+id/ps_spinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,6 @@
         android:id="@+id/ps_spinner"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
         android:textAlignment="gravity"
         app:layout_constraintBottom_toTopOf="@+id/ps_map"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,9 +84,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ps_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:paddingBottom="56dp">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

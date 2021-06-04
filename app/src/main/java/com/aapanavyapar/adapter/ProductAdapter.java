@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -12,11 +14,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aapanavyapar.aapanavyapar.ProductOnCardClick;
+import com.aapanavyapar.aapanavyapar.ProductSearchFragment;
 import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.TrendingFragment;
+import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.dataModel.ViewDataModel;
+import com.aapanavyapar.serviceWrappers.AddToCartWrapper;
+import com.aapanavyapar.serviceWrappers.RemoveFromCartWrapper;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
 
@@ -26,10 +35,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     ArrayList<ProductData> productDataList;
     Context context;
+    DataModel dataModel;
+    ViewDataModel viewDataModel;
 
     public ProductAdapter(ArrayList<ProductData> productData, Context activity) {
         this.productDataList = productData;
         this.context = activity;
+        dataModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(DataModel.class);
+        viewDataModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(ViewDataModel.class);
     }
 
     @NonNull
@@ -52,8 +65,33 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.productLikes.setText(String.valueOf(productCardData.getProductLikes()));
         holder.ratingBar.setRating((float) productCardData.getShopRating());
 
+        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+
+        holder.addToCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    boolean res = new AddToCartWrapper().addToCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productCardData.getProductId());
+                    if(res) {
+                        viewDataModel.addToCart(context, productCardData.getProductId());
+                        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+                    }
+                } else {
+                    boolean res = new RemoveFromCartWrapper().removeFromCart(dataModel.getAuthToken(), dataModel.getRefreshToken(), productCardData.getProductId());
+                    if(res) {
+                        viewDataModel.DeleteFromCartList(context, productCardData.getProductId());
+                        holder.addToCart.setChecked(viewDataModel.IsProductInCartList(productCardData.getProductId()));
+                    }
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(v -> {
-            TrendingFragment.caller.interrupt();
+            if(TrendingFragment.caller != null)
+                TrendingFragment.caller.interrupt();
+            if(ProductSearchFragment.caller != null)
+                ProductSearchFragment.caller.interrupt();
+
             Toast.makeText(context , productCardData.getProductName(),Toast.LENGTH_LONG).show();
             AppCompatActivity activity = (AppCompatActivity)v.getContext();
             Bundle args = new Bundle();
@@ -88,6 +126,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         TextView productLikes;
         TextView shopName;
         RatingBar ratingBar;
+        CheckBox addToCart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +135,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             productLikes = itemView.findViewById(R.id.product_likes);
             shopName = itemView.findViewById(R.id.shopName);
             ratingBar = itemView.findViewById(R.id.shop_rating_bar);
+            addToCart = itemView.findViewById(R.id.add_to_cart);
         }
     }
 }

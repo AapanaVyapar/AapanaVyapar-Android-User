@@ -29,18 +29,16 @@
             </ImageView>
 
 
-            <ImageView
-                android:id="@+id/outside2_imageview"
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/add_to_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/productImage"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/bookmark_outline" />
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:button="@drawable/custom_checkbox_bookmark"
+                android:scaleType="fitXY" />
 
         </RelativeLayout>
 
@@ -135,7 +133,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="21dp"
-                    android:isIndicator="false"
+                    android:isIndicator="true"
                     android:numStars="5"
                     android:rating="5">
 

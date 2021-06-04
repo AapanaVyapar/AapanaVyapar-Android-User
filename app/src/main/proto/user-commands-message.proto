@@ -80,23 +80,37 @@ message GetProfileRequest {
 message GetProfileResponse {
   string userName = 124;
   Address address = 125;
+  repeated string favourite = 126;
+  repeated string cart = 127;
 }
 
 message UpdateAddressRequest {
-  string token = 126;
-  string apiKey = 127;
-  Address address = 128;
+  string token = 128;
+  string apiKey = 129;
+  Address address = 130;
 }
 
 message UpdateAddressResponse {
-  bool status = 129;
+  bool status = 131;
 }
 
 message InitUserRequest {
-  string token = 130;
-  string apiKey = 131;
+  string token = 132;
+  string apiKey = 133;
 }
 
 message InitUserResponse {
-  bool status = 132;
+  bool status = 133;
+}
+
+message RateShopRequest {
+  string token = 134;
+  string apiKey = 135;
+  string comment = 136;
+  Ratings ratings = 137;
+  string shopId = 138;
+}
+
+message RateShopResponse {
+  bool status = 138;
 }
