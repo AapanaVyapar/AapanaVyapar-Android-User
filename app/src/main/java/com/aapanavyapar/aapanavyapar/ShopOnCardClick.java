@@ -142,7 +142,7 @@ public class ShopOnCardClick extends Fragment {
 
         recyclerViewForShop = view.findViewById(R.id.recyclerview_for_searchshop_products);
         recyclerViewForShop.setHasFixedSize(true);
-        recyclerViewForShop.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewForShop.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         ArrayList<ProductData> productDataList = new ArrayList<>();
         shopProductAdapter = new ProductAdapter(productDataList, getContext());

@@ -1,45 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/major_component_gap"
     tools:context=".ShopOnCardClick">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+    <ScrollView
+        android:id="@+id/scrollview_searchshop_products"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <ScrollView
-            android:id="@+id/scrollview_searchshop_products"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/search_mapView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+            <ImageView
+                android:id="@+id/searched_shop_image"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.gms.maps.MapView
-                    android:id="@+id/search_mapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-                <ImageView
-                    android:id="@+id/searched_shop_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="400dp"
-                    android:src="@drawable/logoav" />
+                android:layout_height="400dp"
+                android:src="@drawable/logoav" />
 
             <RelativeLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/search_shop_name"
@@ -62,28 +57,30 @@
                     android:layout_marginEnd="21dp"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:rating="5"/>
+                    android:rating="5" />
 
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/shopkeeper_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shopkeeper Name"/>
+                android:text="Shopkeeper Name" />
+
             <TextView
                 android:id="@+id/operational_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Operational Hours"
                 android:fontFamily="@font/asap"
+                android:text="Operational Hours"
                 android:textColor="?android:textColor"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/business_information_heading"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Business Information"/>
+                android:layout_height="wrap_content"
+                android:text="Business Information" />
 
             <TextView
                 android:id="@+id/business_information_Description"
@@ -92,38 +89,19 @@
                 android:text="Business Information Description" />
 
 
-
-            <HorizontalScrollView
-                android:id="@+id/horizontal_view_for_recyclerview_for_searchshop_products"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_for_searchshop_products"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/product_linearlayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview_for_searchshop_products"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:orientation="horizontal">
-
-                    </androidx.recyclerview.widget.RecyclerView>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/search_shop_reviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reviews"
-                android:textStyle="bold"
                 android:fontFamily="@font/asap"
-                android:textColor="?android:textColor"/>
+                android:text="Reviews"
+                android:textColor="?android:textColor"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_shop_comment_recyclerview"
@@ -131,42 +109,44 @@
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
-                <RelativeLayout
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/commentBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                     <EditText
-                         android:id="@+id/commentBox"
-                        android:padding="10dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:hint="Post Your Feedback"/>
-                     <requestFocus/>
+                    android:layout_height="wrap_content"
+                    android:hint="Post Your Feedback"
+                    android:padding="10dp" />
 
-                    <RatingBar
-                        android:id="@+id/commentRating"
-                        style="@style/RatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="34dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_toEndOf="@+id/commentBox"
-                        android:isIndicator="false"
-                        android:stepSize="1"
-                        android:numStars="5"/>
+                <requestFocus />
 
-                    <ImageButton
-                        android:id="@+id/commentButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="80dp"
-                        android:layout_toEndOf="@+id/commentRating"
-                        android:src="@drawable/send_comment">
+                <RatingBar
+                    android:id="@+id/commentRating"
+                    style="@style/RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_toEndOf="@+id/commentBox"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:stepSize="1" />
 
-                    </ImageButton>
-                </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageButton
+                    android:id="@+id/commentButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="80dp"
+                    android:layout_toEndOf="@+id/commentRating"
+                    android:src="@drawable/send_comment">
+
+                </ImageButton>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
