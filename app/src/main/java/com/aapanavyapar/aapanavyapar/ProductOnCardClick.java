@@ -107,7 +107,7 @@ public class ProductOnCardClick extends Fragment {
                 .into(productImage);
 
         productName.setText(getProductInfo.getResponse().getProductName());
-        price.setText(String.valueOf(getProductInfo.getResponse().getPrice()));
+        price.setText(String.valueOf(getProductInfo.getResponse().getPrice()*100));
         availableStock.setText(String.valueOf(getProductInfo.getResponse().getStock()));
         shippingInfo.setText(getProductInfo.getResponse().getShippingInfo());
         description.setText(getProductInfo.getResponse().getProductDescription());

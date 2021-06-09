@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/searched_shop_image"
-                android:layout_width="wrap_content"
-                android:layout_height="400dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:src="@drawable/logoav" />
 
             <RelativeLayout
@@ -42,9 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:fontFamily="@font/asap"
-                    android:text="Shop Name"
+                    android:fontFamily="@font/asap_medium"
                     android:textColor="?android:textColor"
+                    android:text="Shop Name"
                     android:textStyle="bold" />
 
                 <RatingBar
@@ -71,16 +71,17 @@
                 android:id="@+id/operational_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/asap"
-                android:text="Operational Hours"
+                android:fontFamily="@font/asap_medium"
                 android:textColor="?android:textColor"
-                android:textStyle="bold" />
+                android:text="Operational Hours" />
 
             <TextView
                 android:id="@+id/business_information_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Business Information" />
+                android:text="Business Information"
+                android:fontFamily="@font/asap_medium"
+                android:textColor="?android:textColor" />
 
             <TextView
                 android:id="@+id/business_information_Description"
@@ -98,10 +99,9 @@
                 android:id="@+id/search_shop_reviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/asap"
                 android:text="Reviews"
-                android:textColor="?android:textColor"
-                android:textStyle="bold" />
+                android:fontFamily="@font/asap_medium"
+                android:textColor="?android:textColor" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_shop_comment_recyclerview"
