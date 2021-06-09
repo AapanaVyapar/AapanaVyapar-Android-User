@@ -40,6 +40,7 @@ public class ProductOnCardClick extends Fragment {
     TextView deliveryCharges;
     TextView shippingInfo;
     TextView description;
+    TextView offer;
     CheckBox bookmark, addToFavourite;
 
     DataModel dataModel;
@@ -83,6 +84,7 @@ public class ProductOnCardClick extends Fragment {
         shippingInfo = view.findViewById(R.id.productoncardclick_shipping_info);
         bookmark = view.findViewById(R.id.productoncardclick_bookmark_image);
         addToFavourite = view.findViewById(R.id.productoncardclick_favourite_image);
+        offer = view.findViewById(R.id.productoncardclick_offer);
 
         int res = 2;
         GetProductInfo getProductInfo = new GetProductInfo();
@@ -111,6 +113,7 @@ public class ProductOnCardClick extends Fragment {
         availableStock.setText(String.valueOf(getProductInfo.getResponse().getStock()));
         shippingInfo.setText(getProductInfo.getResponse().getShippingInfo());
         description.setText(getProductInfo.getResponse().getProductDescription());
+        offer.setText(String.valueOf(getProductInfo.getResponse().getOffer()) + " %");
 
         addToFavourite.setChecked(viewDataModel.IsProductInLikeList(productData.getProductId()));
         bookmark.setChecked(viewDataModel.IsProductInCartList(productData.getProductId()));

@@ -195,9 +195,9 @@
         android:layout_marginTop="5dp"
         android:text="10%"
         app:layout_constraintBottom_toTopOf="@+id/first_line"
-        app:layout_constraintStart_toStartOf="productoncardclick_offer_head"
         app:layout_constraintStart_toEndOf="@+id/productoncardclick_offer_head"
         app:layout_constraintTop_toBottomOf="@+id/productoncardclick_deliverycharges_text" />
+
     <Button
         android:id="@+id/productoncardclick_button_buy"
         android:layout_width="wrap_content"
