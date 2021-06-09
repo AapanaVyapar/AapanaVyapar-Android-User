@@ -119,12 +119,13 @@
                 android:id="@+id/editTextNumber"
                 android:layout_width="44dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="number"
-                android:textSize="17dp"
                 android:fontFamily="@font/asap"
+                android:inputType="number"
                 android:textColor="?android:textColorPrimary"
+                android:textSize="17dp"
                 app:layout_constraintStart_toEndOf="@+id/productoncardclick_quantity_text"
                 app:layout_constraintTop_toTopOf="@+id/productoncardclick_quantity_text" />
 

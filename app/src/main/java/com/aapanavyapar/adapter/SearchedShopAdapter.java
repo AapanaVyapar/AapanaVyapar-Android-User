@@ -21,6 +21,7 @@ import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.ShopOnCardClick;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
         final ProductData shopCardData = shopDataList.get(position);
 
         Glide.with(this.context)
-                .load(shopCardData.getShopPrimaryImage()).centerCrop().fitCenter().into(holder.shopImage);
+                .load(shopCardData.getShopPrimaryImage()).apply(new RequestOptions().override(1000, 1000)).centerCrop().into(holder.shopImage);
 
 
         holder.shopName.setText(shopCardData.getShopName());

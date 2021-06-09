@@ -18,6 +18,7 @@ import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.TrendingFragment;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -46,8 +47,8 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
         Glide.with(this.context)
                 .load(cartProductCard.getProductImage())
+                .apply(new RequestOptions().override(1000, 1000))
                 .centerCrop()
-                .fitCenter()
                 .into(holder.cartProductImage);
 
         holder.cartProductName.setText(cartProductCard.getProductName());
