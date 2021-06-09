@@ -47,36 +47,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/ps_search_title" />
 
             <LinearLayout
-                android:id="@+id/ps_chip_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/ps_chipgroup"
-                            style="@style/CustomChipStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            app:closeIconEnabled="true"
-                            app:singleSelection="true">
-
-                        </com.google.android.material.chip.ChipGroup>
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

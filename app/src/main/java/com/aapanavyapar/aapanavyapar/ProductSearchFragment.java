@@ -110,27 +110,7 @@ public class ProductSearchFragment extends Fragment {
             }
         });
 
-        //###
-        //###   Chips 
-        //### 
-
         Toast.makeText(getContext(), dataModel.getRefreshToken(),Toast.LENGTH_SHORT).show();
-        String[] arr = {"Food", "Clothes", "Electronics", "Devotional", "Sports", "Cosmetics","Hardware"};
-
-        chipGroup = view.findViewById(R.id.ps_chipgroup);
-        for (int i = 0; i < arr.length; i++) {
-            chip = new Chip(getContext());
-            chip.setText(arr[i]);
-            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(getContext(), null, 0, R.style.CustomChipStyle);
-            chip.setChipDrawable(chipDrawable);
-            chip.setId(i);
-            chip.setOnClickListener(v -> {
-                Chip chipClick = v.findViewById(v.getId());
-                Toast.makeText(getContext(), chipClick.getText(), Toast.LENGTH_LONG).show();
-            });
-            chipGroup.addView(chip);
-        }
-
         spinner = view.findViewById(R.id.ps_spinner);
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, choice);
