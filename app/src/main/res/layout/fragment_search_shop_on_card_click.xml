@@ -10,11 +10,11 @@
 
     <ScrollView
         android:id="@+id/scrollview_searchshop_products"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -110,9 +110,10 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/commentBox"
@@ -128,10 +129,8 @@
                     style="@style/RatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="34dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_toEndOf="@+id/commentBox"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:stepSize="1" />
@@ -140,13 +139,10 @@
                     android:id="@+id/commentButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="80dp"
-                    android:layout_toEndOf="@+id/commentRating"
                     android:src="@drawable/send_comment">
 
                 </ImageButton>
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
