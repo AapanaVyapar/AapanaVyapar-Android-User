@@ -36,6 +36,7 @@ public class GetProductsBySearchWrapper {
     public void getProductBySearch(String authToken, String refreshToken, String search, RecycleViewUpdater updater) {
 
         if (viewDataModel.getTrendingShopsMap() == null || viewDataModel.getTrendingShopsMap().size() == 0){
+            mChannel.shutdownNow();
             return;
         }
 

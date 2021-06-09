@@ -8,6 +8,8 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
 
+        <item name="background">@color/secondary</item>
+
         <item name="android:textColor" tools:targetApi="l">@color/heading</item>
 
         <item name="android:textColorPrimary" tools:targetApi="l">@color/primaryTextColor</item>

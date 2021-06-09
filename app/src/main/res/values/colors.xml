@@ -16,10 +16,10 @@
 
 
     <color name="darkPrimary">#0075ff</color>
-    <color name="darkPrimaryTextColor">#E80F70</color>
+    <color name="darkPrimaryTextColor">#FFFFFF</color>
 
     <color name="darkSecondary">#03a9f4</color>
-    <color name="darkSecondaryTextColor">#C51162</color>
+    <color name="darkSecondaryTextColor">#FFFFFF</color>
 
     <color name="darkNavigationBarColor">#B7393838</color>
     <color name="darkWindowBackground">#101010</color>
@@ -30,5 +30,7 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+
+    <color name="transparent">#00000000</color>
 
 </resources>

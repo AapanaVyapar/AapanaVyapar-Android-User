@@ -24,6 +24,18 @@ public class ViewDataModel extends ViewModel {
         this.trendingShopsMap = new HashMap<>();
         this.cartList = new ArrayList<>();
         this.likeList = new ArrayList<>();
+        this.userName = "";
+        this.address = Address.newBuilder()
+                .setFullName("")
+                .setHouseDetails("")
+                .setStreetDetails("")
+                .setLandMark("")
+                .setPinCode("")
+                .setCity("")
+                .setState("")
+                .setCountry("")
+                .setPhoneNo("")
+                .build();
     }
 
     public void addShopToMap(GetTrendingShopsResponse response) {

@@ -49,7 +49,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-        ProfileDB profileDB = new ProfileDB(getContext());
 
         userName = view.findViewById(R.id.profile_user_name_input);
         fullName = view.findViewById(R.id.profile_user_full_name_input);
@@ -117,34 +116,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        if(profileDB.profileInfo()){
-            Cursor t = profileDB.getInfo();
-            while(t.moveToNext()) {
-                userName.setText(t.getString(1));
-                fullName.setText(t.getString(2));
-                houseDetails.setText(t.getString(3));
-                streetDetails.setText(t.getString(4));
-                landMark.setText(t.getString(5));
-                pinCode.setText(t.getString(6));
-                city.setText(t.getString(7));
-                state.setText(t.getString(8));
-                country.setText(t.getString(9));
-                mobileNo.setText(t.getString(10));
-            }
-            t.close();
-        }
-        else {
-            userName.setText("");
-            fullName.setText("");
-            houseDetails.setText("");
-            streetDetails.setText("");
-            landMark.setText("");
-            pinCode.setText("");
-            city.setText("");
-            state.setText("");
-            country.setText("");
-            mobileNo.setText("");
-        }
+        userName.setText(viewDataModel.getUserName());
+        fullName.setText(viewDataModel.getAddress().getFullName());
+        houseDetails.setText(viewDataModel.getAddress().getHouseDetails());
+        streetDetails.setText(viewDataModel.getAddress().getStreetDetails());
+        landMark.setText(viewDataModel.getAddress().getLandMark());
+        pinCode.setText(viewDataModel.getAddress().getPinCode());
+        city.setText(viewDataModel.getAddress().getCity());
+        state.setText(viewDataModel.getAddress().getState());
+        country.setText(viewDataModel.getAddress().getCountry());
+        mobileNo.setText(viewDataModel.getAddress().getPhoneNo());
+
     }
 
 //    public Boolean checkFieldEmpty(){
