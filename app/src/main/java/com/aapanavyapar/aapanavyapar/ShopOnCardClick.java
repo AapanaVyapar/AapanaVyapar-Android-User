@@ -1,5 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +17,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.GetShopResponse;
+import com.aapanavyapar.aapanavyapar.services.OperationalHours;
 import com.aapanavyapar.aapanavyapar.services.RatingOfShop;
 import com.aapanavyapar.aapanavyapar.services.Ratings;
 import com.aapanavyapar.adapter.CommentAdapter;
@@ -46,6 +49,7 @@ public class ShopOnCardClick extends Fragment {
 
     private GoogleMap googleMap;
 
+    OperationalHours operationalHours;
     public static Thread callerProduct = null;
 
     ProductAdapter shopProductAdapter;
@@ -62,6 +66,9 @@ public class ShopOnCardClick extends Fragment {
     EditText ratingCommentBox;
     ImageButton ratingSendComment;
     RatingBar ratingRatingBar;
+
+    TextView day1, day2, day3, day4, day5, day6, day7;
+    TextView time;
 
 
     public ShopOnCardClick() {
@@ -115,6 +122,18 @@ public class ShopOnCardClick extends Fragment {
         ratingRatingBar = view.findViewById(R.id.commentRating);
         ratingSendComment = view.findViewById(R.id.commentButton);
 
+        day1 = view.findViewById(R.id.sun);
+        day2 = view.findViewById(R.id.mon);
+        day3 = view.findViewById(R.id.tue);
+        day4 = view.findViewById(R.id.wed);
+        day5 = view.findViewById(R.id.thu);
+        day6 = view.findViewById(R.id.fri);
+        day7 = view.findViewById(R.id.sat);
+        time = view.findViewById(R.id.time);
+
+
+
+
         GetShopDetailsWrapper detailsWrapper = new GetShopDetailsWrapper();
         detailsWrapper.getShopDetails(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId());
         GetShopResponse shopResponse = detailsWrapper.getShopResponse();
@@ -132,6 +151,62 @@ public class ShopOnCardClick extends Fragment {
         shopKeeperName.setText(shopResponse.getShopKeeperName());
         businessInformation.setText(shopResponse.getBusinessInformation());
         ratingBar.setRating(shopResponse.getTotalRating());
+
+        operationalHours = shopResponse.getOperationalHours();
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView selectedDay = (TextView)v;
+                String day = selectedDay.getText().toString();
+
+                day1.setTypeface(day1.getTypeface(), Typeface.NORMAL);
+                day2.setTypeface(day2.getTypeface(), Typeface.NORMAL);
+                day3.setTypeface(day3.getTypeface(), Typeface.NORMAL);
+                day4.setTypeface(day4.getTypeface(), Typeface.NORMAL);
+                day5.setTypeface(day5.getTypeface(), Typeface.NORMAL);
+                day6.setTypeface(day6.getTypeface(), Typeface.NORMAL);
+                day7.setTypeface(day7.getTypeface(), Typeface.NORMAL);
+                switch(day){
+                    case "Sun":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getSunday(0) + " " + operationalHours.getSunday(1));
+                        break;
+                    case "Mon":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getMonday(0) + " " + operationalHours.getMonday(1));
+                        break;
+                    case "Tue":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getTuesday(0) + " " + operationalHours.getTuesday(1));
+                        break;
+                    case "Wed":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getWednesday(0) + " " + operationalHours.getWednesday(1));
+                        break;
+                    case "Thu":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getThursday(0) + " " + operationalHours.getThursday(1));
+                        break;
+                    case "Fri":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getFriday(0) + " " + operationalHours.getFriday(1));
+                        break;
+                    case "Sat":
+                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                        time.setText(operationalHours.getSaturday(0) + " " + operationalHours.getSaturday(1));
+                        break;
+                }
+
+            }
+        };
+
+        day1.setOnClickListener(onClickListener);
+        day2.setOnClickListener(onClickListener);
+        day3.setOnClickListener(onClickListener);
+        day4.setOnClickListener(onClickListener);
+        day5.setOnClickListener(onClickListener);
+        day6.setOnClickListener(onClickListener);
+        day7.setOnClickListener(onClickListener);
 
 
         recyclerViewForComment = view.findViewById(R.id.search_shop_comment_recyclerview);

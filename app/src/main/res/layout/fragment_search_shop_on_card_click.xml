@@ -93,6 +93,97 @@
                     android:textColor="?android:textColor"
                     android:text="Operational Hours" />
 
+                <LinearLayout
+                    android:id="@+id/week_linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_alignParentTop="@+id/operational_hours">
+
+                <TextView
+                    android:id="@+id/sun"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/asap"
+                    android:textSize="17dp"
+                    android:text="Sun"/>
+
+                    <TextView
+                        android:id="@+id/mon"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="@+id/sun"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_margin="10dp"
+                        android:text="Mon"/>
+
+                    <TextView
+                        android:id="@+id/tue"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_alignParentRight="@+id/mon"
+                        android:text="Tue"/>
+
+                    <TextView
+                        android:id="@+id/wed"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_alignParentRight="@+id/tue"
+                        android:text="Wed"/>
+
+                    <TextView
+                        android:id="@+id/thu"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_alignParentRight="@+id/wed"
+                        android:text="Thu"/>
+                    <TextView
+                        android:id="@+id/fri"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_alignParentRight="@+id/thu"
+                        android:text="Fri"/>
+                    <TextView
+                        android:id="@+id/sat"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="17dp"
+                        android:layout_alignParentRight="@+id/fri"
+                        android:text="Sat"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_alignParentTop="@+id/week_linearLayout">
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:fontFamily="@font/asap" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/business_information_heading"
                     android:layout_width="wrap_content"
