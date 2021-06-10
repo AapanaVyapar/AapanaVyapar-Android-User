@@ -37,9 +37,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(@NonNull CommentAdapter.ViewHolder holder, int position) {
         final RatingOfShop ratingOfShop = ratingOfShopList.get(position);
 
+        int rating = ratingOfShop.getRating().getNumber();
+        if(rating != 0){
+            rating ++;
+        }
+
         holder.userName.setText(ratingOfShop.getUserName());
         holder.comment.setText(ratingOfShop.getComment());
-        holder.ratingBar.setRating(ratingOfShop.getRating().getNumber());
+        holder.ratingBar.setRating(rating);
         holder.timeStamp.setText(ratingOfShop.getTimestamp().substring(0, 17));
 
 //        String pattern = "yyyy-MM-dd HH:mm:ss.SSS";

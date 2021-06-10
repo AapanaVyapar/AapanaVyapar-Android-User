@@ -140,42 +140,47 @@
                     android:layout_height="wrap_content">
 
                 </androidx.recyclerview.widget.RecyclerView>
-
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:fontFamily="@font/asap"
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
 
                     <EditText
                         android:id="@+id/commentBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Post Your Feedback"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <requestFocus />
 
                     <RatingBar
                         android:id="@+id/commentRating"
                         style="@style/RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
                         android:isIndicator="false"
                         android:numStars="5"
-                        android:stepSize="1" />
+                        android:stepSize="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/commentButton"
+                        app:layout_constraintStart_toEndOf="@+id/commentBox"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
                         android:id="@+id/commentButton"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/send_comment">
+                        android:src="@drawable/send_comment"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                     </ImageButton>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

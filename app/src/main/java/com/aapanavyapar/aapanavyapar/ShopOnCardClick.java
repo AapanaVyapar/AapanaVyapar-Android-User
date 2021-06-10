@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.GetShopResponse;
+import com.aapanavyapar.aapanavyapar.services.RatingOfShop;
+import com.aapanavyapar.aapanavyapar.services.Ratings;
 import com.aapanavyapar.adapter.CommentAdapter;
 import com.aapanavyapar.adapter.ProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
@@ -169,7 +171,7 @@ public class ShopOnCardClick extends Fragment {
             public void onClick(View v) {
                 AddRatingWrapper ratingWrapper = new AddRatingWrapper();
                 Toast.makeText(getContext(), "Rating :" + ratingRatingBar.getRating(), Toast.LENGTH_LONG).show();
-                ratingWrapper.addRating(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), ratingCommentBox.getText().toString(), (int) ratingRatingBar.getRating());
+                ratingWrapper.addRating(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), ratingCommentBox.getText().toString(), Math.round(ratingRatingBar.getRating()));
                 ratingCommentBox.setText("");
             }
         });
