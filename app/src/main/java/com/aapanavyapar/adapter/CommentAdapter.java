@@ -45,7 +45,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         holder.userName.setText(ratingOfShop.getUserName());
         holder.comment.setText(ratingOfShop.getComment());
         holder.ratingBar.setRating(rating);
-        holder.timeStamp.setText(ratingOfShop.getTimestamp().substring(0, 17));
+        holder.timeStamp.setText(ratingOfShop.getTimestamp().substring(0, 16));
 
 //        String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);

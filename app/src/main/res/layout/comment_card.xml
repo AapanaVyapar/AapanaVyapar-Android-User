@@ -6,23 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_shop_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp">
 
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/search_shop_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="10dp">
-
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
-
                 <ImageView
                     android:id="@+id/username_logo"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile" />
@@ -31,51 +34,42 @@
                     android:id="@+id/username_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/username_logo"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="0dp"
-                    android:text="User Name"
                     android:fontFamily="@font/asap"
-                    android:textColor="?android:textColor"/>
+                    android:text="User Name"
+                    android:textColor="?android:textColor" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/shop_comments"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="38dp"
+                android:text="Comment" />
 
-                <TextView
-                    android:id="@+id/shop_comments"
-                    android:layout_width="254dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="38dp"
-                    android:text="Comment" />
+            <RatingBar
+                android:id="@+id/searched_shop_rating_bar"
+                style="@style/RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/shop_comments"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="175dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="5">
 
-                <RatingBar
-                    android:id="@+id/searched_shop_rating_bar"
-                    style="@style/RatingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/shop_comments"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="175dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:rating="5">
+            </RatingBar>
 
-                </RatingBar>
-
-                <TextView
-                    android:id="@+id/comment_date_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/searched_shop_rating_bar"
-                    android:layout_alignParentEnd="true"
-                    android:text="12 Jan 2021 14:12:00" />
-
-
-            </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/comment_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/searched_shop_rating_bar"
+                android:layout_alignParentEnd="true"
+                android:text="12 Jan 2021 14:12:00" />
 
 
-
-
-
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

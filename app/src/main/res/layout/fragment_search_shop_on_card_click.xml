@@ -101,14 +101,14 @@
                     android:layout_gravity="center"
                     android:layout_alignParentTop="@+id/operational_hours">
 
-                <TextView
-                    android:id="@+id/sun"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/asap"
-                    android:textSize="17dp"
-                    android:text="Sun"/>
+                    <TextView
+                        android:id="@+id/sun"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/asap"
+                        android:textSize="16dp"
+                        android:text="Sun"/>
 
                     <TextView
                         android:id="@+id/mon"
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_alignParentRight="@+id/sun"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_margin="10dp"
                         android:text="Mon"/>
 
@@ -126,7 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_margin="10dp"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_alignParentRight="@+id/mon"
                         android:text="Tue"/>
 
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_margin="10dp"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_alignParentRight="@+id/tue"
                         android:text="Wed"/>
 
@@ -146,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_margin="10dp"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_alignParentRight="@+id/wed"
                         android:text="Thu"/>
                     <TextView
@@ -155,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_margin="10dp"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_alignParentRight="@+id/thu"
                         android:text="Fri"/>
                     <TextView
@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_margin="10dp"
                         android:fontFamily="@font/asap"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:layout_alignParentRight="@+id/fri"
                         android:text="Sat"/>
                 </LinearLayout>
@@ -180,6 +180,7 @@
                         android:id="@+id/time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="17dp"
                         android:text="Time"
                         android:fontFamily="@font/asap" />
                 </LinearLayout>

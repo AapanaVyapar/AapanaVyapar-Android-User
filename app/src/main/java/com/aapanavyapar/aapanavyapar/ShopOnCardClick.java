@@ -47,6 +47,7 @@ import java.util.ArrayList;
 
 public class ShopOnCardClick extends Fragment {
 
+    int normal = 16, selected = 20;
     private GoogleMap googleMap;
 
     OperationalHours operationalHours;
@@ -131,9 +132,6 @@ public class ShopOnCardClick extends Fragment {
         day7 = view.findViewById(R.id.sat);
         time = view.findViewById(R.id.time);
 
-
-
-
         GetShopDetailsWrapper detailsWrapper = new GetShopDetailsWrapper();
         detailsWrapper.getShopDetails(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId());
         GetShopResponse shopResponse = detailsWrapper.getShopResponse();
@@ -153,6 +151,10 @@ public class ShopOnCardClick extends Fragment {
         ratingBar.setRating(shopResponse.getTotalRating());
 
         operationalHours = shopResponse.getOperationalHours();
+        time.setText(operationalHours.getSunday(0) + " " + operationalHours.getSunday(1));
+        day1.setTextSize(selected);
+        day1.setTypeface(day1.getTypeface(), Typeface.BOLD);
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,33 +168,40 @@ public class ShopOnCardClick extends Fragment {
                 day5.setTypeface(day5.getTypeface(), Typeface.NORMAL);
                 day6.setTypeface(day6.getTypeface(), Typeface.NORMAL);
                 day7.setTypeface(day7.getTypeface(), Typeface.NORMAL);
+
+                day1.setTextSize(normal);
+                day2.setTextSize(normal);
+                day3.setTextSize(normal);
+                day4.setTextSize(normal);
+                day5.setTextSize(normal);
+                day6.setTextSize(normal);
+                day7.setTextSize(normal);
+
+                selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                selectedDay.setTextSize(selected);
+
+                Toast.makeText(getContext(), "Selected : " + day, Toast.LENGTH_SHORT).show();
+
                 switch(day){
                     case "Sun":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getSunday(0) + " " + operationalHours.getSunday(1));
                         break;
                     case "Mon":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getMonday(0) + " " + operationalHours.getMonday(1));
                         break;
                     case "Tue":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getTuesday(0) + " " + operationalHours.getTuesday(1));
                         break;
                     case "Wed":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getWednesday(0) + " " + operationalHours.getWednesday(1));
                         break;
                     case "Thu":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getThursday(0) + " " + operationalHours.getThursday(1));
                         break;
                     case "Fri":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getFriday(0) + " " + operationalHours.getFriday(1));
                         break;
                     case "Sat":
-                        selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
                         time.setText(operationalHours.getSaturday(0) + " " + operationalHours.getSaturday(1));
                         break;
                 }
