@@ -123,9 +123,8 @@
                 android:layout_marginTop="4dp"
                 android:ems="10"
                 android:fontFamily="@font/asap"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="17dp"
                 app:layout_constraintStart_toEndOf="@+id/productoncardclick_quantity_text"
                 app:layout_constraintTop_toTopOf="@+id/productoncardclick_quantity_text" />
 
