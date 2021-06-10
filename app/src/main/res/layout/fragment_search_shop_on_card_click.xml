@@ -238,29 +238,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
                     <EditText
                         android:id="@+id/commentBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Post Your Feedback"
-                        android:padding="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/commentRating"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
 
                     <RatingBar
                         android:id="@+id/commentRating"
                         style="@style/RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
                         android:isIndicator="false"
+                        android:progressTint="?colorPrimary"
                         android:numStars="5"
                         android:stepSize="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/commentButton"
-                        app:layout_constraintStart_toEndOf="@+id/commentBox"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/commentBox" />
 
                     <ImageButton
                         android:id="@+id/commentButton"
@@ -268,10 +269,11 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/send_comment"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     </ImageButton>
+
+                    <requestFocus android:id="@+id/requestFocus" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </LinearLayout>
