@@ -251,7 +251,7 @@ public class ProductSearchFragment extends Fragment {
         @Override
         public void onMapReady(@NonNull GoogleMap gMap) {
             googleMap = gMap;
-            Toast.makeText(getContext(), "MAP", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(), "MAP", Toast.LENGTH_LONG).show();
             if(viewDataModel.getTrendingShopsMap() != null && viewDataModel.getTrendingShopsMap().size() > 0) {
                 for(String shopId : viewDataModel.getTrendingShopsMap().keySet()){
 
