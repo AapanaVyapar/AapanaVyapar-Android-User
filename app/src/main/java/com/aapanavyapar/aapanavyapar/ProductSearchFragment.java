@@ -219,11 +219,6 @@ public class ProductSearchFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         caller.start();
         try {
             caller.join();

@@ -260,6 +260,14 @@ public class ShopOnCardClick extends Fragment {
             }
         });
 
+        if(callerProduct != null) {
+            callerProduct.start();
+            try {
+                callerProduct.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -275,19 +283,6 @@ public class ShopOnCardClick extends Fragment {
 
         }
     };
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(callerProduct != null) {
-            callerProduct.start();
-            try {
-                callerProduct.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public void onStop() {

@@ -157,27 +157,17 @@ public class TrendingFragment extends Fragment {
                                     productAdapter.addNewData(productData);
                                 }
                             }
-
-//                            if(currentActiveChip.equals("ALL")) {
-//                                productAdapter.addNewData(productData);
-//                            }
                         }
                     });
                 }
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         caller.start();
         try {
             caller.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

@@ -120,14 +120,6 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
 
         setContentView(R.layout.view_provider);
         Toast.makeText(this.getApplicationContext(), "View Provider...", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        updateGPS();
-        startLocationUpdates();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setItemHorizontalTranslationEnabled(true);
@@ -156,6 +148,14 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        updateGPS();
+        startLocationUpdates();
     }
 
     @Override

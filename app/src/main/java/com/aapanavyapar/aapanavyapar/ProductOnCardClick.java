@@ -123,12 +123,14 @@ public class ProductOnCardClick extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     boolean res = new AddToFavWrapper().addToFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    if(res)
+                    if(res) {
                         viewDataModel.addToLike(getContext(), productData.getProductId());
+                    }
                 } else {
                     boolean res = new RemoveFromFavWrapper().removeFromFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    if(res)
-                        viewDataModel.DeleteFromLikeList(getContext(),productData.getProductId());
+                    if(res) {
+                        viewDataModel.DeleteFromLikeList(getContext(), productData.getProductId());
+                    }
                 }
             }
         });

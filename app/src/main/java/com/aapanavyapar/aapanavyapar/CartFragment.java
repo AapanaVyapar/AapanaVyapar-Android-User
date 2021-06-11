@@ -72,6 +72,13 @@ public class CartFragment extends Fragment {
 
             }
         });
+
+        caller.start();
+        try {
+            caller.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -80,17 +87,6 @@ public class CartFragment extends Fragment {
         caller.interrupt();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        caller.start();
-        try {
-            caller.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public void onDestroyView() {
