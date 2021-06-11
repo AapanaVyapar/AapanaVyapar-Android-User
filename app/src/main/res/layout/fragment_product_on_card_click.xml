@@ -12,66 +12,69 @@
     tools:context=".ProductOnCardClick">
 
     <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/customborder"
-                    tools:ignore="MissingConstraints">
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customborder"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
 
 
-                    <RelativeLayout
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/productoncardclick_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <CheckBox
+                        android:id="@+id/productoncardclick_favourite_image"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="5dp"
+                        android:button="@drawable/custom_checkbox_heart"
+                        android:scaleType="fitXY" />
 
-                        <ImageView
-                            android:id="@+id/productoncardclick_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                    <CheckBox
+                        android:id="@+id/productoncardclick_bookmark_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/productoncardclick_image"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="0dp"
+                        android:button="@drawable/custom_checkbox_bookmark"
+                        android:scaleType="fitXY" />
 
-                        <CheckBox
-                            android:id="@+id/productoncardclick_favourite_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/productoncardclick_image"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginEnd="5dp"
-                            android:scaleType="fitXY"
-                            android:button="@drawable/custom_checkbox_heart" />
-
-                        <CheckBox
-                            android:id="@+id/productoncardclick_bookmark_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/productoncardclick_image"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="60dp"
-                            android:layout_marginEnd="0dp"
-                            android:scaleType="fitXY"
-                            android:button="@drawable/custom_checkbox_bookmark" />
-
-                    </RelativeLayout>
-              </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/productoncardclick_productname_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Product Name"
                 android:fontFamily="@font/asap"
+                android:text="Product Name"
                 android:textColor="?android:textColor"
-                android:textStyle="bold"
                 android:textSize="25dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -108,23 +111,22 @@
                 android:layout_below="@+id/productoncardclick_productname_text"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/asap"
-                android:textStyle="bold"
+                android:text="Quantity"
                 android:textColor="?android:textColor"
                 android:textSize="17dp"
-                android:text="Quantity"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productname_text" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/productoncardclick_quantity"
                 android:layout_width="44dp"
-                android:layout_height="18dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
                 android:ems="10"
                 android:fontFamily="@font/asap"
                 android:inputType="numberDecimal"
-                android:textColor="?android:textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/productoncardclick_quantity_text"
                 app:layout_constraintStart_toEndOf="@+id/productoncardclick_quantity_text"
                 app:layout_constraintTop_toTopOf="@+id/productoncardclick_quantity_text" />
 
@@ -163,11 +165,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Delivery Charges : "
-                android:textSize="17dp"
                 android:fontFamily="@font/asap"
-                android:textStyle="bold"
+                android:text="Delivery Charges : "
                 android:textColor="?android:textColor"
+                android:textSize="17dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_quantity_text" />
 
@@ -176,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/asap"
-                android:text="500Paise"
+                android:text="5 ₹"
                 android:textSize="17dp"
                 app:layout_constraintStart_toEndOf="@+id/productoncardclick_deliverycharges_text"
                 app:layout_constraintTop_toTopOf="@+id/productoncardclick_deliverycharges_text" />
@@ -187,10 +189,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/asap"
-                android:textStyle="bold"
-                android:textSize="17dp"
                 android:text="Offer :"
                 android:textColor="?android:textColor"
+                android:textSize="17dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_deliverycharges_text" />
 
@@ -221,8 +223,8 @@
                 android:id="@+id/first_line"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?android:textColor"
                 android:layout_marginTop="24dp"
+                android:background="?android:textColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -233,11 +235,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Description"
-                android:textSize="17dp"
                 android:fontFamily="@font/asap"
-                android:textStyle="bold"
+                android:text="Description"
                 android:textColor="?android:textColor"
+                android:textSize="17dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/first_line" />
 
@@ -248,8 +250,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/asap"
-                android:textSize="17dp"
                 android:text="Product Description"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_description_text_heading" />
 
@@ -269,11 +271,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Shipping Info"
-                android:textSize="17dp"
                 android:fontFamily="@font/asap"
-                android:textStyle="bold"
+                android:text="Shipping Info"
                 android:textColor="?android:textColor"
+                android:textSize="17dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/second_line" />
 
@@ -284,8 +286,8 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/asap"
-                android:textSize="17dp"
                 android:text="Shipping Info"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_shipping_info_text_heading" />
 

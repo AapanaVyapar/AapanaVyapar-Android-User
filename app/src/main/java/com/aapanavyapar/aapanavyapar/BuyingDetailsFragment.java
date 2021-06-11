@@ -20,6 +20,7 @@ import com.aapanavyapar.aapanavyapar.services.BuyingServiceGrpc;
 import com.aapanavyapar.aapanavyapar.services.CreateOrderRequest;
 import com.aapanavyapar.aapanavyapar.services.CreateOrderResponse;
 import com.aapanavyapar.dataModel.DataModel;
+import com.aapanavyapar.dataModel.ViewDataModel;
 import com.aapanavyapar.serviceWrappers.UpdateToken;
 import com.aapanavyapar.viewData.BuyingData;
 import com.aapanavyapar.viewData.ProductData;
@@ -44,6 +45,7 @@ public class BuyingDetailsFragment extends Fragment {
     Button buyNow;
 
     DataModel dataModel;
+    ViewDataModel viewDataModel;
 
 
     ManagedChannel mChannel;
@@ -63,6 +65,9 @@ public class BuyingDetailsFragment extends Fragment {
         mChannel = ManagedChannelBuilder.forTarget(ViewProvider.BUYING_SERVICE_ADDRESS).usePlaintext().build();
         blockingStub = BuyingServiceGrpc.newBlockingStub(mChannel);
 
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+        viewDataModel = new ViewModelProvider(requireActivity()).get(ViewDataModel.class);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buying_details, container, false);
     }
@@ -71,10 +76,10 @@ public class BuyingDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
 
         assert getArguments() != null;
         productData = (ProductData) getArguments().getSerializable("dataFill");
+        int quant = getArguments().getInt("quantity");
 
         fullNameEditText = view.findViewById(R.id.buying_form_full_name_input);
         phoneNoEditText = view.findViewById(R.id.buying_form_phone_no_input);
@@ -88,6 +93,18 @@ public class BuyingDetailsFragment extends Fragment {
         quantityDetailsEditText = view.findViewById(R.id.buying_form_quantity_input);
 
         buyNow = view.findViewById(R.id.buying_form_submit);
+
+        quantityDetailsEditText.setText("" + quant);
+        fullNameEditText.setText(viewDataModel.getUserName());
+        phoneNoEditText.setText(viewDataModel.getAddress().getFullName());
+        buildingDetailsEditText.setText(viewDataModel.getAddress().getHouseDetails());
+        streetDetailsEditText.setText(viewDataModel.getAddress().getStreetDetails());
+        landmarkEditText.setText(viewDataModel.getAddress().getLandMark());
+        pinCodeEditText.setText(viewDataModel.getAddress().getPinCode());
+        cityDetailsEditText.setText(viewDataModel.getAddress().getCity());
+        stateDetailsEditText.setText(viewDataModel.getAddress().getState());
+        countryDetailsEditText.setText(viewDataModel.getAddress().getCountry());
+        buildingDetailsEditText.setText(viewDataModel.getAddress().getPhoneNo());
 
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override

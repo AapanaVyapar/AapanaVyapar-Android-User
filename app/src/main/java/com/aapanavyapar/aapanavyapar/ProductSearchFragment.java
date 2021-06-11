@@ -170,9 +170,14 @@ public class ProductSearchFragment extends Fragment {
             }
         });
 
-        mSearchView.setOnClickListener(new View.OnClickListener() {
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
                 if(spinner.getSelectedItem().equals(choice[0])) {
                     ((ProductAdapter) searchedAdapter).makeEmpty();
                     googleMap.clear();
@@ -216,6 +221,7 @@ public class ProductSearchFragment extends Fragment {
                     });
 
                 }
+                return true;
             }
         });
 
