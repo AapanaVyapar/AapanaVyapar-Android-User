@@ -73,6 +73,12 @@ public class BuyingDetailsFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mChannel.shutdownNow();
+    }
+
+    @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -95,8 +101,8 @@ public class BuyingDetailsFragment extends Fragment {
         buyNow = view.findViewById(R.id.buying_form_submit);
 
         quantityDetailsEditText.setText("" + quant);
-        fullNameEditText.setText(viewDataModel.getUserName());
-        phoneNoEditText.setText(viewDataModel.getAddress().getFullName());
+        fullNameEditText.setText(viewDataModel.getAddress().getFullName());
+        phoneNoEditText.setText(viewDataModel.getAddress().getPhoneNo());
         buildingDetailsEditText.setText(viewDataModel.getAddress().getHouseDetails());
         streetDetailsEditText.setText(viewDataModel.getAddress().getStreetDetails());
         landmarkEditText.setText(viewDataModel.getAddress().getLandMark());
@@ -104,7 +110,6 @@ public class BuyingDetailsFragment extends Fragment {
         cityDetailsEditText.setText(viewDataModel.getAddress().getCity());
         stateDetailsEditText.setText(viewDataModel.getAddress().getState());
         countryDetailsEditText.setText(viewDataModel.getAddress().getCountry());
-        buildingDetailsEditText.setText(viewDataModel.getAddress().getPhoneNo());
 
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +146,15 @@ public class BuyingDetailsFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mChannel = ManagedChannelBuilder.forTarget(ViewProvider.BUYING_SERVICE_ADDRESS).usePlaintext().build();
+        blockingStub = BuyingServiceGrpc.newBlockingStub(mChannel);
+
+        dataModel = new ViewModelProvider(requireActivity()).get(DataModel.class);
+        viewDataModel = new ViewModelProvider(requireActivity()).get(ViewDataModel.class);
+    }
 
     public void startPayment(BuyingData buyingData){
 

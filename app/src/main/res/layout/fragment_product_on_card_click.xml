@@ -82,14 +82,13 @@
                 android:id="@+id/productoncardclick_productprice_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:fontFamily="@font/asap"
                 android:text="Price :"
                 android:textColor="?android:textColor"
                 android:textSize="17dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/productoncardclick_stock_text"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productname_text" />
 
             <TextView
                 android:id="@+id/productoncardclick_price_amount_text"
@@ -100,7 +99,7 @@
                 android:textColor="?android:textColor"
                 android:textSize="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.115"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/productoncardclick_productprice_text"
                 app:layout_constraintTop_toTopOf="@+id/productoncardclick_productprice_text" />
 
@@ -144,7 +143,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/productoncardclick_button_buy"
                 app:layout_constraintEnd_toEndOf="@+id/productoncardclick_button_buy"
                 app:layout_constraintTop_toBottomOf="@+id/productoncardclick_productprice_text"
-                app:layout_constraintVertical_bias="0.285" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/productoncardclick_stockno_text"

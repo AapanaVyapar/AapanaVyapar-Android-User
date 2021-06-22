@@ -240,7 +240,7 @@ public class ShopOnCardClick extends Fragment {
                 if(ViewProvider.currentLocation != null) {
 
                     GetProductByShopWrapper getProductByShopWrapper = new GetProductByShopWrapper(requireActivity());
-                    getProductByShopWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), new RecycleViewUpdater() {
+                    getProductByShopWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), shopResponse, new RecycleViewUpdater() {
                         @Override
                         public void updateRecycleView(Object object) {
                             shopProductAdapter.addNewData((ProductData) object);
