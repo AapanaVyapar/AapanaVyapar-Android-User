@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.aapanavyapar.aapanavyapar.MainActivity;
 import com.aapanavyapar.aapanavyapar.services.Category;
+import com.aapanavyapar.aapanavyapar.services.GetShopResponse;
 import com.aapanavyapar.aapanavyapar.services.GetTrendingProductsByShopRequest;
 import com.aapanavyapar.aapanavyapar.services.GetTrendingProductsByShopResponse;
 import com.aapanavyapar.aapanavyapar.services.GetTrendingShopsResponse;
@@ -38,7 +39,7 @@ public class GetProductByShopWrapper {
         viewDataModel = new ViewModelProvider(owner).get(ViewDataModel.class);
     }
 
-    public void GetTrendingProducts(String authToken, String refreshToken, String shopId, RecycleViewUpdater updater) {
+    public void GetTrendingProducts(String authToken, String refreshToken, String shopId, GetShopResponse shopResponse, RecycleViewUpdater updater) {
         int state = 0;
         while(state == 0) {
             Log.d("GetTrendingProducts", "Done with Shop Data");
@@ -63,16 +64,16 @@ public class GetProductByShopWrapper {
                                 productsByShopResponse.getCategoryData().getProductId(),
                                 productsByShopResponse.getCategoryData().getProductName(),
                                 productsByShopResponse.getCategoryData().getShopId(),
-                                shopFromMap.getShops().getShopName(),
+                                shopResponse.getShopName(),
                                 productsByShopResponse.getCategoryData().getPrimaryImage(),
-                                shopFromMap.getShops().getPrimaryImage(),
+                                shopResponse.getPrimaryImage(),
                                 productsByShopResponse.getCategoryData().getCategoryList().toArray(new Category[0]),
-                                shopFromMap.getShops().getCategoryList().toArray(new Category[0]),
+                                shopResponse.getCategoryList().toArray(new Category[0]),
                                 productsByShopResponse.getCategoryData().getLikes(),
-                                shopFromMap.getShops().getRating(),
-                                shopFromMap.getShops().getShopkeeper(),
-                                shopFromMap.getShops().getLocation().getLatitude(),
-                                shopFromMap.getShops().getLocation().getLongitude()
+                                shopResponse.getTotalRating(),
+                                shopResponse.getShopKeeperName(),
+                                shopResponse.getLocation().getLatitude(),
+                                shopResponse.getLocation().getLongitude()
                         );
                     }
                     Log.d("GetTrendingProducts", "Packed Product Data");

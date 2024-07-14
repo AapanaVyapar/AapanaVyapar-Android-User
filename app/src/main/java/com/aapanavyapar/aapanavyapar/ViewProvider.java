@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.aapanavyapar.aapanavyapar.services.BuyingServiceGrpc;
@@ -54,7 +55,7 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
     public static final String TAG = "ViewProvider";
     private static final int PERMISSION_LOCATION = 10;
 
-    public static final String BUYING_SERVICE_ADDRESS = "192.168.43.200:9359";
+    public static final String BUYING_SERVICE_ADDRESS = "192.168.26.200:9359";
     public static final int PRIORITY_ACCURACY = LocationRequest.PRIORITY_HIGH_ACCURACY;
     public static final int DEFAULT_UPDATE_INTERVAL = 3;
     public static final int FAST_UPDATE_INTERVAL = 5;
@@ -120,14 +121,6 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
 
         setContentView(R.layout.view_provider);
         Toast.makeText(this.getApplicationContext(), "View Provider...", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        updateGPS();
-        startLocationUpdates();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setItemHorizontalTranslationEnabled(true);
@@ -135,6 +128,12 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                FragmentManager fm = getSupportFragmentManager();
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
+
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.av_trend:
@@ -156,6 +155,14 @@ public class ViewProvider extends AppCompatActivity implements PaymentResultWith
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        updateGPS();
+        startLocationUpdates();
     }
 
     @Override

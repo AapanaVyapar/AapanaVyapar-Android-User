@@ -1,5 +1,6 @@
 package com.aapanavyapar.aapanavyapar;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +17,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aapanavyapar.aapanavyapar.services.GetShopResponse;
+import com.aapanavyapar.aapanavyapar.services.OperationalHours;
+import com.aapanavyapar.aapanavyapar.services.RatingOfShop;
+import com.aapanavyapar.aapanavyapar.services.Ratings;
 import com.aapanavyapar.adapter.CommentAdapter;
 import com.aapanavyapar.adapter.ProductAdapter;
 import com.aapanavyapar.dataModel.DataModel;
@@ -42,8 +47,10 @@ import java.util.ArrayList;
 
 public class ShopOnCardClick extends Fragment {
 
+    int normal = 16, selected = 20;
     private GoogleMap googleMap;
 
+    OperationalHours operationalHours;
     public static Thread callerProduct = null;
 
     ProductAdapter shopProductAdapter;
@@ -60,6 +67,9 @@ public class ShopOnCardClick extends Fragment {
     EditText ratingCommentBox;
     ImageButton ratingSendComment;
     RatingBar ratingRatingBar;
+
+    TextView day1, day2, day3, day4, day5, day6, day7;
+    TextView time;
 
 
     public ShopOnCardClick() {
@@ -113,6 +123,15 @@ public class ShopOnCardClick extends Fragment {
         ratingRatingBar = view.findViewById(R.id.commentRating);
         ratingSendComment = view.findViewById(R.id.commentButton);
 
+        day1 = view.findViewById(R.id.sun);
+        day2 = view.findViewById(R.id.mon);
+        day3 = view.findViewById(R.id.tue);
+        day4 = view.findViewById(R.id.wed);
+        day5 = view.findViewById(R.id.thu);
+        day6 = view.findViewById(R.id.fri);
+        day7 = view.findViewById(R.id.sat);
+        time = view.findViewById(R.id.time);
+
         GetShopDetailsWrapper detailsWrapper = new GetShopDetailsWrapper();
         detailsWrapper.getShopDetails(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId());
         GetShopResponse shopResponse = detailsWrapper.getShopResponse();
@@ -131,6 +150,73 @@ public class ShopOnCardClick extends Fragment {
         businessInformation.setText(shopResponse.getBusinessInformation());
         ratingBar.setRating(shopResponse.getTotalRating());
 
+        operationalHours = shopResponse.getOperationalHours();
+        time.setText(operationalHours.getSunday(0) + " " + operationalHours.getSunday(1));
+        day1.setTextSize(selected);
+        day1.setTypeface(day1.getTypeface(), Typeface.BOLD);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView selectedDay = (TextView)v;
+                String day = selectedDay.getText().toString();
+
+                day1.setTypeface(day1.getTypeface(), Typeface.NORMAL);
+                day2.setTypeface(day2.getTypeface(), Typeface.NORMAL);
+                day3.setTypeface(day3.getTypeface(), Typeface.NORMAL);
+                day4.setTypeface(day4.getTypeface(), Typeface.NORMAL);
+                day5.setTypeface(day5.getTypeface(), Typeface.NORMAL);
+                day6.setTypeface(day6.getTypeface(), Typeface.NORMAL);
+                day7.setTypeface(day7.getTypeface(), Typeface.NORMAL);
+
+                day1.setTextSize(normal);
+                day2.setTextSize(normal);
+                day3.setTextSize(normal);
+                day4.setTextSize(normal);
+                day5.setTextSize(normal);
+                day6.setTextSize(normal);
+                day7.setTextSize(normal);
+
+                selectedDay.setTypeface(selectedDay.getTypeface(), Typeface.BOLD);
+                selectedDay.setTextSize(selected);
+
+                Toast.makeText(getContext(), "Selected : " + day, Toast.LENGTH_SHORT).show();
+
+                switch(day){
+                    case "Sun":
+                        time.setText(operationalHours.getSunday(0) + " " + operationalHours.getSunday(1));
+                        break;
+                    case "Mon":
+                        time.setText(operationalHours.getMonday(0) + " " + operationalHours.getMonday(1));
+                        break;
+                    case "Tue":
+                        time.setText(operationalHours.getTuesday(0) + " " + operationalHours.getTuesday(1));
+                        break;
+                    case "Wed":
+                        time.setText(operationalHours.getWednesday(0) + " " + operationalHours.getWednesday(1));
+                        break;
+                    case "Thu":
+                        time.setText(operationalHours.getThursday(0) + " " + operationalHours.getThursday(1));
+                        break;
+                    case "Fri":
+                        time.setText(operationalHours.getFriday(0) + " " + operationalHours.getFriday(1));
+                        break;
+                    case "Sat":
+                        time.setText(operationalHours.getSaturday(0) + " " + operationalHours.getSaturday(1));
+                        break;
+                }
+
+            }
+        };
+
+        day1.setOnClickListener(onClickListener);
+        day2.setOnClickListener(onClickListener);
+        day3.setOnClickListener(onClickListener);
+        day4.setOnClickListener(onClickListener);
+        day5.setOnClickListener(onClickListener);
+        day6.setOnClickListener(onClickListener);
+        day7.setOnClickListener(onClickListener);
+
 
         recyclerViewForComment = view.findViewById(R.id.search_shop_comment_recyclerview);
         recyclerViewForComment.setHasFixedSize(true);
@@ -142,7 +228,7 @@ public class ShopOnCardClick extends Fragment {
 
         recyclerViewForShop = view.findViewById(R.id.recyclerview_for_searchshop_products);
         recyclerViewForShop.setHasFixedSize(true);
-        recyclerViewForShop.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewForShop.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         ArrayList<ProductData> productDataList = new ArrayList<>();
         shopProductAdapter = new ProductAdapter(productDataList, getContext());
@@ -154,7 +240,7 @@ public class ShopOnCardClick extends Fragment {
                 if(ViewProvider.currentLocation != null) {
 
                     GetProductByShopWrapper getProductByShopWrapper = new GetProductByShopWrapper(requireActivity());
-                    getProductByShopWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), new RecycleViewUpdater() {
+                    getProductByShopWrapper.GetTrendingProducts(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), shopResponse, new RecycleViewUpdater() {
                         @Override
                         public void updateRecycleView(Object object) {
                             shopProductAdapter.addNewData((ProductData) object);
@@ -169,11 +255,19 @@ public class ShopOnCardClick extends Fragment {
             public void onClick(View v) {
                 AddRatingWrapper ratingWrapper = new AddRatingWrapper();
                 Toast.makeText(getContext(), "Rating :" + ratingRatingBar.getRating(), Toast.LENGTH_LONG).show();
-                ratingWrapper.addRating(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), ratingCommentBox.getText().toString(), (int) ratingRatingBar.getRating());
+                ratingWrapper.addRating(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getShopId(), ratingCommentBox.getText().toString(), Math.round(ratingRatingBar.getRating()));
                 ratingCommentBox.setText("");
             }
         });
 
+        if(callerProduct != null) {
+            callerProduct.start();
+            try {
+                callerProduct.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -189,19 +283,6 @@ public class ShopOnCardClick extends Fragment {
 
         }
     };
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(callerProduct != null) {
-            callerProduct.start();
-            try {
-                callerProduct.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public void onStop() {

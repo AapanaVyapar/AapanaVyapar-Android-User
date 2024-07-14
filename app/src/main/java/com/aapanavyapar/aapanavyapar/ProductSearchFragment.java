@@ -110,27 +110,7 @@ public class ProductSearchFragment extends Fragment {
             }
         });
 
-        //###
-        //###   Chips 
-        //### 
-
         Toast.makeText(getContext(), dataModel.getRefreshToken(),Toast.LENGTH_SHORT).show();
-        String[] arr = {"Food", "Clothes", "Electronics", "Devotional", "Sports", "Cosmetics","Hardware"};
-
-        chipGroup = view.findViewById(R.id.ps_chipgroup);
-        for (int i = 0; i < arr.length; i++) {
-            chip = new Chip(getContext());
-            chip.setText(arr[i]);
-            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(getContext(), null, 0, R.style.CustomChipStyle);
-            chip.setChipDrawable(chipDrawable);
-            chip.setId(i);
-            chip.setOnClickListener(v -> {
-                Chip chipClick = v.findViewById(v.getId());
-                Toast.makeText(getContext(), chipClick.getText(), Toast.LENGTH_LONG).show();
-            });
-            chipGroup.addView(chip);
-        }
-
         spinner = view.findViewById(R.id.ps_spinner);
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, choice);
@@ -190,9 +170,14 @@ public class ProductSearchFragment extends Fragment {
             }
         });
 
-        mSearchView.setOnClickListener(new View.OnClickListener() {
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
                 if(spinner.getSelectedItem().equals(choice[0])) {
                     ((ProductAdapter) searchedAdapter).makeEmpty();
                     googleMap.clear();
@@ -236,14 +221,10 @@ public class ProductSearchFragment extends Fragment {
                     });
 
                 }
+                return true;
             }
         });
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         caller.start();
         try {
             caller.join();
@@ -270,7 +251,7 @@ public class ProductSearchFragment extends Fragment {
         @Override
         public void onMapReady(@NonNull GoogleMap gMap) {
             googleMap = gMap;
-            Toast.makeText(getContext(), "MAP", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(), "MAP", Toast.LENGTH_LONG).show();
             if(viewDataModel.getTrendingShopsMap() != null && viewDataModel.getTrendingShopsMap().size() > 0) {
                 for(String shopId : viewDataModel.getTrendingShopsMap().keySet()){
 

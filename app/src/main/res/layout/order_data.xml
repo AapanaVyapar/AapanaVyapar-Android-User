@@ -7,13 +7,14 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/black"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="10dp">
 
         <LinearLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -23,104 +24,183 @@
                 android:id="@+id/order_product_imageview"
                 android:layout_width="120dp"
                 android:layout_height="150dp"
-               android:layout_margin="10dp">
-
+                android:layout_margin="10dp">
             </ImageView>
 
             <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/order_product_name"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_toRightOf="@+id/order_product_imageview"
-                    android:text="Product Name">
+                    android:layout_toRightOf="@+id/order_product_imageview">
 
-                </TextView>
+                    <TextView
+                        android:id="@+id/order_product_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Product Name"
+                        android:textColor="?android:textColor">
 
-                <TextView
-                    android:id="@+id/order_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_product_name"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Order Id">
+                    </TextView>
 
-                </TextView>
+                    <TextView
+                        android:id="@+id/ordered_order_id_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_product_name"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Order Id :"
+                        android:textColor="?android:textColor" />
 
-                <TextView
-                    android:id="@+id/order_product_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_id"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Price">
+                    <TextView
+                        android:id="@+id/order_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ordered_order_id_head"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="-19dp"
+                        android:layout_toEndOf="@+id/ordered_order_id_head"
+                        android:layout_toRightOf="@+id/ordered_order_id_head"
+                        android:text="Order Id">
 
-                </TextView>
+                    </TextView>
 
-                <TextView
-                    android:id="@+id/order_product_qty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_product_price"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Quantity">
+                    <TextView
+                        android:id="@+id/order_price_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_id"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="-1dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Price :"
+                        android:textColor="?android:textColor" />
 
-                </TextView>
 
-                <TextView
-                    android:id="@+id/order_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_product_qty"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Status">
+                    <TextView
+                        android:id="@+id/order_product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_price_head"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="-18dp"
+                        android:layout_toEndOf="@+id/order_price_head"
+                        android:layout_toRightOf="@+id/order_price_head"
+                        android:text="Price">
 
-                </TextView>
+                    </TextView>
 
-                <TextView
-                    android:id="@+id/order_on"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_status"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Ordered On: Time">
+                    <TextView
+                        android:id="@+id/order_quantity_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_product_price"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="-1dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Quantity :"
+                        android:textColor="?android:textColor" />
 
-                </TextView>
+                    <TextView
+                        android:id="@+id/order_product_qty"
+                        android:layout_width="312dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_quantity_head"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="-18dp"
+                        android:layout_toEndOf="@+id/order_quantity_head"
+                        android:layout_toRightOf="@+id/order_quantity_head"
+                        android:text="Quantity">
 
-                <TextView
-                    android:id="@+id/order_delivered_on"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/order_on"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/order_product_imageview"
-                    android:text="Delivered On: Time">
+                    </TextView>
 
-                </TextView>
+                    <TextView
+                        android:id="@+id/order_status_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_product_qty"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="-1dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Status :"
+                        android:textColor="?android:textColor" />
+
+                    <TextView
+                        android:id="@+id/order_status"
+                        android:layout_width="327dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_status_head"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="-18dp"
+                        android:layout_toEndOf="@+id/order_status_head"
+                        android:layout_toRightOf="@+id/order_status_head"
+                        android:text="Status">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/order_ordered_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_status"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="-2dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Ordered On :"
+                        android:textColor="?android:textColor" />
+
+
+                    <TextView
+                        android:id="@+id/order_on"
+                        android:layout_width="291dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_ordered_head"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="-17dp"
+                        android:layout_toEndOf="@+id/order_ordered_head"
+                        android:layout_toRightOf="@+id/order_ordered_head"
+                        android:text="Ordered On: Time">
+
+                    </TextView>
+
+
+                    <TextView
+                        android:id="@+id/order_delivered_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_on"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="-2dp"
+                        android:fontFamily="@font/asap_medium"
+                        android:text="Delivered On :"
+                        android:textColor="?android:textColor" />
+
+                    <TextView
+                        android:id="@+id/order_delivered_on"
+                        android:layout_width="279dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/order_on"
+                        android:layout_toEndOf="@+id/order_delivered_head"
+                        android:layout_toRightOf="@+id/order_delivered_head"
+                        android:text="Delivered On: Time">
+
+                    </TextView>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-
-
-
 
     </com.google.android.material.card.MaterialCardView>
 

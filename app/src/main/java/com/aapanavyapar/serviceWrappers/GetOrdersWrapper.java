@@ -40,7 +40,7 @@ public class GetOrdersWrapper {
                         response.getProductImage(),
                         response.getProductName(),
                         response.getProductId(),
-                        String.valueOf(response.getPrice()),
+                        String.valueOf(response.getPrice() / 100),
                         String.valueOf(response.getQuantity()),
                         response.getStatus().name(),
                         response.getOrderTimeStamp(),

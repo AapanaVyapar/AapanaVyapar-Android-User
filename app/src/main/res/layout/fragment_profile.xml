@@ -123,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#D3CCCC"
                 android:ems="15"
+                android:enabled="false"
                 android:fontFamily="@font/asap_medium"
                 android:hint="Enter Your Name"
                 android:inputType="text"

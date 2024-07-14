@@ -21,6 +21,7 @@ import com.aapanavyapar.aapanavyapar.R;
 import com.aapanavyapar.aapanavyapar.ShopOnCardClick;
 import com.aapanavyapar.viewData.ProductData;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -47,18 +48,19 @@ public class SearchedShopAdapter extends RecyclerView.Adapter<SearchedShopAdapte
         final ProductData shopCardData = shopDataList.get(position);
 
         Glide.with(this.context)
-                .load(shopCardData.getShopPrimaryImage()).centerCrop().fitCenter().into(holder.shopImage);
+                .load(shopCardData.getShopPrimaryImage()).apply(new RequestOptions().override(1000, 1000)).centerCrop().into(holder.shopImage);
 
 
         holder.shopName.setText(shopCardData.getShopName());
-        holder.shopKeeperName.setText(shopCardData.getShopName());
+        holder.shopKeeperName.setText(shopCardData.getShopKeeper());
         holder.ratingBar.setRating((float) shopCardData.getShopRating());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductSearchFragment.caller.interrupt();
-                Toast.makeText(context , shopCardData.getProductName(),Toast.LENGTH_LONG).show();
+                if(ProductSearchFragment.caller != null) {
+                    ProductSearchFragment.caller.interrupt();
+                }
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();
                 args.putSerializable("dataFill", shopCardData);

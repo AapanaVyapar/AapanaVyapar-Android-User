@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,9 @@ public class ProductOnCardClick extends Fragment {
     TextView deliveryCharges;
     TextView shippingInfo;
     TextView description;
+    TextView offer;
     CheckBox bookmark, addToFavourite;
+    EditText quantity;
 
     DataModel dataModel;
     ViewDataModel viewDataModel;
@@ -83,6 +86,8 @@ public class ProductOnCardClick extends Fragment {
         shippingInfo = view.findViewById(R.id.productoncardclick_shipping_info);
         bookmark = view.findViewById(R.id.productoncardclick_bookmark_image);
         addToFavourite = view.findViewById(R.id.productoncardclick_favourite_image);
+        offer = view.findViewById(R.id.productoncardclick_offer);
+        quantity = view.findViewById(R.id.productoncardclick_quantity);
 
         int res = 2;
         GetProductInfo getProductInfo = new GetProductInfo();
@@ -107,10 +112,11 @@ public class ProductOnCardClick extends Fragment {
                 .into(productImage);
 
         productName.setText(getProductInfo.getResponse().getProductName());
-        price.setText(String.valueOf(getProductInfo.getResponse().getPrice()));
+        price.setText(String.valueOf(getProductInfo.getResponse().getPrice()) + " ₹");
         availableStock.setText(String.valueOf(getProductInfo.getResponse().getStock()));
         shippingInfo.setText(getProductInfo.getResponse().getShippingInfo());
         description.setText(getProductInfo.getResponse().getProductDescription());
+        offer.setText(String.valueOf(getProductInfo.getResponse().getOffer()) + " %");
 
         addToFavourite.setChecked(viewDataModel.IsProductInLikeList(productData.getProductId()));
         bookmark.setChecked(viewDataModel.IsProductInCartList(productData.getProductId()));
@@ -120,12 +126,14 @@ public class ProductOnCardClick extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     boolean res = new AddToFavWrapper().addToFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    if(res)
+                    if(res) {
                         viewDataModel.addToLike(getContext(), productData.getProductId());
+                    }
                 } else {
                     boolean res = new RemoveFromFavWrapper().removeFromFav(dataModel.getAuthToken(), dataModel.getRefreshToken(), productData.getProductId());
-                    if(res)
-                        viewDataModel.DeleteFromLikeList(getContext(),productData.getProductId());
+                    if(res) {
+                        viewDataModel.DeleteFromLikeList(getContext(), productData.getProductId());
+                    }
                 }
             }
         });
@@ -152,7 +160,11 @@ public class ProductOnCardClick extends Fragment {
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Bundle args = new Bundle();
                 args.putSerializable("dataFill", productData);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, BuyingDetailsFragment.class, args).addToBackStack(null).commit();
+                try {
+                    int quant = Integer.parseInt(quantity.getText().toString());
+                    args.putInt("quantity", quant);
+                 } catch (Exception e){}
+              activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, BuyingDetailsFragment.class, args).addToBackStack(null).commit();
             }
         });
 

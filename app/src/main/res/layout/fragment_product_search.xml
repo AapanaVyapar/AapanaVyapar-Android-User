@@ -21,76 +21,48 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:textAlignment="gravity"
-        app:layout_constraintBottom_toTopOf="@+id/ps_map"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/ps_search_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ps_search_title"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Google Map-->
 
-    <!--Chips And Product Cards-->
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/ps_map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <ScrollView
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ps_search_title"
-        android:padding="30dp"/>
-
-    <LinearLayout
-        android:id="@+id/ps_chip_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ps_map">
+        app:layout_constraintTop_toBottomOf="@+id/ps_search_title">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/ps_map"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ps_search_title" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/ps_chipgroup"
-                    style="@style/CustomChipStyle"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ps_recycler_view"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:closeIconEnabled="true"
-                    app:singleSelection="true">
+                    android:layout_margin="10dp" />
 
-                </com.google.android.material.chip.ChipGroup>
-
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/major_component_gap"/>
             </LinearLayout>
-
-        </HorizontalScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ps_chip_layout">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ps_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
         </LinearLayout>
-    </LinearLayout>
-
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

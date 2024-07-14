@@ -1,6 +1,7 @@
 package com.aapanavyapar.serviceWrappers;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -56,6 +57,11 @@ public class GetProfileWrapper {
 
                 if(getProfileResponse.getAddress() != null) {
                     viewDataModel.setAddress(context, getProfileResponse.getAddress());
+
+                }
+
+                if(getProfileResponse.getUserName() != null) {
+                    viewDataModel.setUserName(getProfileResponse.getUserName());
 
                 }
 

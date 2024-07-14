@@ -50,8 +50,8 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
         holder.orderedProductPrice.setText(orderedProductCard.getOrderedProductPrice());
         holder.orderedProductQty.setText(orderedProductCard.getOrderedProductQty());
         holder.orderedProductStatus.setText(orderedProductCard.getOrderedProductStatus());
-        holder.orderedTime.setText(orderedProductCard.getOrderedTime().substring(0, 17));
-        holder.orderedDeliveredTime.setText(orderedProductCard.getOrderedDeliveredTime().substring(0, 17));
+        holder.orderedTime.setText(orderedProductCard.getOrderedTime().substring(0, 16));
+        holder.orderedDeliveredTime.setText(orderedProductCard.getOrderedDeliveredTime().substring(0, 16));
 
     }
 

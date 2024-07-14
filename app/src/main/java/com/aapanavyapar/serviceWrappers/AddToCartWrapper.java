@@ -33,7 +33,7 @@ public class AddToCartWrapper {
 
             try {
                 AddToCartProductResponse addToCartProductResponse = blockingStub.withDeadlineAfter(5, TimeUnit.MINUTES).addToCartProduct(addToCartProductRequest);
-                mChannel.shutdown();
+                mChannel.shutdownNow();
                 return addToCartProductResponse.getStatus();
 
             } catch (StatusRuntimeException e) {

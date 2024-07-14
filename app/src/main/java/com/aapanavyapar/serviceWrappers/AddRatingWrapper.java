@@ -26,6 +26,11 @@ public class AddRatingWrapper {
 
         int state = 0;
         while(state == 0) {
+
+            if(rating != 0){
+                rating --;
+            }
+
             RateShopRequest rateShopRequest = RateShopRequest.newBuilder()
                     .setApiKey(MainActivity.API_KEY)
                     .setToken(authToken)
